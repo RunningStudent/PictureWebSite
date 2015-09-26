@@ -78,8 +78,8 @@
         }
 
 
-        .modal-content{
-            border-radius:0px;
+        .modal-content {
+            border-radius: 0px;
         }
 
         /*BootStrap默认样式修改结束*/
@@ -366,7 +366,6 @@
                     </div>
                 </div>
                 <%} %>--%>
-
             </div>
 
             <%--三图片显示--%>
@@ -393,16 +392,22 @@
     <%--弹出层--%>
     <!-- Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog ">
             <div class="modal-content">
 
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                    <div clas="row">
+                        <div class="col-xs-6 col-md-3">
+                            <a href="#" class="thumbnail">
+                                <img src="..." alt="...">
+                            </a>
+                        </div>
+                    </div>
+
                 </div>
 
                 <div class="modal-body">
-                    
                 </div>
 
                 <div class="modal-footer">
@@ -485,11 +490,11 @@
 
             //首次先加载一次
 
-            /*
+
             //单图模式
             loadPicture(singlePictureModelCount, 5, singlePictureModelObj, true);
             singlePictureModelCount++;
-            */
+
 
             loadPicture(threePicutreModelCount, 5, threePictureModelObj, false);
             threePicutreModelCount++;
@@ -505,10 +510,10 @@
                 if (scrollTop + clientHeight > pageHeight - 300) {
                     //当到达页面底部时候
                     if (singlePictureModelObj.hasClass("active")) {
-                        /*单图模式
+                        /*单图模式  */
                         loadPicture(singlePictureModelCount, 5, singlePictureModelObj, true);
                         singlePictureModelCount++;
-                        */
+
                     } else {
                         loadPicture(threePicutreModelCount, 5, threePictureModelObj, false);
                         threePicutreModelCount++;

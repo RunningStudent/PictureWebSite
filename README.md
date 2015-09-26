@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #PictureWebSite
 这是一个图片展示网站
 
@@ -22,3 +23,6 @@
 内置唯一登入账号密码
 admit@126.com
 123456
+=======
+# PictureWebSite
+>>>>>>> 1e8d61857a9c557317c0627f780e2a452c45dbf5
