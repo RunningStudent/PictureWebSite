@@ -1,0 +1,101 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Layout.master.cs" Inherits="PictureWebSite.shared.Layout" %>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>图片网</title>
+    <!--[if lt IE 8]>
+	    <script type="text/javascript">
+	    window.location.href = 'error.html';
+	    </script>
+	<![endif]-->
+
+    <link href="/assets/css/index.css" rel="stylesheet" />
+    <link href="/assets/css/reset.css" rel="stylesheet" />
+    <script src="../assets/js/lib/jquery-1.10.2.min.js"></script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+
+    <div id="head">
+        <div class="topBar warpper">
+            <div class="leftPart">
+                <a href="javascript:;" class="logo"></a>
+                <a href="javascript:;" class="homePage">首页</a>
+                <a href="javascript:;">工作室首页</a>
+                <div href="javascript:;" class="classify">
+                    <div class="classifyDiv">
+                        <span class="triangle"></span>
+                        <h2 class="classifyH2Top">热门搜索标签</h2>
+                        <ul class="classifyUl clear">
+                            <li><a href="javascript:;">#标签1</a></li>
+                            <li><a href="javascript:;">#标签2</a></li>
+                            <li><a href="javascript:;">#标签3</a></li>
+                            <li><a href="javascript:;">#标签4</a></li>
+                            <li><a href="javascript:;">#标签5</a></li>
+                            <li><a href="javascript:;">#标签6</a></li>
+                            <li><a href="javascript:;">#标签7</a></li>
+                            <li><a href="javascript:;">#标签8</a></li>
+                            <li><a href="javascript:;">#标签9</a></li>
+                            <li><a href="javascript:;">#标签10</a></li>
+                        </ul>
+                        <a href="javascript:;">更多&gt;&gt;</a>
+                    </div>
+                </div>
+            </div>
+            <div class="rightPart">
+                <%if (isLogin)
+                  {%>
+                <div class="userInformation">
+                    <a href="UserIndex.aspx" class="userFace">
+                        <img src="<%=UserInfo.UserFacePathSmall %>" alt="用户头像" />
+                    </a>
+                    <div class="rightPartMenu">
+                        <a href="javascript:;">我的主页</a>
+                        <a href="javascript:;">账号设置</a>
+                        <a href="account/Logout.ashx">退出</a>
+                    </div>
+                </div>
+
+                <%}
+                  else
+                  { %>
+                <ul class="loginNav clear">
+                    <li class="register">
+                        <a href="javascript:;">注册</a>
+                    </li>
+                    <li class="login">
+                        <a href="javascript:;">登录</a>
+                    </li>
+                </ul>
+                <%} %>
+            </div>
+            <div class="search">
+                <form action="">
+                    <input type="text" placeholder="搜索你喜欢的" name="searchInput" class="searchInput" autocomplete="off" />
+                    <a href="javascript:;" class="searchImg"></a>
+                </form>
+            </div>
+            <div class="searchHint">
+                <ul>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+    </asp:ContentPlaceHolder>
+    <%--    </div>
+    </form>--%>
+    <script src="../assets/js/function.js"></script>
+    <script src="/assets/js/newMask3.js"></script>
+    <script src="../assets/js/head.js"></script>
+    <asp:ContentPlaceHolder ID="foot" runat="server">
+    </asp:ContentPlaceHolder>
+</body>
+
+
+</html>
