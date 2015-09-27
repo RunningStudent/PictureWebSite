@@ -41,7 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Comment.cs" />
-    <Compile Include="Extension\PictureInfo.cs" />
+    <Compile Include="Extension\CommentMore.cs" />
     <Compile Include="Extension\PictureMoreInfo.cs" />
     <Compile Include="Gag.cs" />
     <Compile Include="PictureCollect.cs" />

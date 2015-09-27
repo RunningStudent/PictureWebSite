@@ -20,7 +20,7 @@ namespace PictureWebSite.handler
             //取数据
             Picture.BLL.PictureMoreInfoBLL pictureInfoBll = new Picture.BLL.PictureMoreInfoBLL();
             //var models = bllPictureInfo.QueryList(ciShu + 1, 20,new {}, "UploadDate");
-            var models = pictureInfoBll.GetPictureInfoWithTag(ciShu + 1, 20, null, "UploadDate");
+            var models = pictureInfoBll.GetPictureInfoWithTagAndUserInfo(ciShu + 1, 20, null, "UploadDate");
 
             IUcClient client = new UcClient();
 

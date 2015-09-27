@@ -27,6 +27,7 @@ namespace PictureWebSite.handler
          * 
          * 
          *  图片标签保存部分未校验是否保存成功
+         *  标签要去除两边的空格
          */
 
         /// <summary>
@@ -50,7 +51,7 @@ namespace PictureWebSite.handler
 
             foreach (var item in tags.Split(new char[] { ',' }))
             {
-                Tags.Add(item);
+                Tags.Add(item.Trim());
             }
 
             //去除重复的标签

@@ -36,7 +36,7 @@ namespace Picture.BLL
         /// <param name="orderField"></param>
         /// <param name="isDesc"></param>
         /// <returns></returns>
-        public List<PictureMoreInfoModel> GetPictureInfoWithTag(int index, int size, object wheres, string orderField, bool isDesc = true)
+        public List<PictureMoreInfoModel> GetPictureInfoWithTagAndUserInfo(int index, int size, object wheres, string orderField, bool isDesc = true)
         {
             var pictureInfoList = pictureBll.QueryList(index, size, wheres, orderField, isDesc);
             List<PictureMoreInfoModel> resultList = new List<PictureMoreInfoModel>();
@@ -50,7 +50,7 @@ namespace Picture.BLL
                     CollectCount = item.CollectCount,
                     Height = item.Height,
                     PId = item.PId,
-                    UInfo=userInfoBll.QuerySingle(item.UId),
+                    UInfo = userInfoBll.QuerySingle(item.UId),
                     LargeImgPath = item.LargeImgPath,
                     ImgSummary = item.ImgSummary,
                     UploadDate = item.UploadDate,
@@ -59,6 +59,29 @@ namespace Picture.BLL
             }
             return resultList;
         }
+
+        /// <summary>
+        /// 根据图片id获取单个图片数据
+        /// </summary>
+        /// <param name="pid"></param>
+        /// <returns></returns>
+        public PictureMoreInfoModel GetSinglePictureInfoWithTagAndUserInfo(int pid)
+        {
+            var pictureModel = pictureBll.QuerySingle(pid);
+            return new PictureMoreInfoModel()
+            {
+                CollectCount = pictureModel.CollectCount,
+                Height = pictureModel.Height,
+                PId = pictureModel.PId,
+                LargeImgPath = pictureModel.LargeImgPath,
+                ImgSummary = pictureModel.ImgSummary,
+                UploadDate = pictureModel.UploadDate,
+                Width = pictureModel.Width,
+                Tags = tagBll.GetTagsByImgId(pictureModel.PId),
+                UInfo = userInfoBll.QuerySingle(pictureModel.UId)
+            };
+        }
+
 
     }
 }

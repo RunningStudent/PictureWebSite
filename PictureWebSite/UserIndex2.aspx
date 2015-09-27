@@ -82,6 +82,11 @@
             border-radius: 0px;
         }
 
+        /*面包屑导航分隔符*/
+        .breadcrumb > li + li::before {
+            content: "|";
+        }
+
         /*BootStrap默认样式修改结束*/
 
         /*用户信息面板*/
@@ -132,10 +137,56 @@
             border-width: 0px;
             margin: 0px;
         }
+        /*home标签页的样式结束*/
 
-
-        #mycamera {
+        /*#mycamera {
             margin: 0px auto;
+        }*/
+
+        /*弹出层样式*/
+        .modalFace {
+            margin-right: 5px;
+        }
+
+            .modalFace img {
+                border-radius: 4px;
+            }
+
+        .modalUsername {
+            margin-bottom: 8px;
+            word-wrap: break-word;
+            word-break: break-all;
+        }
+
+        .modalUploadDate {
+            color: #8C8C8C;
+        }
+
+        .modalComment {
+            /*height: 200px;
+            overflow: scroll;
+            overflow-x: hidden;
+            overflow-y: auto;*/
+        }
+
+            .modalComment .row {
+                border-bottom: solid 1px #EDECEC;
+                padding-bottom: 5px;
+                padding-top: 5px;
+            }
+
+        .modal-footer > .input-group {
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        .modal-footer > .btn {
+            margin-top: 10px;
+            width: 90px;
+        }
+
+        #pictureDetailModal .modal-dialog {
+            margin-bottom: 150px;
         }
     </style>
 
@@ -178,11 +229,9 @@
                         <li><a data-toggle="collapse" href="#collapse_UserSetting" aria-expanded="false" aria-controls="collapse_UserSetting" data-parent="#userPanel">账号设置</a></li>
                         <li><a data-toggle="collapse" href="#collapse3" aria-expanded="false" aria-controls="collapse3" data-parent="#userPanel">退出登入</a></li>
                     </ol>
-
-
                     <%--功能连接对应的内容--%>
                     <div class="panel-group" id="userPanel" role="tablist" aria-multiselectable="true">
-                        <div class="panel ">
+                        <div class="panel">
                             <div id="collapse1" class="panel-collapse collapse" role="tabpanel">
                                 1
                             </div>
@@ -305,16 +354,10 @@
                                                 <%=Avatar %>
                                             </div>
                                         </div>
-
-
                                     </div>
-
                                 </div>
-
                             </div>
                         </div>
-
-
 
                         <div class="panel ">
                             <div id="collapse3" class="panel-collapse collapse" role="tabpanel">
@@ -332,9 +375,9 @@
                 </ul>
 
 
-                <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+              <%--  <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#pictureDetailModal">
                     Launch demo modal
-                </button>
+                </button>--%>
             </div>
         </div>
 
@@ -391,30 +434,101 @@
 
     <%--弹出层--%>
     <!-- Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade" id="pictureDetailModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog ">
             <div class="modal-content">
 
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <div clas="row">
-                        <div class="col-xs-6 col-md-3">
-                            <a href="#" class="thumbnail">
-                                <img src="..." alt="...">
+                    <div class="row">
+                        <div class="col-xs-6 col-md-1 modalFace">
+                            <a href="#">
+                                <img src="http://localhost:8080/uc_server/avatar.php?uid=6&type=virtual&size=small" alt="...">
                             </a>
+                        </div>
+                        <div class="col-xs-6 col-md-9">
+                            <div class="modalUsername">
+                                用户名
+                            </div>
+                            <div class="modalUploadDate">
+                                2015-9-26 15:57:42
+                            </div>
                         </div>
                     </div>
 
                 </div>
 
-                <div class="modal-body">
+                <div class="modal-body row">
+                    <div class="col-xs-12 summary">我是文字描述</div>
+                    <div class="col-xs-12">
+                        <img src="/UpLoadPicture/20150924/tumblr_nu1csx1T0E1r67212o1_540.gif" class="img-thumbnail center-block" style="margin-top: 20px">
+                    </div>
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
+                    <ol class="breadcrumb text-left">
+                        <li class="active"><a href="#">评论</a></li>
+                        <li><a href="#">编辑</a></li>
+                        <li><a href="#">删除</a></li>
+                    </ol>
 
+                    <div class="modalComment">
+                        <div class="row">
+                            <div class="col-xs-6 col-md-1 modalFace">
+                                <a href="#">
+                                    <img src="http://localhost:8080/uc_server/avatar.php?uid=6&type=virtual&size=small">
+                                </a>
+                            </div>
+                            <div class="col-xs-6 col-md-10 text-left">
+                                <div class="modalUsername">
+                                    用户名:66666666666666666666666666666666666666666666666666666666666
+                                </div>
+                                <div class="modalUploadDate">
+                                    2015-9-26 15:57:42
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6 col-md-1 modalFace">
+                                <a href="#">
+                                    <img src="http://localhost:8080/uc_server/avatar.php?uid=6&type=virtual&size=small" alt="...">
+                                </a>
+                            </div>
+                            <div class="col-xs-6 col-md-9 text-left">
+                                <div class="modalUsername">
+                                    用户名:6666666666666666666666
+                                </div>
+                                <div class="modalUploadDate">
+                                    2015-9-26 15:57:42
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6 col-md-1 modalFace">
+                                <a href="#">
+                                    <img src="http://localhost:8080/uc_server/avatar.php?uid=6&type=virtual&size=small" alt="...">
+                                </a>
+                            </div>
+                            <div class="col-xs-6 col-md-9 text-left">
+                                <div class="modalUsername">
+                                    用户名:6666666666666666666666
+                                </div>
+                                <div class="modalUploadDate">
+                                    2015-9-26 15:57:42
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="input-group">
+                        <textarea id="txtComment" class="form-control " style="resize: none;" rows="1"></textarea>
+                    </div>
+                    <span class="input-group-btn"></span>
+                    <button class="btn btn-primary" id="btnCommentSubmit" style="display: none" type="button">发表</button>
+
+                    <!-- /input-group -->
+                </div>
             </div>
             <!-- /.modal-content -->
         </div>
@@ -431,6 +545,7 @@
     <script src="assets/js/lib/BootStrap/js/bootstrap.min.js"></script>
     <script src="assets/js/lib/Masonry.js"></script>
     <script src="assets/js/lib/imagesLoaded.js"></script>
+    <script src="assets/js/lib/dateFormat.js"></script>
     <script type="text/javascript">
 
 
@@ -459,8 +574,10 @@
             //点击切换按钮,绑定瀑布流效果
             waterFallFlow();
 
-        });
 
+            commentTextFocus();
+
+        });
 
         //点击切换按钮,绑定瀑布流效果
         function waterFallFlow() {
@@ -478,8 +595,6 @@
                 });
             });
         }
-
-
 
         //图片加载事件绑定
         function pictureLoadEvent() {
@@ -519,9 +634,12 @@
                         threePicutreModelCount++;
                     }
                 }
+
+
+
+
             });
         }
-
 
         //表单提交事件绑定
         function userSetting(obj, formType) {
@@ -597,13 +715,20 @@
                         var $container = $('.masonry-container');
                         for (var i in data) {
 
-                            var newElement = $("<div class=\"col-sm-4 col-xs-12 item\"><div class=\"thumbnail\"><img src=\"" +
+                            var newElement = $("<div data-pId=\"" + data[i].pId + "\" class=\"col-sm-4 col-xs-12 item\"><div class=\"thumbnail\"><img src=\"" +
                                 data[i].imgUrl + "\" /></div></div>");
                             if (isFirstLoad) {
                                 $container.append(newElement);
                             } else {
                                 $container.append(newElement).masonry('appended', newElement);
                             }
+                            //给新添加的图片添加点击事件
+                            $(newElement).click(function () {
+                                //alert();
+                                $('#pictureDetailModal').modal('toggle');
+                                console.log($(this).attr("data-pId"))
+                                loadPictureDetail($(this).attr("data-pId"));
+                            })
 
                         }
                         //每次刷完图片都要重新设置下
@@ -624,6 +749,57 @@
 
         }
 
+        //载入图片详细数据到弹出层
+        function loadPictureDetail(pId) {
+            $.ajax({
+                //===请求地址===
+                url: "handler/LoadPictureDetail.ashx",
+                //===请求设置===
+                data: { pId: pId },//传输数据,可以是字符串,也可以是json
+                success: function (data) {//请求成功时的回调函数,success(data, textStatus, jqXHR)
+                    var modal = $("#pictureDetailModal");
+                    var header = modal.find(".modal-header");
+                    var body = modal.find(".modal-body");
+                    var footer = modal.find(".modal-footer");
+                    //图片上传者信息
+                    header.find("img").attr("src", data.userInfo.userFace);//头像
+                    header.find(".modalUsername").html(data.userInfo.userName);//用户名
+                    //图片信息
+                    header.find(".modalUploadDate").html(eval(data.uploadDate.replace(/\/Date\((\d+)\)\//gi, "new Date($1)")).pattern("yyyy-MM-dd  hh:mm:ss"));
+                    body.find(".summary").html(data.summary);
+                    body.find("img").attr("src", data.url);
+
+                    //评论
+                    var comment = footer.find(".modalComment");
+                    comment.html("");
+                    for (var i in data.commentlist) {
+                        var temp = "<div class=\"row\"><div class=\"col-xs-6 col-md-1 modalFace\"><a href=\"#\"><img src=" + data.commentlist[i].userFace + "></a></div><div class=\"col-xs-6 col-md-10 text-left\"><div class=\"modalUsername\">" + data.commentlist[i].userName + ":" + data.commentlist[i].content + "</div><div class=\"modalUploadDate\">" + eval(data.commentlist[i].postDate.replace(/\/Date\((\d+)\)\//gi, "new Date($1)")).pattern("yyyy-MM-dd  hh:mm:ss") + "</div></div></div>";
+                        comment.append(temp);
+                    }
+
+                },
+                type: "post",//请求方法
+                dataType: "json",//返回的数据类型
+                cache: false,//是否使用缓存,(默认: true,dataType为script和jsonp时默认为false)  
+                contentType: "application/x-www-form-urlencoded"//发送信息至服务器时内容编码类型,这里是默认值
+            })
+        }
+
+        //评论文本框得到焦点事件
+        function commentTextFocus() {
+
+            var txtComment = $("#txtComment");
+            var btnCommentSubmit = $("#btnCommentSubmit");
+            txtComment.focus(function () {
+                txtComment.attr('rows', '3');
+                btnCommentSubmit.css('display', 'inline-block');
+            });
+            txtComment.blur(function () {
+                txtComment.attr('rows', '1');
+                btnCommentSubmit.css('display', 'none');
+            })
+
+        }
 
     </script>
 </body>
