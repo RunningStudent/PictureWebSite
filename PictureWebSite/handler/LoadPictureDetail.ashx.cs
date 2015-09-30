@@ -5,13 +5,16 @@ using System.Web;
 using Picture.Utility;
 using DS.Web.UCenter.Client;
 using DS.Web.UCenter;
+using System.Web.SessionState;
+using PictureWebSite.Model;
+using Picture.Model;
 
 namespace PictureWebSite.handler
 {
     /// <summary>
     /// 载入数据到弹出层
     /// </summary>
-    public class LoadPictureDetail : IHttpHandler
+    public class LoadPictureDetail : IHttpHandler, IRequiresSessionState
     {
 
         public void ProcessRequest(HttpContext context)
@@ -24,14 +27,34 @@ namespace PictureWebSite.handler
 
             IUcClient client = new UcClient();
 
+            User user = context.Session["current_user"] as User;
+
+            object commentlist = null;
             //构建评论信息
-            var commentlist = commentBll.GetCommentWithUserInfo(new { PId = pId }, "PostDate").Select(c => new
+            if (user != null)
             {
-                userFace = client.AvatarUrl(c.UId, AvatarSize.Small),
-                content = c.Content,
-                postDate = c.PostDate,
-                userName = c.UserName
-            });
+                 commentlist = commentBll.GetCommentWithUserInfo(new { PId = pId }, "PostDate").Select(c => new
+                 {
+                     userFace = client.AvatarUrl(c.UId, AvatarSize.Small),
+                     content = c.Content,
+                     postDate = c.PostDate,
+                     userName = c.UserName,
+                     cId=c.CId,
+                     isMe = c.UId == user.UId ? true : false
+                 });
+            }
+            else
+            {
+                 commentlist = commentBll.GetCommentWithUserInfo(new { PId = pId }, "PostDate").Select(c => new
+                {
+                    userFace = client.AvatarUrl(c.UId, AvatarSize.Small),
+                    content = c.Content,
+                    postDate = c.PostDate,
+                    cId = c.CId,
+                    userName = c.UserName,
+                });
+            }
+
 
             //获得图片信息
             var pictureInfo = pictureInfoBll.GetSinglePictureInfoWithTagAndUserInfo(pId);
@@ -43,7 +66,7 @@ namespace PictureWebSite.handler
                 url = pictureInfo.LargeImgPath,
                 uploadDate = pictureInfo.UploadDate,
                 tags = pictureInfo.Tags,
-                summary=pictureInfo.ImgSummary,
+                summary = pictureInfo.ImgSummary,
                 userInfo = new
                 {
                     userName = pictureInfo.UInfo.UserName,

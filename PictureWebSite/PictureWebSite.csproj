@@ -211,8 +211,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="handlerHelper\AccountHelper.cs" />
-    <Compile Include="handlerHelper\PictureUploadHelper.cs" />
+    <Compile Include="handler\DeleteComment.ashx.cs">
+      <DependentUpon>DeleteComment.ashx</DependentUpon>
+    </Compile>
     <Compile Include="handler\GetPictureListAsy.ashx.cs">
       <DependentUpon>GetPictureListAsy.ashx</DependentUpon>
     </Compile>
@@ -224,6 +225,9 @@
     </Compile>
     <Compile Include="handler\SearchPreview.ashx.cs">
       <DependentUpon>SearchPreview.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="handler\SubmitComment.ashx.cs">
+      <DependentUpon>SubmitComment.ashx</DependentUpon>
     </Compile>
     <Compile Include="handler\UserUploadPictureAsy.ashx.cs">
       <DependentUpon>UserUploadPictureAsy.ashx</DependentUpon>
@@ -309,6 +313,8 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="handler\LoadPictureDetail.ashx" />
+    <Content Include="handler\SubmitComment.ashx" />
+    <Content Include="handler\DeleteComment.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

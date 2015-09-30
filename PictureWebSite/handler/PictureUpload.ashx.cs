@@ -5,7 +5,6 @@ using System.Linq;
 using System.Web;
 using PictureWebSite.Code;
 using Picture.Utility;
-using PictureWebSite.handlerHelper;
 using System.Web.SessionState;
 using PictureWebSite.Model;
 using System.Collections;
@@ -27,7 +26,7 @@ namespace PictureWebSite.handler
          * 
          * 
          *  图片标签保存部分未校验是否保存成功
-         *  标签要去除两边的空格
+         *  
          */
 
         /// <summary>
@@ -62,7 +61,7 @@ namespace PictureWebSite.handler
             #region 用户登入校验
             if (context.Session["current_user"] == null)
             {
-                PictureUploadHelper.PictureUploadError(context, 1);
+                PictureUploadError(context, 1);
                 return;
             }
 
@@ -73,7 +72,7 @@ namespace PictureWebSite.handler
             #region 用户是否被禁止上传图片
             if (user.UserStatus == 1)
             {
-                PictureUploadHelper.PictureUploadError(context, 4);
+                PictureUploadError(context, 4);
                 return;
             }
             #endregion
@@ -83,7 +82,7 @@ namespace PictureWebSite.handler
             string extName = Path.GetExtension(fileName);
             if (!(extName == ".jpeg" || extName == ".jpg" || extName == ".bmp" || extName == ".png" || extName==".gif"))
             {
-                PictureUploadHelper.PictureUploadError(context, 2);
+                PictureUploadError(context, 2);
                 return;
             }
             #endregion
@@ -91,7 +90,7 @@ namespace PictureWebSite.handler
             #region 文件大小校验
             if (file.ContentLength > IMAGE_SIZE_LIMIT)
             {
-                PictureUploadHelper.PictureUploadError(context, 3);
+                PictureUploadError(context, 3);
                 return;
             }
             #endregion
@@ -168,7 +167,7 @@ namespace PictureWebSite.handler
 
             #region 保存图片
 
-            string pictreSummary = context.Request["summary"];
+            string pictreSummary = context.Server.HtmlEncode(context.Request["summary"]);
 
 
             Picture.BLL.PictureInfoBLL pictureBll = new Picture.BLL.PictureInfoBLL();
@@ -214,6 +213,16 @@ namespace PictureWebSite.handler
         }
 
 
+        private void PictureUploadError(HttpContext context, int errorCode)
+        {
+            var returnData = new
+            {
+                isUpload = false,
+                errorCode = errorCode
+            };
+            context.Response.Write(JSONHelper.ToJSONString(returnData));
+            context.Response.End();
+        }
 
         public bool IsReusable
         {

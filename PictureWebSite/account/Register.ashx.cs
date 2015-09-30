@@ -1,6 +1,5 @@
 ﻿using DS.Web.UCenter;
 using DS.Web.UCenter.Client;
-using PictureWebSite.handlerHelper;
 using PictureWebSite.Model;
 using System;
 using System.Collections.Generic;
@@ -44,7 +43,7 @@ namespace PictureWebSite.account
                   | string.IsNullOrEmpty(email)
                 )
             {
-                AccountHelper.RegisterErrorReturnData("请填写完整", 0, context);
+                RegisterErrorReturnData("请填写完整", 0, context);
                 return;
             }
             #endregion
@@ -52,13 +51,13 @@ namespace PictureWebSite.account
             #region 邮箱,密码,用户名合法性校验，已注释
             //if (!Regex.IsMatch(email, @"^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$"))
             //{
-            //    AccountHelper.RegisterErrorReturnData("邮箱格式错误", 1, context);
+            //    RegisterErrorReturnData("邮箱格式错误", 1, context);
             //    return;
             //}
 
             //if (!Regex.IsMatch(password, @"^[\@A-Za-z0-9\!\#\$\%\^\&\*\.\~]{6,20}$"))
             //{
-            //    AccountHelper.RegisterErrorReturnData("密码出现非法字符", 2, context);
+            //    RegisterErrorReturnData("密码出现非法字符", 2, context);
             //    return;
             //}
 
@@ -78,13 +77,13 @@ namespace PictureWebSite.account
             //}
             //if (userNameByteLength > 20 || userNameByteLength < 4)
             //{
-            //    AccountHelper.RegisterErrorReturnData("用户名过长或过短", 3, context);
+            //    RegisterErrorReturnData("用户名过长或过短", 3, context);
             //    return;
             //}
             ////合法性校验
             //if (!Regex.IsMatch(username, @"^[\u4e00-\u9fa5a-zA-Z0-9_]{1,20}$"))
             //{
-            //    AccountHelper.RegisterErrorReturnData("用户名非法", 3, context);
+            //    RegisterErrorReturnData("用户名非法", 3, context);
             //    return;
             //}
             #endregion
@@ -93,13 +92,13 @@ namespace PictureWebSite.account
             var serverVCode = context.Session["user_vcode"];
             if (serverVCode == null)
             {
-                AccountHelper.RegisterErrorReturnData("验证码错误", 4, context);
+                RegisterErrorReturnData("验证码错误", 4, context);
                 return;
             }
             //真正的验证码正误判断
             if (serverVCode.ToString().ToUpper() != verify.ToUpper())
             {
-                AccountHelper.RegisterErrorReturnData("验证码错误", 4, context);
+                RegisterErrorReturnData("验证码错误", 4, context);
                 return;
             }
             //验证码用完要扔掉
@@ -115,16 +114,16 @@ namespace PictureWebSite.account
             switch (result.Result)
             {
                 case RegisterResult.ContainsInvalidWords:
-                    AccountHelper.RegisterErrorReturnData("包含不允许注册的词语", 4, context);
+                    RegisterErrorReturnData("包含不允许注册的词语", 4, context);
                     break;
                 case RegisterResult.EmailHasBeenRegistered:
-                    AccountHelper.RegisterErrorReturnData("邮箱已经存在", 3, context);
+                    RegisterErrorReturnData("邮箱已经存在", 3, context);
                     break;
                 case RegisterResult.EmailNotAllowed:
-                    AccountHelper.RegisterErrorReturnData("此邮箱不允许注册", 3, context);
+                    RegisterErrorReturnData("此邮箱不允许注册", 3, context);
                     break;
                 case RegisterResult.IncorrectEmailFormat:
-                    AccountHelper.RegisterErrorReturnData("邮箱格式错误", 3, context);
+                    RegisterErrorReturnData("邮箱格式错误", 3, context);
                     break;
                 case RegisterResult.Success:
                     //把新用户保存到数据库中
@@ -137,14 +136,14 @@ namespace PictureWebSite.account
                     int insertResult = bllUserInfo.Insert(userModel);
                     if (insertResult <= 0)
                     {
-                        AccountHelper.RegisterErrorReturnData("未知错误", 4, context);
+                        RegisterErrorReturnData("未知错误", 4, context);
                     }
                     break;
                 case RegisterResult.UserNameExists:
-                    AccountHelper.RegisterErrorReturnData("用户名已经存在", 1, context);
+                    RegisterErrorReturnData("用户名已经存在", 1, context);
                     break;
                 case RegisterResult.UserNameIllegal:
-                    AccountHelper.RegisterErrorReturnData("用户名非法", 1, context);
+                    RegisterErrorReturnData("用户名非法", 1, context);
                     break;
                 default:
                     break;
@@ -162,9 +161,9 @@ namespace PictureWebSite.account
             {
                 UserName = username,
                 EMail = email,
-                UserFaceMiddle = client.AvatarUrl(result.Uid, AvatarSize.Middle) + "?" + r.Next(100),
-                UserFacePathLarge = client.AvatarUrl(result.Uid, AvatarSize.Big) + "?" + r.Next(100),
-                UserFacePathSmall = client.AvatarUrl(result.Uid, AvatarSize.Small) + "?" + r.Next(100),
+                UserFaceMiddle = client.AvatarUrl(result.Uid, AvatarSize.Middle) ,
+                UserFacePathLarge = client.AvatarUrl(result.Uid, AvatarSize.Big) ,
+                UserFacePathSmall = client.AvatarUrl(result.Uid, AvatarSize.Small) ,
                 UId = result.Uid,
                 UserStatus = 0
             };
@@ -188,6 +187,23 @@ namespace PictureWebSite.account
 
         }
 
+        /// <summary>
+        /// 注册失败,返回错误信息
+        /// </summary>
+        /// <param name="errorMessage"></param>
+        /// <param name="context"></param>
+        public  void RegisterErrorReturnData(string errorMessage, int place, HttpContext context)
+        {
+            var data = new
+            {
+                isRegister = false,
+                errorMessage = errorMessage,
+                place = place
+            };
+
+            context.Response.Write(JSONHelper.ToJSONString(data));
+            context.Response.End();
+        }
         public bool IsReusable
         {
             get

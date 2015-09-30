@@ -28,8 +28,8 @@ namespace PictureWebSite.handler
 
             //取数据
             Picture.BLL.PictureInfoBLL bllPicture = new Picture.BLL.PictureInfoBLL();
-            var list=bllPicture.QueryList(loadCount + 1, loadSize, new { UId = user.UId }, "UploadDate").Select(p => new { imgUrl = p.LargeImgPath ,uploadDate=p.UploadDate,collectCount=p.CollectCount,pId=p.PId});
-
+            var list=bllPicture.QueryList(loadCount + 1, loadSize, new { UId = user.UId }, "UploadDate").Select(p => new { imgUrl = p.LargeImgPath ,uploadDate=p.UploadDate,collectCount=p.CollectCount,pId=p.PId,width=p.Width,height=p.Height});
+            
             //返回数据
             System.Web.Script.Serialization.JavaScriptSerializer jss = new System.Web.Script.Serialization.JavaScriptSerializer();
             context.Response.Write(jss.Serialize(list));
