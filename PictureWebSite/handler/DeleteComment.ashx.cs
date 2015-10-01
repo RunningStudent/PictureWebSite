@@ -68,7 +68,6 @@ namespace PictureWebSite.handler
                 IsDelete = false,
                 errorCode = errorCode
             }));
-            context.Response.End();
         }
 
         public bool IsReusable

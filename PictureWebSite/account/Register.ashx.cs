@@ -115,16 +115,16 @@ namespace PictureWebSite.account
             {
                 case RegisterResult.ContainsInvalidWords:
                     RegisterErrorReturnData("包含不允许注册的词语", 4, context);
-                    break;
+                    return;
                 case RegisterResult.EmailHasBeenRegistered:
                     RegisterErrorReturnData("邮箱已经存在", 3, context);
-                    break;
+                    return;
                 case RegisterResult.EmailNotAllowed:
                     RegisterErrorReturnData("此邮箱不允许注册", 3, context);
-                    break;
+                    return;
                 case RegisterResult.IncorrectEmailFormat:
                     RegisterErrorReturnData("邮箱格式错误", 3, context);
-                    break;
+                    return;
                 case RegisterResult.Success:
                     //把新用户保存到数据库中
                     Picture.Model.UserInfoModel userModel = new Picture.Model.UserInfoModel();
@@ -136,15 +136,17 @@ namespace PictureWebSite.account
                     int insertResult = bllUserInfo.Insert(userModel);
                     if (insertResult <= 0)
                     {
-                        RegisterErrorReturnData("未知错误", 4, context);
+                        RegisterErrorReturnData("未知错误", 4, context); 
+                        return;
                     }
                     break;
                 case RegisterResult.UserNameExists:
                     RegisterErrorReturnData("用户名已经存在", 1, context);
-                    break;
+                    return;
                 case RegisterResult.UserNameIllegal:
                     RegisterErrorReturnData("用户名非法", 1, context);
-                    break;
+                    return;
+
                 default:
                     break;
             }
@@ -202,7 +204,6 @@ namespace PictureWebSite.account
             };
 
             context.Response.Write(JSONHelper.ToJSONString(data));
-            context.Response.End();
         }
         public bool IsReusable
         {

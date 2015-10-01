@@ -221,7 +221,7 @@ namespace PictureWebSite.handler
                 errorCode = errorCode
             };
             context.Response.Write(JSONHelper.ToJSONString(returnData));
-            context.Response.End();
+            
         }
 
         public bool IsReusable

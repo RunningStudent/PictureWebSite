@@ -3,12 +3,12 @@ using System.Linq;
 using Picture.DAL;
 using Picture.Model;
 
-namespace Picture.BLL 
+namespace Picture.BLL
 {
-	public partial class PictureCollectBLL
-	{
-   		     
-		/// <summary>
+    public partial class PictureCollectBLL
+    {
+
+        /// <summary>
         /// 数据库操作对象
         /// </summary>
         private PictureCollectDAL _dao = new PictureCollectDAL();
@@ -71,7 +71,7 @@ namespace Picture.BLL
             return _dao.QuerySingle(wheres);
         }
         #endregion
-        
+
         #region 查询单个模型实体 +PictureCollectModel QuerySingle(int cid)
         /// <summary>
         /// 查询单个模型实体
@@ -95,5 +95,5 @@ namespace Picture.BLL
             return _dao.QueryCount(wheres);
         }
         #endregion
-	}
+    }
 }

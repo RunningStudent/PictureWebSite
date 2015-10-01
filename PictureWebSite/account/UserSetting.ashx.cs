@@ -76,38 +76,40 @@ namespace PictureWebSite.account
             {
                 case DS.Web.UCenter.UserEditResult.DoNotEdited:
                     UserSettingChangeReturnData(2, "未做任何修改", context);
-                    break;
+                    return;
                 case DS.Web.UCenter.UserEditResult.EditedNothing:
                     UserSettingChangeReturnData(2, "未做任何修改", context);
-                    break;
+                    return;
                 case DS.Web.UCenter.UserEditResult.EmailHasBeenRegistered:
                     UserSettingChangeReturnData(3, "邮箱已被注册了", context);
-                    break;
+                    return;
                 case DS.Web.UCenter.UserEditResult.EmailNotAllowed:
                     UserSettingChangeReturnData(3, "该邮箱不允许注册", context);
-                    break;
+                    return;
                 case DS.Web.UCenter.UserEditResult.IncorrectEmailFormat:
                     UserSettingChangeReturnData(3, "邮箱格式错误", context);
-                    break;
+                    return;
                 case DS.Web.UCenter.UserEditResult.PassWordError:
                     UserSettingChangeReturnData(3, "密码错误", context);
-                    break;
+                    return;
                 case DS.Web.UCenter.UserEditResult.Success:
                     if (formType==1)
                     { 
                         //修改保存在Session中的数据，免得刷新后出现就得数据
                         user.EMail = data;
                         context.Session["current_user"] = user;
-                        UserSettingChangeReturnData(1, "修改成功", context);
+                        UserSettingChangeReturnData(1, "修改成功", context); 
+                        return;
                     }
                     else
                     {
                         UserSettingChangeReturnData(1, "修改成功", context);
+                        return;
                     }
                     break;
                 case DS.Web.UCenter.UserEditResult.UserIsProtected:
                     UserSettingChangeReturnData(3, "该用户受保护无法修改", context);
-                    break;
+                    return;
                 default:
                     break;
             }
@@ -126,7 +128,6 @@ namespace PictureWebSite.account
             };
 
             context.Response.Write(JSONHelper.ToJSONString(data));
-            context.Response.End();
 
         }
         public bool IsReusable

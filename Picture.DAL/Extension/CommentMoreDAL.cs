@@ -19,7 +19,7 @@ namespace Picture.DAL
 
 
         /// <summary>
-        /// 查询所有评论数据
+        /// 查询所有评论数据,评论包括了用户数据
         /// </summary>
         /// <param name="wheres"></param>
         /// <param name="orderField"></param>

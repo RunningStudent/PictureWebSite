@@ -55,12 +55,6 @@
             }
         }
 
-        @media (max-width:550px) {
-            #secondShow {
-                display: none;
-            }
-        }
-
         .breadcrumb {
             background-color: white;
         }
@@ -124,6 +118,7 @@
         }
 
         /*home标签页的样式*/
+        /*
         #singlePictureModel img {
             width: 100%;
         }
@@ -131,7 +126,7 @@
         #singlePictureModel div.col-xs-12 {
             padding-left: 0px;
             padding-right: 0px;
-        }
+        }*/
 
         #userPanel .panel {
             border-width: 0px;
@@ -161,17 +156,18 @@
         .modalUploadDate {
             color: #8C8C8C;
         }
-        .modalUploadDate span{
-            margin-left:5px; 
-            display:none;   
-        }
-        
 
-            .modalComment .row {
-                border-bottom: solid 1px #EDECEC;
-                padding-bottom: 5px;
-                padding-top: 5px;
+            .modalUploadDate span {
+                margin-left: 5px;
+                display: none;
             }
+
+
+        .modalComment .row {
+            border-bottom: solid 1px #EDECEC;
+            padding-bottom: 5px;
+            padding-top: 5px;
+        }
 
         .modal-footer > .input-group {
             margin-top: 10px;
@@ -377,34 +373,33 @@
 
                 <!-- 标签切换按钮-->
                 <ul class="nav nav-tabs pull-right" id="pictureTabs" role="tablist">
-                    <%--<li role="presentation" ><a href="#singlePictureModel" aria-controls="singlePictureModel" role="tab" data-toggle="tab">单图展示</a></li>--%>
-                    <li role="presentation" class="active" id="secondShow"><a href="#threePictureModel" aria-controls="threePictureModel" role="tab" data-toggle="tab">三图模式</a></li>
+                    <%--<li role="presentation" ><a href="#singlePictureModel" aria-controls="singlePictureModel" role="tab" data-toggle="tab">单图</a></li>--%>
+                    <li role="presentation" class="active"><a href="#userPictureModel" aria-controls="userPictureModel" role="tab" data-toggle="tab">我的上传</a></li>
+                    <li role="presentation" ><a href="#userCollectionModel" aria-controls="userCollectionModel" role="tab" data-toggle="tab">我的收藏</a></li>
                 </ul>
 
 
-                <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#pictureDetailModal">
+                <%--<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#pictureDetailModal">
                     Launch demo modal
-                </button>
+                </button>--%>
             </div>
         </div>
 
 
         <%--标签导航内容--%>
         <div class="tab-content">
-            <%--单图片显示--%>
+            <%--
             <div role="tabpanel" class="tab-pane" id="singlePictureModel">
-
-                <%--                <%foreach (var item in this.List)
+                <div class="row masonry-container">
+                    <%foreach (var item in this.List)
                   {%>
                 <div class="col-xs-12 ">
                     <div class="thumbnail">
                         <img src="<%=item.LargeImgPath %>" />
                     </div>
                 </div>
-                <%} %>--%>
-
-
-                <%--<%foreach (var item in this.List)
+                <%} %>
+           <%foreach (var item in this.List)
                   {%>
 
                 <div class="thumbnail col-xs-12 ">
@@ -415,12 +410,13 @@
                         <img src="<%=item.LargeImgPath %>" class="img-thumbnail" style="margin-top: 20px" />
                     </div>
                 </div>
-                <%} %>--%>
-            </div>
-      
+                <%} %>
+                </div>
 
-            <%--三图片显示--%>
-            <div role="tabpanel" class="tab-pane  active" id="threePictureModel">
+            </div>
+            --%>
+
+            <div role="tabpanel" class="tab-pane  active" id="userPictureModel">
                 <div class="row masonry-container">
                     <%--<%foreach (var item in this.List)
                       {%>
@@ -434,6 +430,11 @@
                 </div>
             </div>
 
+
+            <div role="tabpanel" class="tab-pane" id="userCollectionModel">
+                <div class="row masonry-container">
+                </div>
+            </div>
         </div>
 
 
@@ -483,7 +484,7 @@
                     </ol>
 
                     <div class="modalComment">
-                         <div class="row">
+                        <div class="row">
                             <div class="col-xs-6 col-md-1 modalFace">
                                 <a href="#">
                                     <img src="http://localhost:8080/uc_server/avatar.php?uid=6&type=virtual&size=small">
@@ -556,21 +557,20 @@
     <script src="assets/js/lib/dateFormat.js"></script>
     <script type="text/javascript">
 
-        <%--图片id藏在了弹出层的一个叫data - pid的属性中--%>
+        <%--图片id藏在了弹出层的一个叫data-pid的属性中--%>
 
         //=========全局变量
         //分批次加载图片用到的变量
-        var singlePictureModelCount = 0;
-        var threePicutreModelCount = 0;
+        //var singlePictureModelCount = 0;
+        var userPictureLoadCount = 0;
         //仅仅用于瀑布流显示,三图模式第一次加载是在masonry执行前,但AJAX内的一个方法则会保存
         //因此用一个全局变量来避免
-        var isFirstLoad = true;
+        var isFirstLoad = {0:true,1:true};
 
         //=========全局变量结束
 
         //窗体加载完成时
         $(function () {
-
             //给各个修改表单添加修改事件
             var mailFrom = $("#mailForm");
             var passWordForm = $("#passWordForm");
@@ -579,6 +579,7 @@
 
             //图片分批次加载事件绑定
             pictureLoadEvent();
+
             //点击切换按钮,绑定瀑布流效果
             waterFallFlow();
 
@@ -590,7 +591,7 @@
 
             //弹出层关闭事件绑定
             modalClose();
-            
+
         });
 
         //点击切换按钮,绑定瀑布流效果
@@ -612,21 +613,26 @@
 
         //图片加载事件绑定
         function pictureLoadEvent() {
+            //确保执行这个方法的时候页面没有无关的，class有tab-pane的标签
 
             //测试,默认先用单页模式
-            var singlePictureModelObj = $("#singlePictureModel");
-            var threePictureModelObj = $("#threePictureModel").find("div")[0];
+            //var singlePictureModelObj = $("#singlePictureModel");
+            var userPictureObj = $("#userPictureModel").find("div")[0];
 
             //首次先加载一次
-
-
             //单图模式
-            loadPicture(singlePictureModelCount, 5, singlePictureModelObj, true);
-            singlePictureModelCount++;
+            //loadPicture(singlePictureModelCount, 5, singlePictureModelObj, true);
+            //singlePictureModelCount++;
 
+            var tabs = $(".tab-pane");
+            tabs.each(function (i) {
+                this.loadCount = 0;
+                loadPicture(this.loadCount, 5, this, i);
+                this.loadCount++;
+            });
 
-            loadPicture(threePicutreModelCount, 5, threePictureModelObj, false);
-            threePicutreModelCount++;
+            // loadPicture(userPictureLoadCount, 5, userPictureObj, false);
+            //userPictureLoadCount++;
 
             $(window).scroll(function () {
                 //console.log($(this).height(), $(document).height(), $(this).scrollTop(), $(document).scrollTop());
@@ -637,16 +643,25 @@
                 //窗口高度
                 var clientHeight = $(this).height();
                 if (scrollTop + clientHeight > pageHeight - 300) {
+                    /*
                     //当到达页面底部时候
                     if (singlePictureModelObj.hasClass("active")) {
-                        /*单图模式  */
-                        loadPicture(singlePictureModelCount, 5, singlePictureModelObj, true);
-                        singlePictureModelCount++;
-
+                        //单图模式 
+                        //loadPicture(singlePictureModelCount, 5, singlePictureModelObj, true);
+                        //singlePictureModelCount++;
+                       
                     } else {
-                        loadPicture(threePicutreModelCount, 5, threePictureModelObj, false);
-                        threePicutreModelCount++;
+                        loadPicture(userPictureLoadCount, 5, userPictureObj, false);
+                        userPictureLoadCount++;
                     }
+                    */
+                    tabs.each(function (i) {
+                        if ($(this).hasClass("active")) {
+                            loadPicture(this.loadCount, 5, this, i);
+                            this.loadCount++;
+                        }
+                    });
+
                 }
             });
         }
@@ -703,52 +718,75 @@
         }
 
         //分批次加载图片
-        function loadPicture(loadCount, loadSize, obj, isSingleModel) {
+        function loadPicture(loadCount, loadSize, obj, modelType) {
+
+            //var $container = $('.masonry-container');
+
+            var $container = $($(obj).find("div")[0]);
+            
+
             $.ajax({
                 //===请求地址===
                 url: "handler/UserUploadPictureAsy.ashx",
                 //===请求设置===
-                data: { "loadCount": loadCount, "loadSize": loadSize },//传输数据,可以是字符串,也可以是json
+                data: { "loadCount": loadCount, "loadSize": loadSize, modelType: modelType },//传输数据,可以是字符串,也可以是json
                 success: function (data) {//请求成功时的回调函数,success(data, textStatus, jqXHR)
-
-                    //不同模式的图片追加
-                    if (isSingleModel) {
-                        //单图模式
-                        for (var i in data) {
-                            $(obj).append("<div class=\"col-xs-12\"><div class=\"thumbnail col-xs-12\"><div class=\"col-xs-10 col-xs-offset-1\" style=\"margin-top: 10px; margin-bottom: 20px\"> <div  style=\"border-bottom: 1px solid #e5e5e5\"><a href=\"#\" class=\"date\">2015-04-28</a></div>  <img src=\"" + data[i].imgUrl + "\" class=\"img-thumbnail\" style=\"margin-top: 20px\" /></div></div>");
+                    var isFirst = false;
+                    $.each(isFirstLoad, function (i, e) {
+                        if (e == true) {
+                            isFirst = true;
                         }
-                    } else {
-                        //三图模式
+                    });
+                    ////不同模式的图片追加
+                    //if (isSingleModel) {
+                    //    //单图模式
+                    //    for (var i in data) {
+                    //        $(obj).append("<div class=\"col-xs-12\"><div class=\"thumbnail col-xs-12\"><div class=\"col-xs-10 col-xs-offset-1\" style=\"margin-top: 10px; margin-bottom: 20px\"> <div  style=\"border-bottom: 1px solid #e5e5e5\"><a href=\"#\" class=\"date\">2015-04-28</a></div>  <img src=\"" + data[i].imgUrl + "\" class=\"img-thumbnail\" style=\"margin-top: 20px\" /></div></div>");
+                    //    }
+                    //} else {
+                    //三图模式
+                    switch (modelType) {
 
-                        var $container = $('.masonry-container');
-                        var height;
-                        var width;
-                        for (var i in data) {
+                        case 0:
+                        case 1:
+                            var height;
+                            var width;
+                            for (var i in data) {
 
-                            var newElement = $("<div data-pId=\"" + data[i].pId + "\" class=\"col-sm-4 col-xs-12 item\"><div class=\"thumbnail\"><img  src=\"" + data[i].imgUrl + "\" /></div></div>");
-                            //style=\"height:"+data[i].height+"px;width:"+data[i].width+"px\"
-                            if (isFirstLoad) {
-                                $container.append(newElement);
-                            } else {
-                                $container.append(newElement).masonry('appended', newElement);
+                                var newElement = $("<div data-pId=\"" + data[i].pId + "\" class=\"col-sm-4 col-xs-12 item\"><div class=\"thumbnail\"><img  src=\"" + data[i].imgUrl + "\" /></div></div>");
+                                //style=\"height:"+data[i].height+"px;width:"+data[i].width+"px\"
+                                if (isFirst) {
+                                    $container.append(newElement);
+                                } else {
+                                    $container.append(newElement).masonry('appended', newElement);
+                                }
+                                //给新添加的图片添加点击事件
+                                $(newElement).click(function () {
+                                    $('#pictureDetailModal').modal('toggle');
+                                    loadPictureDetail($(this).attr("data-pId"));
+                                })
+
                             }
-                            //给新添加的图片添加点击事件
-                            $(newElement).click(function () {
-                                $('#pictureDetailModal').modal('toggle');
-                                loadPictureDetail($(this).attr("data-pId"));
-                            })
-
-                        }
-                        //每次刷完图片都要重新设置下
-                        $container.imagesLoaded(function () {
-                            $container.masonry({
-                                columnWidth: '.item',
-                                itemSelector: '.item'
+                            //每次刷完图片都要重新设置下
+                            $container.imagesLoaded(function () {
+                                $container.masonry({
+                                    columnWidth: '.item',
+                                    itemSelector: '.item'
+                                });
                             });
-                        });
-                        isFirstLoad = false;
+                            isFirstLoad[modelType] = false;
+                            break;
+                        default:
+
                     }
+
+                    
+                    
+                    
                 },
+
+
+
                 type: "post",//请求方法
                 dataType: "json",//返回的数据类型
                 cache: false,//是否使用缓存,(默认: true,dataType为script和jsonp时默认为false)  
@@ -797,7 +835,7 @@
                     comment.html("");
                     for (var i in data.commentlist) {
                         //如果这个用户登入了，那么他的评论旁边会显示删除的标记
-                        var temp = "<div class=\"row\"><div class=\"col-xs-6 col-md-1 modalFace\"><a href=\"#\"><img src=" + data.commentlist[i].userFace + "></a></div><div class=\"col-xs-6 col-md-10 text-left\"><div class=\"modalUsername\">" + data.commentlist[i].userName + ":" + data.commentlist[i].content + "</div><div class=\"modalUploadDate\">" + eval(data.commentlist[i].postDate.replace(/\/Date\((\d+)\)\//gi, "new Date($1)")).pattern("yyyy-MM-dd  hh:mm:ss")+(data.commentlist[i].isMe==true?"<span class=\"glyphicon glyphicon-remove\" data-cId=\""+data.commentlist[i].cId+"\"></span>":"") + "</div></div></div>";
+                        var temp = "<div class=\"row\"><div class=\"col-xs-6 col-md-1 modalFace\"><a href=\"#\"><img src=" + data.commentlist[i].userFace + "></a></div><div class=\"col-xs-6 col-md-10 text-left\"><div class=\"modalUsername\">" + data.commentlist[i].userName + ":" + data.commentlist[i].content + "</div><div class=\"modalUploadDate\">" + eval(data.commentlist[i].postDate.replace(/\/Date\((\d+)\)\//gi, "new Date($1)")).pattern("yyyy-MM-dd  hh:mm:ss") + (data.commentlist[i].isMe == true ? "<span class=\"glyphicon glyphicon-remove\" data-cId=\"" + data.commentlist[i].cId + "\"></span>" : "") + "</div></div></div>";
                         comment.append(temp);
                     }
 
@@ -840,8 +878,8 @@
                         comment: comment
                     },//传输数据,可以是字符串,也可以是json
                     success: function (data) {//请求成功时的回调函数,success(data, textStatus, jqXHR)
-                        if (data.isSubmit==true) {
-                            var temp = $("<div class=\"row\"><div class=\"col-xs-6 col-md-1 modalFace\"><a href=\"#\"><img src=" + data.userFace + "></a></div><div class=\"col-xs-6 col-md-10 text-left\"><div class=\"modalUsername\">" + data.userName + ":" + comment + "</div><div class=\"modalUploadDate\">" + new Date().pattern("yyyy-MM-dd  hh:mm:ss")+ "<span class=\"glyphicon glyphicon-remove\" data-cId=\""+data.cId+"\"></span>"+ "</div></div></div>");
+                        if (data.isSubmit == true) {
+                            var temp = $("<div class=\"row\"><div class=\"col-xs-6 col-md-1 modalFace\"><a href=\"#\"><img src=" + data.userFace + "></a></div><div class=\"col-xs-6 col-md-10 text-left\"><div class=\"modalUsername\">" + data.userName + ":" + comment + "</div><div class=\"modalUploadDate\">" + new Date().pattern("yyyy-MM-dd  hh:mm:ss") + "<span class=\"glyphicon glyphicon-remove\" data-cId=\"" + data.cId + "\"></span>" + "</div></div></div>");
                             $("#pictureDetailModal .modalComment").prepend(temp);
                             temp.css("display", "none").fadeIn();
                             //鼠标移入移出事件绑定

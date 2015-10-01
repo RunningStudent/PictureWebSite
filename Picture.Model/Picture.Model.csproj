@@ -43,6 +43,7 @@
     <Compile Include="Comment.cs" />
     <Compile Include="Enums\Enums.cs" />
     <Compile Include="Extension\CommentMore.cs" />
+    <Compile Include="Extension\PictureCollectionMore.cs" />
     <Compile Include="Extension\PictureMoreInfo.cs" />
     <Compile Include="Gag.cs" />
     <Compile Include="PictureCollect.cs" />

@@ -195,8 +195,7 @@ namespace PictureWebSite.account
                     break;
                 case Picture.Model.Enums.LoginResult.未知错误:
                     LoginErrorReturnData("未知错误", 3, context);
-                    break;
-
+                    return;
                 default:
                     break;
             }
@@ -232,7 +231,6 @@ namespace PictureWebSite.account
                 place = place
             };
             context.Response.Write(JSONHelper.ToJSONString(data));
-            context.Response.End();
         }
 
 
