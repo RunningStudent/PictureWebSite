@@ -33,31 +33,31 @@ namespace PictureWebSite.handler
             //构建评论信息
             if (user != null)
             {
-                 commentlist = commentBll.GetCommentWithUserInfo(new { PId = pId }, "PostDate").Select(c => new
-                 {
-                     userFace = client.AvatarUrl(c.UId, AvatarSize.Small),
-                     content = c.Content,
-                     postDate = c.PostDate,
-                     userName = c.UserName,
-                     cId=c.CId,
-                     isMe = c.UId == user.UId ? true : false
-                 });
-            }
-            else
-            {
-                 commentlist = commentBll.GetCommentWithUserInfo(new { PId = pId }, "PostDate").Select(c => new
+                commentlist = commentBll.GetCommentWithUserInfo(new { PId = pId }, "PostDate").Select(c => new
                 {
                     userFace = client.AvatarUrl(c.UId, AvatarSize.Small),
                     content = c.Content,
                     postDate = c.PostDate,
-                    cId = c.CId,
                     userName = c.UserName,
+                    cId = c.CId,
+                    isMe = c.UId == user.UId ? true : false
                 });
+            }
+            else
+            {
+                commentlist = commentBll.GetCommentWithUserInfo(new { PId = pId }, "PostDate").Select(c => new
+               {
+                   userFace = client.AvatarUrl(c.UId, AvatarSize.Small),
+                   content = c.Content,
+                   postDate = c.PostDate,
+                   cId = c.CId,
+                   userName = c.UserName,
+               });
             }
 
 
             //获得图片信息
-            var pictureInfo = pictureInfoBll.GetSinglePictureInfoWithTagAndUserInfo(pId);
+            var pictureInfo = pictureInfoBll.GetSinglePictureInfoWithTagAndUserInfo(pId, user.UId);
 
 
             //把数据整合并返回
@@ -67,13 +67,18 @@ namespace PictureWebSite.handler
                 uploadDate = pictureInfo.UploadDate,
                 tags = pictureInfo.Tags,
                 summary = pictureInfo.ImgSummary,
+                collectCount=pictureInfo.CollectCount,
                 userInfo = new
                 {
-                    userName = pictureInfo.UInfo.UserName,
-                    userStatus = pictureInfo.UInfo.UserStatus,
-                    userFace = client.AvatarUrl(pictureInfo.UInfo.Uid, AvatarSize.Small)
+                    //userName = pictureInfo.UInfo.UserName,
+                    //userStatus = pictureInfo.UInfo.UserStatus,
+                    //userFace = client.AvatarUrl(pictureInfo.UInfo.Uid, AvatarSize.Small)
+                    userName = pictureInfo.UserName,
+                    userStatus = pictureInfo.UserStatus,
+                    userFace = client.AvatarUrl(pictureInfo.UId, AvatarSize.Small)
                 },
-                commentlist = commentlist
+                commentlist = commentlist,
+                isCollect = pictureInfo.isCollect
             };
             context.Response.Write(JSONHelper.ToJSONString(result));
 

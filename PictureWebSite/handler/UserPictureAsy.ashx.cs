@@ -10,7 +10,7 @@ namespace PictureWebSite.handler
     /// <summary>
     /// UserUploadPictureAsy 的摘要说明
     /// </summary>
-    public class UserUploadPictureAsy : IHttpHandler, IRequiresSessionState
+    public class UserPictureAsy : IHttpHandler, IRequiresSessionState
     {
 
         public void ProcessRequest(HttpContext context)

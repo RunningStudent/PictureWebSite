@@ -9,7 +9,7 @@ namespace Picture.BLL
     public partial class PictureCollectBLL
     {
         /// <summary>
-        /// 获得用户收藏的图片
+        /// 获得用户收藏的图片,使用Inner Join连表查询
         /// </summary>
         /// <param name="index"></param>
         /// <param name="size"></param>

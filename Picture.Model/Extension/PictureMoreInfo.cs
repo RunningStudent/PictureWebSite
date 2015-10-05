@@ -35,10 +35,14 @@ namespace Picture.Model
         /// CollectCount
         /// </summary>
         public int CollectCount { get; set; }
-        /// <summary>
-        /// UId
-        /// </summary>
-        public UserInfoModel UInfo { get; set; }
+
+        public int UId { get; set; }
+
+        public int UserStatus { get; set; }
+
+        public string UserName { get; set; }
+
+        public int isCollect { get; set; }
 
         /// <summary>
         /// 标签

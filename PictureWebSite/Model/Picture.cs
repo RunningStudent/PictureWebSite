@@ -32,6 +32,7 @@ namespace PictureWebSite.Model
         public List<string> label { get; set; }
         public int width { get; set; }
         public int height { get; set; }
+        public int isCollect { get; set; }
 
 
 

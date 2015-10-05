@@ -33,6 +33,8 @@ namespace PictureWebSite.handler
              * 
              * 这里我直接设置为125个无论是字母还是汉字,一切以长度为准
              * 
+             * 未关闭asp.Net的参数校验,所以标签无法发送到后端
+             * 
              */
 
 
