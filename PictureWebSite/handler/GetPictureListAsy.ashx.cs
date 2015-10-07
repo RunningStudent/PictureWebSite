@@ -6,6 +6,8 @@ using System.Web;
 using DS.Web.UCenter;
 using System.Web.SessionState;
 using PictureWebSite.Model;
+using Picture.Utility;
+
 
 namespace PictureWebSite.handler
 {
@@ -34,7 +36,7 @@ namespace PictureWebSite.handler
             {
                 list.Add(new Model.Picture()
                 {
-                    imgUrl = item.LargeImgPath,
+                    imgUrl = CommonHelper.GetSmallImgPath(item.LargeImgPath),
                     //userName = item.UInfo.UserName,
                     userName=item.UserName,
                     //userFace = client.AvatarUrl(item.UInfo.Uid, AvatarSize.Small),//@"assets/img/face/face1.jpg",
@@ -52,6 +54,8 @@ namespace PictureWebSite.handler
 
             context.Response.Write(jss.Serialize(list));
         }
+
+
 
         public bool IsReusable
         {

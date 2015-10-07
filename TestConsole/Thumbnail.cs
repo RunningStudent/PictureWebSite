@@ -92,6 +92,13 @@ namespace TestConsole
             quality[0] = 100;
             EncoderParameter encoderParam = new EncoderParameter(System.Drawing.Imaging.Encoder.Quality, quality);
             encoderParams.Param[0] = encoderParam;
+
+            MemoryStream tempM = new MemoryStream();
+            displayImage.Save(tempM, ImageFormat.Jpeg);
+            displayImage = Image.FromStream(tempM);
+            tempM.Close();
+            tempM.Dispose();
+            Console.Write("一张图");
             return displayImage;
         }
 

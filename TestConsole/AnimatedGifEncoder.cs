@@ -454,26 +454,22 @@ namespace Gif.Components
                 //g.InterpolationMode = InterpolationMode.HighQualityBicubic;
                 g.CompositingQuality = CompositingQuality.HighSpeed;
                 g.SmoothingMode = SmoothingMode.HighSpeed;
-                g.InterpolationMode = InterpolationMode.Low;
+                g.InterpolationMode = InterpolationMode.HighQualityBicubic;
                 g.PixelOffsetMode = PixelOffsetMode.HighSpeed;
                 g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
 
 
 
                 g.DrawImage(image, new Rectangle(0, 0, width, height), 0, 0, w, h, GraphicsUnit.Pixel);
+               
                 
-                
+
+
                 MemoryStream tempms = new MemoryStream();
-                image.Save(tempms, ImageFormat.Jpeg);
-                Console.WriteLine("原图字节大小"+tempms.ToArray().Length);
+                temp.Save(tempms, ImageFormat.Jpeg);
+                temp = Image.FromStream(tempms);
                 tempms.Close();
-
-                MemoryStream tempms2 = new MemoryStream();
-
-
-                temp.Save(tempms2, ImageFormat.Jpeg);
-                Console.WriteLine("裁剪后图片大小" + tempms2.ToArray().Length);
-
+                Console.WriteLine("一张图完成");
                 image = temp;
                 g.Dispose();
             }

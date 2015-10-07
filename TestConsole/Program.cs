@@ -23,7 +23,7 @@ namespace TestConsole
                 _Gif.AddImage(gifList[i], 1, true, Zgke.MyImage.ImageGif.DisposalMethod.NoDisposalMethod);
             }
             _Gif.SaveFile(@"D:/1.gif");
-
+            GetThumbnail("1.gif", 300, 300, @"E:/1.gif");
             Console.WriteLine("结束");
             Console.ReadKey();
         }
@@ -107,7 +107,7 @@ namespace TestConsole
                     }
                 }
 
-                //gifList.Add(new Bitmap(gif));//这里可以将每帧图片保存成文件gif.save(,);根据需求
+               // gifList.Add(new Bitmap(gif));//这里可以将每帧图片保存成文件gif.save(,);根据需求
                 gifList.Add(Thumbnail.MakeThumbnailImage(new Bitmap(gif), 300, 300));
             }
             gif.Dispose();

@@ -115,7 +115,7 @@ namespace PictureWebSite.handler
 
             //大,小图所在的相对路径
             string bigImgRelativePath = bigRelativePathDir + "/" + file.FileName;
-            string smallImgRelativePath = smallRelativePathDir + "/" + "smal_" + file.FileName;
+            string smallImgRelativePath = smallRelativePathDir + "/" + "small_" + file.FileName;
 
             //大,小图所在的绝对路径
             string bigImgPath = context.Request.MapPath(bigImgRelativePath);

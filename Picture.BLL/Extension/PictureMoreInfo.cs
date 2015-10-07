@@ -58,21 +58,6 @@ namespace Picture.BLL
             {
                 pictureInfoList[i].Tags = tagBll.GetTagsByImgId(pictureInfoList[i].PId);
             }
-            //foreach (var item in pictureInfoList)
-            //{
-            //    //resultList.Add(new PictureMoreInfoModel()
-            //    //{
-            //    //    Tags = tagBll.GetTagsByImgId(item.PId),
-            //    //    CollectCount = item.CollectCount,
-            //    //    Height = item.Height,
-            //    //    PId = item.PId,
-            //    //    UInfo = userInfoBll.QuerySingle(item.UId),
-            //    //    LargeImgPath = item.LargeImgPath,
-            //    //    ImgSummary = item.ImgSummary,
-            //    //    UploadDate = item.UploadDate,
-            //    //    Width = item.Width
-            //    //});
-            //}
             return pictureInfoList;
         }
 

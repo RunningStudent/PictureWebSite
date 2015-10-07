@@ -201,7 +201,8 @@
                 color: #6D8BA7;
             }
 
-        .masonry-container > div {
+        .modalUploadDate span{
+            cursor:pointer;
         }
     </style>
 
@@ -457,7 +458,7 @@
                     <ol class=" text-left" id="picLinks">
                         <li class="btn btn-default"><i class="glyphicon glyphicon-comment"></i>评论<span></span></li>
                         <li class="btn btn-default"><i class="glyphicon glyphicon-heart"></i>收藏<span></span></li>
-                        <li class="btn btn-default"><i class="glyphicon glyphicon-pencil"></i>编辑</li>
+                        <%-- <li class="btn btn-default"><i class="glyphicon glyphicon-pencil"></i>编辑</li>--%>
                         <li class="btn btn-default"><i class="glyphicon glyphicon-trash"></i>删除</li>
                     </ol>
 
@@ -523,6 +524,25 @@
     </div>
     <!-- /.modal -->
 
+    <!-- system modal start -->
+    <div id="confirm-alert" class="modal" style="margin-top:100px">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                    <h5 class="modal-title"><i class="fa fa-exclamation-circle"></i>[Title]</h5>
+                </div>
+                <div class="modal-body small">
+                    <p>[Message]</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary ok" data-dismiss="modal">[BtnOk]</button>
+                    <button type="button" class="btn btn-default cancel" data-dismiss="modal">[BtnCancel]</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- system modal end -->
 
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -565,8 +585,112 @@
             //弹出层事件绑定
             modalEvents();
 
+            confirmInclude();
 
         });
+
+        //载入确认框组件
+        function confirmInclude() {
+
+            <%--使用案例
+            // 四个选项都是可选参数
+            Modal.alert(
+              {
+                msg: '内容',
+                title: '标题',
+                btnok: '确定',
+                btncl:'取消'
+              });
+
+            // 如需增加回调函数，后面直接加 .on( function(e){} );
+            // 点击“确定” e: true
+            // 点击“取消” e: false
+            Modal.confirm(
+              {
+                msg: "是否删除角色？"
+              })
+              .on( function (e) {
+                alert("返回结果：" + e);
+              });
+            --%>
+
+            window.Modal = function () {
+                var reg = new RegExp("\\[([^\\[\\]]*?)\\]", 'igm');
+                var alr = $("#confirm-alert");
+                var ahtml = alr.html();
+                var _alert = function (options) {
+                    alr.html(ahtml);	// 复原
+                    alr.find('.ok').removeClass('btn-success').addClass('btn-primary');
+                    alr.find('.cancel').hide();
+                    _dialog(options);
+
+                    return {
+                        on: function (callback) {
+                            if (callback && callback instanceof Function) {
+                                alr.find('.ok').click(function () { callback(true) });
+                            }
+                        }
+                    };
+                };
+                var _confirm = function (options) {
+                    alr.html(ahtml); // 复原
+                    alr.find('.ok').removeClass('btn-primary').addClass('btn-success');
+                    alr.find('.cancel').show();
+                    _dialog(options);
+
+                    return {
+                        on: function (callback) {
+                            if (callback && callback instanceof Function) {
+                                alr.find('.ok').click(function () { callback(true) });
+                                alr.find('.cancel').click(function () { callback(false) });
+                            }
+                        }
+                    };
+                };
+
+                var _dialog = function (options) {
+                    var ops = {
+                        msg: "提示内容",
+                        title: "操作提示",
+                        btnok: "确定",
+                        btncl: "取消"
+                    };
+
+                    $.extend(ops, options);
+
+                    var html = alr.html().replace(reg, function (node, key) {
+                        return {
+                            Title: ops.title,
+                            Message: ops.msg,
+                            BtnOk: ops.btnok,
+                            BtnCancel: ops.btncl
+                        }[key];
+                    });
+
+                    alr.html(html);
+                    alr.modal({
+                        width: 500,
+                        backdrop: 'static'
+                    });
+                }
+                return {
+                    alert: _alert,
+                    confirm: _confirm
+                }
+
+            }();
+            confirmClose();
+        }
+        //boostrap有个bug,不能在一个页面出现两个模态框,下面这个方法绑定在第二个模态框关闭事件上
+        function confirmClose() {
+            var alr = $("#confirm-alert");
+            alr.on("hidden.bs.modal", function () {
+                var body = $("body");
+                if (!body.hasClass("modal-open")) {
+                    body.addClass("modal-open");
+                }
+            });
+        }
 
 
         //弹出层相关事件绑定
@@ -603,14 +727,12 @@
                     var lis = $picLinks.find('li');
                     switch (e.currentTarget.innerHTML) {
                         case "我的收藏":
-                            console.log(1);
                             lis.eq(2).css("display", "none");
-                            lis.eq(3).css("display", "none");
+                            //lis.eq(3).css("display", "none");
                             break;
                         case "我的上传":
-                            console.log(2);
                             lis.eq(2).css("display", "inline");
-                            lis.eq(3).css("display", "inline");
+                            //lis.eq(3).css("display", "inline");
                             break;
                         default:
                     }
@@ -1008,7 +1130,7 @@
             } else {
                 commentCount = parseInt(commentCount);
                 commentCount--;
-                if (commentCount==0) {
+                if (commentCount == 0) {
                     span.html("");
                 } else {
                     span.html(commentCount);
@@ -1036,68 +1158,117 @@
 
             //收藏按钮
             links.eq(1).click(function () {
-                var heart = $(this).find("i");
-                var isCollect = heart.css("color") == 'rgb(255, 0, 0)';//是否收藏了
-                var pId = $("#pictureDetailModal").attr("data-pid");
-                //对红心处理的两个函数
-                var heartTurnRed = function () {
-                    heart.css("color", "red");
-                    var collectCount = heart.next().html();
-                    if (collectCount == "") {
-                        collectCount = 1;
-                    } else {
-                        collectCount = parseInt(collectCount);
-                        collectCount++;
-                    }
-                    heart.next().html(collectCount);
-                };
-                var redHeartClear = function () {
-                    heart.removeAttr("style");
-                    var collectCount = heart.next().html();
-                    collectCount = parseInt(collectCount);
-                    collectCount--;
-                    if (collectCount == 0) {
-                        heart.next().html("");
-                    } else {
-                        heart.next().html(collectCount);
-                    }
-                };
-                $.getJSON("/handler/CollectPicture.ashx", { pId: pId, isCollect: isCollect }, function (data) {
-                    if (data.isCollect == false) {
-                        switch (data.errorCode) {
-                            case 1:
-                                alert("请先登入");
-                                //location.href = "/Index.aspx ";
-                                break;
-                            case 2:
-                                alert("图片不存在");
-                                break;
-                            case 3:
-                                //爱心变红
-                                heartTurnRed();
-                                break;
-                            case 4:
-                                //爱心变不红
-                                redHeartClear();
-                                break;
-                            case 5:
-                                alert("未知错误");
-                                break;
-                            default:
-                        }
-                    } else {
-                        if (!isCollect) {
-                            heartTurnRed();
-                        } else {
-                            redHeartClear();
-                        }
-                    }
-
-                });
+                picturCollectProcess(this);
             })
 
+            //删除图片
+            links.eq(2).click(function () {
+                Modal.confirm(
+                {
+                    msg: "是否删除图片？"
+                })
+                .on(function (e) {
+                    if (e == true) {
+                        pictureDelete();
+                    }
+                })
 
 
+            });
+
+        }
+
+
+        //图片收藏处理
+        function picturCollectProcess(link) {
+            var heart = $(link).find("i");
+            var isCollect = heart.css("color") == 'rgb(255, 0, 0)';//是否收藏了
+            var pId = $("#pictureDetailModal").attr("data-pid");
+            //对红心处理的两个函数
+            var heartTurnRed = function () {
+                heart.css("color", "red");
+                var collectCount = heart.next().html();
+                if (collectCount == "") {
+                    collectCount = 1;
+                } else {
+                    collectCount = parseInt(collectCount);
+                    collectCount++;
+                }
+                heart.next().html(collectCount);
+            };
+            var redHeartClear = function () {
+                heart.removeAttr("style");
+                var collectCount = heart.next().html();
+                collectCount = parseInt(collectCount);
+                collectCount--;
+                if (collectCount == 0) {
+                    heart.next().html("");
+                } else {
+                    heart.next().html(collectCount);
+                }
+            };
+            $.getJSON("/handler/CollectPicture.ashx", { pId: pId, isCollect: isCollect }, function (data) {
+                if (data.isCollect == false) {
+                    switch (data.errorCode) {
+                        case 1:
+                            alert("请先登入");
+                            //location.href = "/Index.aspx ";
+                            break;
+                        case 2:
+                            alert("图片不存在");
+                            break;
+                        case 3:
+                            //爱心变红
+                            heartTurnRed();
+                            break;
+                        case 4:
+                            //爱心变不红
+                            redHeartClear();
+                            break;
+                        case 5:
+                            alert("未知错误");
+                            break;
+                        default:
+                    }
+                } else {
+                    if (!isCollect) {
+                        heartTurnRed();
+                    } else {
+                        redHeartClear();
+                    }
+                }
+
+            });
+        }
+
+        //图片删除
+        function pictureDelete() {
+            var modal = $("#pictureDetailModal")
+            var pId = modal.attr("data-pid");
+
+            $.getJSON("handler/DeletePicture.ashx", { pId: pId }, function (data) {
+                if (data.IsDelete == false) {
+                    switch (data.errorCode) {
+                        case 1:
+                            alert("请先登入");
+                            //location.href = "/Index.aspx";
+                            break;
+                        case 2:
+                            alert("您没有这张图片");
+                            break;
+                        case 3:
+                            alert("未知错误");
+                            break;
+                        default:
+                    }
+                } else {
+                    modal.modal('hide');
+                    var tarPic = $("#userPictureModel div[data-pid='" + pId + "']");
+                    var $container = $('.masonry-container');
+                    $container.masonry('remove', tarPic);
+                    masonryOn();
+                }
+            });
         }
 
         //当弹出层关闭事件绑定

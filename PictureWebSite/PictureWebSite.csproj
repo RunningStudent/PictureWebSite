@@ -217,6 +217,9 @@
     <Compile Include="handler\DeleteComment.ashx.cs">
       <DependentUpon>DeleteComment.ashx</DependentUpon>
     </Compile>
+    <Compile Include="handler\DeletePicture.ashx.cs">
+      <DependentUpon>DeletePicture.ashx</DependentUpon>
+    </Compile>
     <Compile Include="handler\GetPictureListAsy.ashx.cs">
       <DependentUpon>GetPictureListAsy.ashx</DependentUpon>
     </Compile>
@@ -319,6 +322,7 @@
     <Content Include="handler\SubmitComment.ashx" />
     <Content Include="handler\DeleteComment.ashx" />
     <Content Include="handler\CollectPicture.ashx" />
+    <Content Include="handler\DeletePicture.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
