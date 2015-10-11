@@ -17,7 +17,7 @@ namespace PictureWebSite.account
         {
             context.Response.ContentType = "text/html";
             context.Session["current_user"] = null;
-            context.Response.Redirect("/index.aspx");
+            context.Response.Redirect("../index.aspx");
         }
 
         public bool IsReusable

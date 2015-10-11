@@ -1,288 +1,189 @@
-﻿using Gif.Components;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Drawing;
-using System.Drawing.Imaging;
-using System.Drawing.Drawing2D;
-using System.Diagnostics;
+using Picture.Utility;
+using Lucene.Net.Store;
+using Lucene.Net.Index;
+using System.IO;
+using PanGu;
 
+using Lucene.Net.Analysis.PanGu;
+using Lucene.Net.Documents;
+using Lucene.Net.Search;
+using Picture.BLL;
 namespace TestConsole
 {
     class Program
     {
-        public static void Main(string[] args)
+
+        public static void Main()
         {
-            List<Image> gifList = GetFrames("1.gif");
-            Zgke.MyImage.ImageGif _Gif = new Zgke.MyImage.ImageGif(300, 300);
-            for (int i = 0; i < gifList.Count; i++)
+            StreamReader sr = new StreamReader("1.txt");
+            TagBLL bll = new TagBLL();
+            while (!sr.EndOfStream)
             {
-                _Gif.AddImage(gifList[i], 1, true, Zgke.MyImage.ImageGif.DisposalMethod.NoDisposalMethod);
+                string str = sr.ReadLine();
+                bll.Insert(new Picture.Model.TagModel()
+                {
+                     TagName=str
+                });
             }
-            _Gif.SaveFile(@"D:/1.gif");
-            GetThumbnail("1.gif", 300, 300, @"E:/1.gif");
-            Console.WriteLine("结束");
+
+
+            sr.Close();
+            sr.Dispose();
             Console.ReadKey();
         }
-        private static int imgH;
-        private static int imgW;
+
+        private static void SearchDemo()
+        {
+            int action = -1;
+            while (action != 0)
+            {
+                Console.WriteLine("0.退出");
+                Console.WriteLine("1.创建索引");
+                Console.WriteLine("2.搜索");
+                Console.WriteLine("3.分词");
+                action = int.Parse(Console.ReadLine());
+                switch (action)
+                {
+                    case 0:
+                        goto outFlag;
+                    case 1:
+                        CreateIndexByData("IndexData");
+
+                        break;
+                    case 2:
+                        Console.WriteLine("输入搜索字符串");
+                        string searchKey = Console.ReadLine();
+                        var list = SearchFromIndexData("IndexData", searchKey);
+                        foreach (var item in list)
+                        {
+                            Console.WriteLine(item.Content);
+                        }
+                        break;
+                    case 3:
+                        Fen();
+                        break;
+                    default:
+                        break;
+                }
+            }
+        outFlag:
+
+            Console.ReadKey();
+        }
+
+        private static void Fen()
+        {
+            Console.WriteLine("输入");
+            string str = Console.ReadLine();
+            var strs = Picture.Utility.SplitContent.SplitWords(str);
+            foreach (var item in strs)
+            {
+                Console.WriteLine(item);
+            }
+        }
+
+        private static void Search()
+        {
+            throw new NotImplementedException();
+        }
+        /// <summary>
+        /// 创建索引
+        /// </summary>
+        private static void CreateIndexByData(string IndexSavePath)
+        {
+            //string indexPath = Context.Server.MapPath(IndexSavePath);//索引文档保存位置        
+            string indexPath = IndexSavePath;
+            FSDirectory directory = FSDirectory.Open(new DirectoryInfo(indexPath), new NativeFSLockFactory());
+            //IndexReader:对索引库进行读取的类
+            bool isExist = IndexReader.IndexExists(directory); //是否存在索引库文件夹以及索引库特征文件
+            if (isExist)
+            {
+                //如果索引目录被锁定（比如索引过程中程序异常退出或另一进程在操作索引库），则解锁
+                //Q:存在问题 如果一个用户正在对索引库写操作 此时是上锁的 而另一个用户过来操作时 将锁解开了 于是产生冲突 --解决方法后续
+                if (IndexWriter.IsLocked(directory))
+                {
+                    IndexWriter.Unlock(directory);
+                }
+            }
+
+            //创建向索引库写操作对象  IndexWriter(索引目录,指定使用盘古分词进行切词,最大写入长度限制)
+            //补充:使用IndexWriter打开directory时会自动对索引库文件上锁
+            IndexWriter writer = new IndexWriter(directory, new PanGuAnalyzer(), !isExist, IndexWriter.MaxFieldLength.UNLIMITED);
+            CommentSetDal picture = new CommentSetDal();
+            var pictureModel = picture.QueryList(0, 10, new { }, "Id");
+
+            //--------------------------------遍历数据源 将数据转换成为文档对象 存入索引库
+            foreach (var item in pictureModel)
+            {
+                Document document = new Document(); //new一篇文档对象 --一条记录对应索引库中的一个文档
+
+                //向文档中添加字段  Add(字段,值,是否保存字段原始值,是否针对该列创建索引)
+                document.Add(new Field("id", item.Id.ToString(), Field.Store.YES, Field.Index.NOT_ANALYZED));//--所有字段的值都将以字符串类型保存 因为索引库只存储字符串类型数据
+
+                //Field.Store:表示是否保存字段原值。指定Field.Store.YES的字段在检索时才能用document.Get取出原值  //Field.Index.NOT_ANALYZED:指定不按照分词后的结果保存--是否按分词后结果保存取决于是否对该列内容进行模糊查询
 
 
+                document.Add(new Field("content", item.Content, Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.WITH_POSITIONS_OFFSETS));
+
+                //Field.Index.ANALYZED:指定文章内容按照分词后结果保存 否则无法实现后续的模糊查询 
+                //WITH_POSITIONS_OFFSETS:指示不仅保存分割后的词 还保存词之间的距离
+
+                //document.Add(new Field("content", book.ContentDescription, Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.WITH_POSITIONS_OFFSETS));
+                writer.AddDocument(document); //文档写入索引库
+            }
+            writer.Close();//会自动解锁
+            directory.Close(); //不要忘了Close，否则索引结果搜不到
+        }
 
 
 
         /// <summary>
-        /// 裁剪GIF图片
+        /// 从索引库中检索关键字
         /// </summary>
-        /// <param name="gifFilePath">源文件地址</param>
-        /// <param name="maxWidth">最大宽度</param>
-        /// <param name="maxHeight">最大高度</param>
-        /// <param name="outputPath">输出文件地址</param>
-        public static void GetThumbnail(string gifFilePath, int maxWidth, int maxHeight, string outputPath)
+        private static List<CommentSet> SearchFromIndexData(string IndexSavePath, string searchKey)
         {
-            List<Image> gifList = GetFrames(gifFilePath);
-            AnimatedGifEncoder ae = new AnimatedGifEncoder();
-            ae.SetQuality(1);
-            ae.Start();
-            ae.SetDelay(delay);    // 延迟间隔
-            ae.SetRepeat(0);  //-1:不循环,0:总是循环 播放  
-            //我这里是等比缩小（如果原图长大于宽以长为基准缩放,反之以宽为基准缩放)
-            Size _newSize = Thumbnail.ResizeImage(gifSize.Width, gifSize.Height, maxWidth, maxHeight);
-            ae.SetSize(_newSize.Width, _newSize.Height);
-
-            for (int i = 0, count = gifList.Count; i < count; i++)
+            string indexPath = IndexSavePath;
+            FSDirectory directory = FSDirectory.Open(new DirectoryInfo(indexPath), new NoLockFactory());
+            IndexReader reader = IndexReader.Open(directory, true);
+            IndexSearcher searcher = new IndexSearcher(reader);
+            //搜索条件
+            PhraseQuery query = new PhraseQuery();
+            //把用户输入的关键字进行分词
+            foreach (string word in Picture.Utility.SplitContent.SplitWords(searchKey))
             {
-                //Image frame = Image.FromFile(gifList[i]);
-                ae.AddFrame(gifList[i]);
+                query.Add(new Term("content", word));
             }
-            ae.Finish();
-            ae.Output(outputPath);
-        }
+            //query.Add(new Term("content", "C#"));//多个查询条件时 为且的关系
+            query.SetSlop(100); //指定关键词相隔最大距离
 
+            //TopScoreDocCollector盛放查询结果的容器
+            TopScoreDocCollector collector = TopScoreDocCollector.create(1000, true);
+            searcher.Search(query, null, collector);//根据query查询条件进行查询，查询结果放入collector容器
+            //TopDocs 指定0到GetTotalHits() 即所有查询结果中的文档 如果TopDocs(20,10)则意味着获取第20-30之间文档内容 达到分页的效果
+            ScoreDoc[] docs = collector.TopDocs(0, collector.GetTotalHits()).scoreDocs;
 
-        private static Size gifSize;
-        private static int delay;
-        //解码gif图片
-        public static List<Image> GetFrames(string pPath)
-        {
-            Image gif = Image.FromFile(pPath);
-            gifSize = new Size(gif.Width, gif.Height);
-            FrameDimension fd = new FrameDimension(gif.FrameDimensionsList[0]);
-            //获取帧数(gif图片可能包含多帧，其它格式图片一般仅一帧)
-            int count = gif.GetFrameCount(fd);
-            // List<string> gifList = new List<string>();
-            List<Image> gifList = new List<Image>();
-            //以Jpeg格式保存各帧
-            for (int i = 0; i < count; i++)
+            //展示数据实体对象集合
+            var commontModels = new List<CommentSet>();
+            for (int i = 0; i < docs.Length; i++)
             {
-                gif.SelectActiveFrame(fd, i);
-                //gif图片一般每一帧的间隔时间都一样,所以只拿一次图片的时间间隔
-                if (i == 0)
-                {
-                    for (int j = 0; j < gif.PropertyIdList.Length; j++)//遍历帧属性
-                    {
-                        //如果是延迟时间
-                        //可以去MSDNhttps://msdn.microsoft.com/zh-cn/library/system.drawing.imaging.propertyitem.id.aspx
-                        //查看其它属性的id值
-                        if ((int)gif.PropertyIdList.GetValue(j) == 0x5100)
-                        {
-                            PropertyItem pItem = (PropertyItem)gif.PropertyItems.GetValue(j);//获取延迟时间属性
+                int docId = docs[i].doc;//得到查询结果文档的id（Lucene内部分配的id）
+                Document doc = searcher.Doc(docId);//根据文档id来获得文档对象Document
 
-                            //倘若这个图有7帧,那么这个pItem.Value是7*4个byte,每个4个byte记录了图片的时间间隔
 
-                            //这里的i已经是0了
-                            byte[] delayByte = new byte[4];//延迟时间，以1/100秒为单位
-                            delayByte[0] = pItem.Value[i * 4];
-                            delayByte[1] = pItem.Value[1 + i * 4];
-                            delayByte[2] = pItem.Value[2 + i * 4];
-                            delayByte[3] = pItem.Value[3 + i * 4];
-
-                            //截获一个片段的图片间隔保存到byte[]中,最后把它转换成毫秒
-                            delay = BitConverter.ToInt32(delayByte, 0) * 10; //乘以10，获取到毫秒
-                            break;
-                        }
-                    }
-                }
-
-               // gifList.Add(new Bitmap(gif));//这里可以将每帧图片保存成文件gif.save(,);根据需求
-                gifList.Add(Thumbnail.MakeThumbnailImage(new Bitmap(gif), 300, 300));
+               CommentSet  commont = new CommentSet();
+                commont.Content = doc.Get("content");
+                //book.ContentDescription = doc.Get("content");//未使用高亮
+                //搜索关键字高亮显示 使用盘古提供高亮插件
+                //book.ContentDescription = Picture.Utility.SplitContent.HightLight(Request.QueryString["SearchKey"], doc.Get("content"));
+                commont.Id = Convert.ToInt32(doc.Get("id"));
+                commontModels.Add(commont);
             }
-            gif.Dispose();
-            return gifList;
+            return commontModels;
         }
-
-
-
-        /// <summary> 
-
-        /// 设置GIF大小 
-        /// </summary> 
-        /// <param name="path">图片路径</param> 
-        /// <param name="width">宽</param> 
-        /// <param name="height">高</param> 
-        private static void setGifSize(string path, int width, int height)
-        {
-            Image gif = new Bitmap(width, height);
-            Image frame = new Bitmap(width, height);
-            Image res = Image.FromFile(path);
-            Graphics g = Graphics.FromImage(gif);
-            Rectangle rg = new Rectangle(0, 0, width, height);
-            Graphics gFrame = Graphics.FromImage(frame);
-
-            g.CompositingQuality = CompositingQuality.HighSpeed;
-            g.SmoothingMode = SmoothingMode.HighSpeed;
-            g.InterpolationMode = InterpolationMode.Low;
-            g.PixelOffsetMode = PixelOffsetMode.HighSpeed;
-            g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-
-
-            gFrame.CompositingQuality = CompositingQuality.HighSpeed;
-            gFrame.SmoothingMode = SmoothingMode.HighSpeed;
-            gFrame.InterpolationMode = InterpolationMode.Low;
-            gFrame.PixelOffsetMode = PixelOffsetMode.HighSpeed;
-            gFrame.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-
-
-            foreach (Guid gd in res.FrameDimensionsList)
-            {
-                FrameDimension fd = new FrameDimension(gd);
-
-                //因为是缩小GIF文件所以这里要设置为Time，如果是TIFF这里要设置为PAGE，因为GIF以时间分割，TIFF为页分割 
-                FrameDimension f = FrameDimension.Time;
-                int count = res.GetFrameCount(fd);
-                ImageCodecInfo codecInfo = GetEncoder(ImageFormat.Gif);
-                System.Drawing.Imaging.Encoder encoder = System.Drawing.Imaging.Encoder.SaveFlag;
-                EncoderParameters eps = null;
-
-                for (int i = 0; i < count; i++)
-                {
-                    res.SelectActiveFrame(f, i);
-                    if (0 == i)
-                    {
-
-                        g.DrawImage(res, rg);
-
-                        eps = new EncoderParameters(1);
-
-                        //第一帧需要设置为MultiFrame 
-
-                        eps.Param[0] = new EncoderParameter(encoder, (long)EncoderValue.MultiFrame);
-                        bindProperty(res, gif);
-                        gif.Save(@"D:\aaa.gif", codecInfo, eps);
-                    }
-                    else
-                    {
-
-                        gFrame.DrawImage(res, rg);
-
-                        eps = new EncoderParameters(1);
-
-                        //如果是GIF这里设置为FrameDimensionTime，如果为TIFF则设置为FrameDimensionPage 
-
-                        eps.Param[0] = new EncoderParameter(encoder, (long)EncoderValue.FrameDimensionTime);
-
-                        bindProperty(res, frame);
-                        gif.SaveAdd(frame, eps);
-                    }
-                }
-
-                eps = new EncoderParameters(1);
-                eps.Param[0] = new EncoderParameter(encoder, (long)EncoderValue.Flush);
-                gif.SaveAdd(eps);
-            }
-        }
-
-
-        public static void TestGIF(string path, int width, int height)
-        {
-            var list = GetFrames(path);
-            ImageCodecInfo codecInfo = GetEncoder(ImageFormat.Gif);
-            EncoderParameters eps = null;
-            Image gif = new Bitmap(width, height);
-            System.Drawing.Imaging.Encoder encoder = System.Drawing.Imaging.Encoder.SaveFlag;
-
-
-
-
-
-
-            for (int i = 0; i < list.Count(); i++)
-            {
-                if (i == 0)
-                {
-                    Image temp = new Bitmap(width, height);
-
-                    Graphics g = Graphics.FromImage(temp);
-                    g.DrawImage(list[i], new Rectangle(0, 0, width, height), 0, 0, imgW, imgH, GraphicsUnit.Pixel);
-                    eps = new EncoderParameters(1);
-                    eps.Param[0] = new EncoderParameter(encoder, (long)EncoderValue.MultiFrame);
-                    bindProperty(temp, gif);
-                    gif.Save(@"D:\11.gif", codecInfo, eps);
-                }
-                else
-                {
-
-                    Image temp = new Bitmap(width, height);
-
-                    Graphics g = Graphics.FromImage(temp);
-                    g.DrawImage(list[i], new Rectangle(0, 0, width, height), 0, 0, imgW, imgH, GraphicsUnit.Pixel);
-
-                    eps = new EncoderParameters(1);
-                    eps.Param[0] = new EncoderParameter(encoder, (long)EncoderValue.FrameDimensionTime);
-
-                    gif.SaveAdd(list[i], eps);
-                }
-            }
-
-        }
-
-
-        /// <summary> 
-        /// 将源图片文件里每一帧的属性设置到新的图片对象里 
-        /// </summary> 
-        /// <param name="a">源图片帧</param> 
-        /// <param name="b">新的图片帧</param> 
-        private static void bindProperty(Image a, Image b)
-        {
-
-            //这个东西就是每一帧所拥有的属性，可以用GetPropertyItem方法取得这里用为完全复制原有属性所以直接赋值了 
-
-            //顺便说一下这个属性里包含每帧间隔的秒数和透明背景调色板等设置，这里具体那个值对应那个属性大家自己在msdn搜索GetPropertyItem方法说明就有了 
-
-            for (int i = 0; i < a.PropertyItems.Length; i++)
-            {
-                b.SetPropertyItem(a.PropertyItems[i]);
-            }
-        }
-
-
-
-        private static ImageCodecInfo GetEncoder(ImageFormat format)
-        {
-
-            ImageCodecInfo[] codecs = ImageCodecInfo.GetImageDecoders();
-
-            foreach (ImageCodecInfo codec in codecs)
-            {
-                if (codec.FormatID == format.Guid)
-                {
-                    return codec;
-                }
-            }
-            return null;
-        }
-
-
-
-
-
-
-
-
-
-
     }
 }

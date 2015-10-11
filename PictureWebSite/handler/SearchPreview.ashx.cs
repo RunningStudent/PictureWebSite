@@ -23,7 +23,7 @@ namespace PictureWebSite.handler
             context.Response.ContentType = "text/plain";
             string searchKey = context.Request["wd"];
 
-            string indexPath = context.Server.MapPath("/IndexData");
+            string indexPath = context.Server.MapPath("../IndexData");
             FSDirectory directory = FSDirectory.Open(new DirectoryInfo(indexPath), new NoLockFactory());
             IndexReader reader = IndexReader.Open(directory, true);
             IndexSearcher searcher = new IndexSearcher(reader);
@@ -32,7 +32,7 @@ namespace PictureWebSite.handler
             //把用户输入的关键字进行分词
             foreach (string word in Picture.Utility.SplitContent.SplitWords(searchKey))
             {
-                query.Add(new Term("summary", word));
+                query.Add(new Term("tag", word));
             }
             //query.Add(new Term("content", "C#"));//多个查询条件时 为且的关系
             query.SetSlop(100); //指定关键词相隔最大距离
@@ -44,21 +44,21 @@ namespace PictureWebSite.handler
             ScoreDoc[] docs = collector.TopDocs(0,10).scoreDocs;
 
             //展示数据实体对象集合
-            var pictureInfoModel = new List<Picture.Model.PictureInfoModel>();
+            var tagModels = new List<Picture.Model.TagModel>();
             for (int i = 0; i < docs.Length; i++)
             {
                 int docId = docs[i].doc;//得到查询结果文档的id（Lucene内部分配的id）
                 Document doc = searcher.Doc(docId);//根据文档id来获得文档对象Document
 
 
-                Picture.Model.PictureInfoModel picture = new Picture.Model.PictureInfoModel();
+                Picture.Model.TagModel tag = new Picture.Model.TagModel();
                 //picture.ImgSummary = doc.Get("summary");
-                picture.ImgSummary =Picture.Utility.SplitContent.HightLight(searchKey, doc.Get("summary"));
+                tag.TagName= Picture.Utility.SplitContent.HightLight(searchKey, doc.Get("tag"));
                 //book.ContentDescription = doc.Get("content");//未使用高亮
                 //搜索关键字高亮显示 使用盘古提供高亮插件
                 //book.ContentDescription = Picture.Utility.SplitContent.HightLight(Request.QueryString["SearchKey"], doc.Get("content"));
-                picture.PId = Convert.ToInt32(doc.Get("id"));
-                pictureInfoModel.Add(picture);
+                tag.TId = Convert.ToInt32(doc.Get("id"));
+                tagModels.Add(tag);
             }
 
             SearchPreviewResult result = new SearchPreviewResult()
@@ -66,10 +66,10 @@ namespace PictureWebSite.handler
                 q=searchKey,
                 p=false
             };
-            
-            foreach (var item in pictureInfoModel)
+
+            foreach (var item in tagModels)
 	        {
-                result.s.Add(item.ImgSummary);
+                result.s.Add(item.TagName);
 	        }
 
             System.Web.Script.Serialization.JavaScriptSerializer jss = new System.Web.Script.Serialization.JavaScriptSerializer();

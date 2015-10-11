@@ -11,10 +11,7 @@
 	    window.location.href = 'error.html';
 	    </script>
 	<![endif]-->
-
-    <link href="/assets/css/index.css" rel="stylesheet" />
-    <link href="/assets/css/reset.css" rel="stylesheet" />
-    <script src="../assets/js/lib/jquery-1.10.2.min.js"></script>
+    <script src="assets/js/lib/jquery-1.10.2.min.js"></script>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -90,9 +87,7 @@
     </asp:ContentPlaceHolder>
     <%--    </div>
     </form>--%>
-    <script src="../assets/js/function.js"></script>
-    <script src="/assets/js/newMask3.js"></script>
-    <script src="../assets/js/head.js"></script>
+    <%--<script src="assets/js/head.js"></script>--%>
     <asp:ContentPlaceHolder ID="foot" runat="server">
     </asp:ContentPlaceHolder>
 </body>
