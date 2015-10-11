@@ -75,6 +75,9 @@
   <ItemGroup>
     <Content Include="assets\css\index.css" />
     <Content Include="assets\css\reset.css" />
+    <Content Include="assets\img\action_like1.png" />
+    <Content Include="assets\img\action_like2.png" />
+    <Content Include="assets\img\classify.png" />
     <Content Include="assets\img\close.png" />
     <Content Include="assets\img\face\avatar.php.jpg" />
     <Content Include="assets\img\face\face1.jpg" />
@@ -82,59 +85,10 @@
     <Content Include="assets\img\loginNavBg.png" />
     <Content Include="assets\img\logo.png" />
     <Content Include="assets\img\nologin.png" />
-    <Content Include="assets\img\pic\1.jpg" />
-    <Content Include="assets\img\pic\10.jpg" />
-    <Content Include="assets\img\pic\11.jpg" />
-    <Content Include="assets\img\pic\12.jpg" />
-    <Content Include="assets\img\pic\13.jpg" />
-    <Content Include="assets\img\pic\14.jpg" />
-    <Content Include="assets\img\pic\15.jpg" />
-    <Content Include="assets\img\pic\16.jpg" />
-    <Content Include="assets\img\pic\17.jpg" />
-    <Content Include="assets\img\pic\18.jpg" />
-    <Content Include="assets\img\pic\19.jpg" />
-    <Content Include="assets\img\pic\2.jpg" />
-    <Content Include="assets\img\pic\20.jpg" />
-    <Content Include="assets\img\pic\21.jpg" />
-    <Content Include="assets\img\pic\22.jpg" />
-    <Content Include="assets\img\pic\23.jpg" />
-    <Content Include="assets\img\pic\24.jpg" />
-    <Content Include="assets\img\pic\25.jpg" />
-    <Content Include="assets\img\pic\26.jpg" />
-    <Content Include="assets\img\pic\27.jpg" />
-    <Content Include="assets\img\pic\28.jpg" />
-    <Content Include="assets\img\pic\29.jpg" />
-    <Content Include="assets\img\pic\3.jpg" />
-    <Content Include="assets\img\pic\30.jpg" />
-    <Content Include="assets\img\pic\31.jpg" />
-    <Content Include="assets\img\pic\32.jpg" />
-    <Content Include="assets\img\pic\33.jpg" />
-    <Content Include="assets\img\pic\34.jpg" />
-    <Content Include="assets\img\pic\35.jpg" />
-    <Content Include="assets\img\pic\36.jpg" />
-    <Content Include="assets\img\pic\37.jpg" />
-    <Content Include="assets\img\pic\38.jpg" />
-    <Content Include="assets\img\pic\39.jpg" />
-    <Content Include="assets\img\pic\4.jpg" />
-    <Content Include="assets\img\pic\40.jpg" />
-    <Content Include="assets\img\pic\41.jpg" />
-    <Content Include="assets\img\pic\42.jpg" />
-    <Content Include="assets\img\pic\43.jpg" />
-    <Content Include="assets\img\pic\44.jpg" />
-    <Content Include="assets\img\pic\45.jpg" />
-    <Content Include="assets\img\pic\46.jpg" />
-    <Content Include="assets\img\pic\47.jpg" />
-    <Content Include="assets\img\pic\48.jpg" />
-    <Content Include="assets\img\pic\49.jpg" />
-    <Content Include="assets\img\pic\5.jpg" />
-    <Content Include="assets\img\pic\50.jpg" />
-    <Content Include="assets\img\pic\6.jpg" />
-    <Content Include="assets\img\pic\7.jpg" />
-    <Content Include="assets\img\pic\8.jpg" />
-    <Content Include="assets\img\pic\9.jpg" />
     <Content Include="assets\img\preview.jpg" />
     <Content Include="assets\img\searchImg.png" />
-    <Content Include="assets\img\verifyImg.png" />
+    <Content Include="assets\img\triangle.png" />
+    <Content Include="assets\img\userMenu.png" />
     <Content Include="assets\img\white.png" />
     <Content Include="assets\js\1.js" />
     <Content Include="assets\js\111111.js" />
@@ -143,7 +97,7 @@
     <Content Include="assets\js\lib\Masonry.js" />
     <Content Include="assets\js\lib\dateFormat.js" />
     <Content Include="assets\js\lib\plupload.full.min.js" />
-    <Content Include="assets\js\newMask3.js" />
+    <Content Include="assets\js\newMask.js" />
     <Content Include="Dict\ChsDoubleName1.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -168,7 +122,6 @@
     <Content Include="assets\js\function.js" />
     <Content Include="assets\js\lib\jquery-1.10.2.min.js" />
     <Content Include="assets\js\lib\jquery.lazyload.js" />
-    <Content Include="assets\js\newMask.js" />
     <Content Include="assets\js\waterfallFlow.js" />
     <Content Include="assets\js\lib\BootStrap\css\bootstrap-theme.css" />
     <Content Include="assets\js\lib\BootStrap\css\bootstrap-theme.min.css" />
@@ -180,11 +133,16 @@
     <Content Include="assets\js\lib\BootStrap\js\npm.js" />
     <Content Include="assets\js\lib\BootStrap\OtherSource\userFace.jpg" />
     <Content Include="assets\js\lib\BootStrap\userIndex.html" />
+    <Content Include="lib\DS.Web.UCenter.dll" />
+    <Content Include="lib\DS.Web.UCenter.XML" />
+    <Content Include="lib\Lucene.Net.dll" />
+    <Content Include="lib\PanGu.dll" />
+    <Content Include="lib\PanGu.HighLight.dll" />
+    <Content Include="lib\PanGu.Lucene.Analyzer.dll" />
     <Content Include="PanGUTest.aspx" />
-    <Content Include="TestCode\Test.aspx" />
     <Content Include="UpLoadTemp.html" />
+    <Content Include="failure_UserIndex.aspx" />
     <Content Include="UserIndex.aspx" />
-    <Content Include="UserIndex2.aspx" />
     <Content Include="UserSetting.aspx" />
     <Content Include="Web.config" />
     <Content Include="项目相关.txt" />
@@ -266,12 +224,12 @@
     <Compile Include="shared\Layout.Master.designer.cs">
       <DependentUpon>Layout.Master</DependentUpon>
     </Compile>
-    <Compile Include="TestCode\Test.aspx.cs">
-      <DependentUpon>Test.aspx</DependentUpon>
+    <Compile Include="failure_UserIndex.aspx.cs">
+      <DependentUpon>failure_UserIndex.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="TestCode\Test.aspx.designer.cs">
-      <DependentUpon>Test.aspx</DependentUpon>
+    <Compile Include="failure_UserIndex.aspx.designer.cs">
+      <DependentUpon>failure_UserIndex.aspx</DependentUpon>
     </Compile>
     <Compile Include="UserIndex.aspx.cs">
       <DependentUpon>UserIndex.aspx</DependentUpon>
@@ -279,13 +237,6 @@
     </Compile>
     <Compile Include="UserIndex.aspx.designer.cs">
       <DependentUpon>UserIndex.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="UserIndex2.aspx.cs">
-      <DependentUpon>UserIndex2.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UserIndex2.aspx.designer.cs">
-      <DependentUpon>UserIndex2.aspx</DependentUpon>
     </Compile>
     <Compile Include="UserSetting.aspx.cs">
       <DependentUpon>UserSetting.aspx</DependentUpon>
@@ -323,6 +274,7 @@
     <Content Include="handler\DeleteComment.ashx" />
     <Content Include="handler\CollectPicture.ashx" />
     <Content Include="handler\DeletePicture.ashx" />
+    <None Include="Properties\PublishProfiles\PictureConfig.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

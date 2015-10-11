@@ -8,6 +8,8 @@ using Picture.Utility;
 using System.Web.SessionState;
 using PictureWebSite.Model;
 using System.Collections;
+using System.Text;
+using System.Security.Cryptography;
 
 namespace PictureWebSite.handler
 {
@@ -32,7 +34,10 @@ namespace PictureWebSite.handler
         /// <summary>
         /// 大图路径
         /// </summary>
-        private const string BIG_IMAGE_SAVE_PATH = "/UpLoadPicture/";
+        private const string BIG_IMAGE_SAVE_PATH = "UpLoadPicture/";
+        //这里保存到数据库的路径其为字符串,故要以页面位置为准写入图片路径
+        //而保存图片需要绝对路径,这里会以该ashx文件找路径
+
 
         /// <summary>
         /// 图片大小限制
@@ -44,8 +49,11 @@ namespace PictureWebSite.handler
             //并不知道如何用参数获得文件只能用索引的方式，反正就一张图
             context.Response.ContentType = "text/plain";
             var file = context.Request.Files[0];
-
             string tags = context.Request["tags"];
+            string pictreSummary = context.Server.HtmlEncode(context.Request["summary"]);
+
+
+
             List<String> Tags = new List<String>();
 
             foreach (var item in tags.Split(new char[] { ',' }))
@@ -80,7 +88,7 @@ namespace PictureWebSite.handler
             #region 文件类型校验
             string fileName = file.FileName;
             string extName = Path.GetExtension(fileName);
-            if (!(extName == ".jpeg" || extName == ".jpg" || extName == ".bmp" || extName == ".png" || extName==".gif"))
+            if (!(extName == ".jpeg" || extName == ".jpg" || extName == ".bmp" || extName == ".png" || extName == ".gif"))
             {
                 PictureUploadError(context, 2);
                 return;
@@ -104,8 +112,8 @@ namespace PictureWebSite.handler
 
 
             //大,小图所在的文件夹绝对路径
-            string bigPathDir = context.Request.MapPath(bigRelativePathDir);
-            string smallPathDir = context.Request.MapPath(smallRelativePathDir);
+            string bigPathDir = context.Request.MapPath("../" + bigRelativePathDir);
+            string smallPathDir = context.Request.MapPath("../" + smallRelativePathDir);
             //创建文件夹
             if (!Directory.Exists(bigPathDir))
             {
@@ -113,13 +121,17 @@ namespace PictureWebSite.handler
                 Directory.CreateDirectory(smallPathDir);
             }
 
+            //算出文件的MD5
+            string fileMD5Name = GetMD5FromFile(file.InputStream);
+            string fileExt = Path.GetExtension(file.FileName);
+
             //大,小图所在的相对路径
-            string bigImgRelativePath = bigRelativePathDir + "/" + file.FileName;
-            string smallImgRelativePath = smallRelativePathDir + "/" + "small_" + file.FileName;
+            string bigImgRelativePath = bigRelativePathDir + "/" + fileMD5Name + fileExt;
+            string smallImgRelativePath = smallRelativePathDir + "/" + "small_" + fileMD5Name + ".jpg";
 
             //大,小图所在的绝对路径
-            string bigImgPath = context.Request.MapPath(bigImgRelativePath);
-            string smallImgPath = context.Request.MapPath(smallImgRelativePath);
+            string bigImgPath = context.Request.MapPath("../" + bigImgRelativePath);
+            string smallImgPath = context.Request.MapPath("../" + smallImgRelativePath);
 
 
 
@@ -134,13 +146,13 @@ namespace PictureWebSite.handler
 
             #region 保存到数据库
 
-           
+
 
             #region 获取标签对象,判断标签是否已经存在了，不存在则创建
             Picture.BLL.TagBLL tagBll = new Picture.BLL.TagBLL();
             List<Picture.Model.TagModel> tagModelList = new List<Picture.Model.TagModel>();
             Picture.Model.TagModel tempModel = null;
-         
+
             foreach (var item in hsTag)
             {
                 tempModel = tagBll.QuerySingle(new { TagName = item });
@@ -162,12 +174,20 @@ namespace PictureWebSite.handler
                 }
                 tempModel = null;
             }
-           
+
+            #endregion
+
+            #region  更新索引
+            foreach (var item in tagModelList)
+            {
+                IndexManager.tagIndex.Add(item);
+            }
+
             #endregion
 
             #region 保存图片
 
-            string pictreSummary = context.Server.HtmlEncode(context.Request["summary"]);
+
 
 
             Picture.BLL.PictureInfoBLL pictureBll = new Picture.BLL.PictureInfoBLL();
@@ -221,8 +241,33 @@ namespace PictureWebSite.handler
                 errorCode = errorCode
             };
             context.Response.Write(JSONHelper.ToJSONString(returnData));
-            
+
         }
+
+
+        /// <summary>
+        /// 生成文件MD5
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public static string GetMD5FromFile(Stream sr)
+        {
+            using (MD5 md = MD5.Create())
+            {
+                //传入文件的流给MD5处理(循环读取什么的)
+                byte[] md5byte = md.ComputeHash(sr);
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < md5byte.Length; i++)
+                {
+                    //x代表转化成16进制,x2代表生成的16进制保留两位
+                    //如果为大写X,生成16进制也是大写
+                    sb.Append(md5byte[i].ToString("x2"));
+                }
+                return sb.ToString();
+            }
+        }
+
+
 
         public bool IsReusable
         {

@@ -93,9 +93,6 @@ function ajax(method, url, data, endFn) {
 		xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
 		xhr.send(data);
 	}
-
-	console.log(data);
-
 	xhr.onreadystatechange = function() {
 
 		if (xhr.readyState == 4) {
