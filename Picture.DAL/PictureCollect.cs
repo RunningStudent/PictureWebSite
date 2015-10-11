@@ -7,8 +7,8 @@ using Picture.Utility;
 
 namespace Picture.DAL
 {
-	public partial class PictureCollectDAL
-	{
+    public partial class PictureCollectDAL
+    {
         #region 向数据库中添加一条记录 +int Insert(PictureCollectModel model)
         /// <summary>
         /// 向数据库中添加一条记录
@@ -21,16 +21,19 @@ namespace Picture.DAL
             const string sql = @"
 INSERT INTO [dbo].[PictureCollect] (
 	[PId]
-	,[UId]
+	,[CuId]
+	,[CollectDate]
 )
 VALUES (
 	@PId
-	,@UId
+	,@CuId
+	,@CollectDate
 );select @@IDENTITY";
             #endregion
             var res = SqlHelper.ExecuteScalar(sql,
-					new SqlParameter("@PId", model.PId),					
-					new SqlParameter("@UId", model.UId)					
+                    new SqlParameter("@PId", model.PId),
+                    new SqlParameter("@CuId", model.CuId),
+                    new SqlParameter("@CollectDate", model.CollectDate)
                 );
             return res == null ? 0 : Convert.ToInt32(res);
         }
@@ -57,13 +60,15 @@ VALUES (
 UPDATE [dbo].[PictureCollect]
 SET 
 	[PId] = @PId
-	,[UId] = @UId
+	,[CuId] = @CuId
+	,[CollectDate] = @CollectDate
 WHERE [CId] = @CId";
             #endregion
             return SqlHelper.ExecuteNonQuery(sql,
-					new SqlParameter("@CId", model.CId),					
-					new SqlParameter("@PId", model.PId),					
-					new SqlParameter("@UId", model.UId)					
+                    new SqlParameter("@CId", model.CId),
+                    new SqlParameter("@PId", model.PId),
+                    new SqlParameter("@CuId", model.CuId),
+                    new SqlParameter("@CollectDate", model.CollectDate)
                 );
         }
         #endregion
@@ -100,7 +105,7 @@ WHERE [CId] = @CId";
                     }
                 }
             }
-            var sql = SqlHelper.GenerateQuerySql("PictureCollect", new[] { "CId", "PId", "UId" }, index, size, whereBuilder.ToString(), orderField, isDesc);
+            var sql = SqlHelper.GenerateQuerySql("PictureCollect", new[] { "CId", "PId", "CuId", "CollectDate" }, index, size, whereBuilder.ToString(), orderField, isDesc);
             using (var reader = SqlHelper.ExecuteReader(sql, parameters.ToArray()))
             {
                 if (reader.HasRows)
@@ -135,7 +140,7 @@ WHERE [CId] = @CId";
         /// <returns>实体</returns>
         public PictureCollectModel QuerySingle(int cid)
         {
-            const string sql = "SELECT TOP 1 [CId], [PId], [UId] FROM [dbo].[PictureCollect] WHERE [CId] = @CId";
+            const string sql = "SELECT TOP 1 [CId], [PId], [CuId], [CollectDate] FROM [dbo].[PictureCollect] WHERE [CId] = @CId";
             using (var reader = SqlHelper.ExecuteReader(sql, new SqlParameter("@CId", cid)))
             {
                 if (reader.HasRows)
@@ -184,5 +189,5 @@ WHERE [CId] = @CId";
             return res == null ? 0 : Convert.ToInt32(res);
         }
         #endregion
-	}
+    }
 }

@@ -211,10 +211,20 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="handlerHelper\AccountHelper.cs" />
-    <Compile Include="handlerHelper\PictureUploadHelper.cs" />
+    <Compile Include="handler\CollectPicture.ashx.cs">
+      <DependentUpon>CollectPicture.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="handler\DeleteComment.ashx.cs">
+      <DependentUpon>DeleteComment.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="handler\DeletePicture.ashx.cs">
+      <DependentUpon>DeletePicture.ashx</DependentUpon>
+    </Compile>
     <Compile Include="handler\GetPictureListAsy.ashx.cs">
       <DependentUpon>GetPictureListAsy.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="handler\LoadPictureDetail.ashx.cs">
+      <DependentUpon>LoadPictureDetail.ashx</DependentUpon>
     </Compile>
     <Compile Include="handler\PictureUpload.ashx.cs">
       <DependentUpon>PictureUpload.ashx</DependentUpon>
@@ -222,8 +232,11 @@
     <Compile Include="handler\SearchPreview.ashx.cs">
       <DependentUpon>SearchPreview.ashx</DependentUpon>
     </Compile>
-    <Compile Include="handler\UserUploadPictureAsy.ashx.cs">
-      <DependentUpon>UserUploadPictureAsy.ashx</DependentUpon>
+    <Compile Include="handler\SubmitComment.ashx.cs">
+      <DependentUpon>SubmitComment.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="handler\UserPictureAsy.ashx.cs">
+      <DependentUpon>UserPictureAsy.ashx</DependentUpon>
     </Compile>
     <Compile Include="handler\ValidateCodeHandler.ashx.cs">
       <DependentUpon>ValidateCodeHandler.ashx</DependentUpon>
@@ -300,11 +313,16 @@
     <Content Include="API\uc.ashx" />
     <Content Include="handler\SearchPreview.ashx" />
     <Content Include="account\UserSetting.ashx" />
-    <Content Include="handler\UserUploadPictureAsy.ashx" />
+    <Content Include="handler\UserPictureAsy.ashx" />
     <Content Include="handler\PictureUpload.ashx" />
     <Content Include="Dict\Dict.dct">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="handler\LoadPictureDetail.ashx" />
+    <Content Include="handler\SubmitComment.ashx" />
+    <Content Include="handler\DeleteComment.ashx" />
+    <Content Include="handler\CollectPicture.ashx" />
+    <Content Include="handler\DeletePicture.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

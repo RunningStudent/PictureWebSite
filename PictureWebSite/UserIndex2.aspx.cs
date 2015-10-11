@@ -19,9 +19,9 @@ namespace PictureWebSite
         protected void Page_Load(object sender, EventArgs e)
         {
             CurrentUser = Session["current_user"] as Model.User;
-            //获得图片数据
-            Picture.BLL.PictureInfoBLL bllPictureInfo = new Picture.BLL.PictureInfoBLL();
-            List = bllPictureInfo.QueryList(-1, 10, new { UId = CurrentUser.UId }, "UploadDate");
+            ////获得图片数据
+            //Picture.BLL.PictureInfoBLL bllPictureInfo = new Picture.BLL.PictureInfoBLL();
+            //List = bllPictureInfo.QueryList(-1, 10, new { UId = CurrentUser.UId }, "UploadDate");
 
             //获得修改头像
             IUcClient client = new UcClient();

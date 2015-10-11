@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 
@@ -74,9 +75,9 @@ namespace Picture.Utility
             System.Drawing.Image bitmap = new System.Drawing.Bitmap(towidth, toheight);
             //新建一个画板 
             Graphics g = System.Drawing.Graphics.FromImage(bitmap);
-            //设置高质量插值法 
+            //设置画板质量
             g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.High;
-            //设置高质量,低速度呈现平滑程度 
+            g.CompositingQuality = CompositingQuality.HighQuality;
             g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             //清空画布并以透明背景色填充 
             g.Clear(Color.Transparent);
@@ -87,7 +88,7 @@ namespace Picture.Utility
             try
             {
                 //以jpg格式保存缩略图 
-                bitmap.Save(thumbnailPath);
+                bitmap.Save(thumbnailPath, System.Drawing.Imaging.ImageFormat.Jpeg);
             }
             catch (System.Exception e)
             {

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.SessionState;
-using PictureWebSite.handlerHelper;
 using System.Text.RegularExpressions;
 using PictureWebSite.Model;
 using DS.Web.UCenter.Client;
@@ -57,7 +56,7 @@ namespace PictureWebSite.account
                   | string.IsNullOrEmpty(password)
                   | string.IsNullOrEmpty(verify))
             {
-                AccountHelper.LoginErrorReturnData("请填写完整", 0, context);
+                LoginErrorReturnData("请填写完整", 0, context);
                 return;
             }
             #endregion
@@ -79,13 +78,13 @@ namespace PictureWebSite.account
             //}
             //if (userNameByteLength > 20 || userNameByteLength < 2)
             //{
-            //    AccountHelper.LoginErrorReturnData("用户名过长或过短", 3, context);
+            //    LoginErrorReturnData("用户名过长或过短", 3, context);
             //    return;
             //}
             ////合法性校验
             //if (!Regex.IsMatch(username, @"^[\u4e00-\u9fa5a-zA-Z0-9_]{1,20}$"))
             //{
-            //    AccountHelper.LoginErrorReturnData("用户名非法", 3, context);
+            //    LoginErrorReturnData("用户名非法", 3, context);
             //    return;
             //}
 
@@ -99,13 +98,13 @@ namespace PictureWebSite.account
 
             if (serverVCode == null)
             {
-                AccountHelper.LoginErrorReturnData("验证码错误", 3, context);
+                LoginErrorReturnData("验证码错误", 3, context);
                 return;
             }
             //真正的验证码正误判断
             if (serverVCode.ToString().ToUpper() != verify.ToUpper())
             {
-                AccountHelper.LoginErrorReturnData("验证码错误", 3, context);
+                LoginErrorReturnData("验证码错误", 3, context);
                 return;
             }
 
@@ -170,13 +169,13 @@ namespace PictureWebSite.account
             switch (loginResult)
             {
                 case Picture.Model.Enums.LoginResult.用户名不存在:
-                    AccountHelper.LoginErrorReturnData("用户名不存在", 1, context);
+                    LoginErrorReturnData("用户名不存在", 1, context);
                     return;
                 case Picture.Model.Enums.LoginResult.密码错误:
-                    AccountHelper.LoginErrorReturnData("密码错误", 2, context);
+                    LoginErrorReturnData("密码错误", 2, context);
                     return;
                 case Picture.Model.Enums.LoginResult.用户已被冻结:
-                //AccountHelper.LoginErrorReturnData("用户已被冻结", 1, context);
+                //LoginErrorReturnData("用户已被冻结", 1, context);
                 //return;
                 case Picture.Model.Enums.LoginResult.登录成功:
 
@@ -185,9 +184,9 @@ namespace PictureWebSite.account
                     {
                         EMail = result.Mail,
                         UserName = username,
-                        UserFaceMiddle = client.AvatarUrl(result.Uid, AvatarSize.Middle) + "?" + r.Next(100),
-                        UserFacePathLarge = client.AvatarUrl(result.Uid, AvatarSize.Big) + "?" + r.Next(100),
-                        UserFacePathSmall = client.AvatarUrl(result.Uid, AvatarSize.Small) + "?" + r.Next(100),
+                        UserFaceMiddle = client.AvatarUrl(result.Uid, AvatarSize.Middle),
+                        UserFacePathLarge = client.AvatarUrl(result.Uid, AvatarSize.Big) ,
+                        UserFacePathSmall = client.AvatarUrl(result.Uid, AvatarSize.Small),
                         UId = result.Uid,
                         UserStatus = userInfo.UserStatus
                     };
@@ -195,9 +194,8 @@ namespace PictureWebSite.account
                     context.Session["current_user"] = user;
                     break;
                 case Picture.Model.Enums.LoginResult.未知错误:
-                    AccountHelper.LoginErrorReturnData("未知错误", 3, context);
-                    break;
-
+                    LoginErrorReturnData("未知错误", 3, context);
+                    return;
                 default:
                     break;
             }
@@ -219,7 +217,21 @@ namespace PictureWebSite.account
         }
 
 
-
+        /// <summary>
+        /// 登入失败,返回错误信息
+        /// </summary>
+        /// <param name="errorMessage"></param>
+        /// <param name="context"></param>
+        public void LoginErrorReturnData(string errorMessage, int place, HttpContext context)
+        {
+            var data = new
+            {
+                isLogined = false,
+                errorMessage = errorMessage,
+                place = place
+            };
+            context.Response.Write(JSONHelper.ToJSONString(data));
+        }
 
 
         public bool IsReusable

@@ -5,12 +5,26 @@ using System.Text;
 
 namespace Picture.Model
 {
-    public class PictureMoreInfoModel
-    {  
+    public class PictureCollectionMoreModel
+    {
+        /// <summary>
+        /// CId
+        /// </summary>
+        public int CId { get; set; }
         /// <summary>
         /// PId
         /// </summary>
         public int PId { get; set; }
+        /// <summary>
+        /// CuId
+        /// </summary>
+        public int CuId { get; set; }
+        /// <summary>
+        /// CollectDate
+        /// </summary>
+        public DateTime CollectDate { get; set; }
+
+     
         /// <summary>
         /// LargeImgPath
         /// </summary>
@@ -35,20 +49,10 @@ namespace Picture.Model
         /// CollectCount
         /// </summary>
         public int CollectCount { get; set; }
-
-        public int UId { get; set; }
-
-        public int UserStatus { get; set; }
-
-        public string UserName { get; set; }
-
-        public int isCollect { get; set; }
-
         /// <summary>
-        /// 标签
+        /// UId
         /// </summary>
-        public List<TagModel> Tags { get; set; }
-
+        public int UId { get; set; }
 
     }
 }
