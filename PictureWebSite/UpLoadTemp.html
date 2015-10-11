@@ -153,7 +153,7 @@
     <script src="assets/js/lib/jquery-1.10.2.min.js"></script>
     <script src="assets/js/lib/plupload.full.min.js"></script>
     <script type="text/javascript">
-
+        var lastFile;
         var uploader = new plupload.Uploader({ //实例化一个plupload上传对象
             browse_button: 'LoadImg',//点击弹出浏览文件对话框的标签
             url: 'handler/PictureUpload.ashx',//图片上传的目标位置
@@ -163,7 +163,7 @@
                 mime_types: [ //只允许上传图片
                   { title: "Image files", extensions: "jpg,gif,png" },
                 ],
-                max_file_size: '2000kb', //最大只能上传400kb的文件
+                max_file_size: '2000kb', //最大只能上传2000kb的文件
                 prevent_duplicates: true //不允许选取重复文件
             },
         });
@@ -183,10 +183,17 @@
 
         //绑定文件添加进队列事件
         uploader.bind('FilesAdded', function (uploader, files) {
+            if (lastFile!=null) {
+                uploader.removeFile(lastFile);
+
+            }
+
             if (files.length > 1) {
                 alert("错误");
                 return false;
             }
+            lastFile = files[0];
+            uploader.files = files;
             var file_name = files[0].name; //文件名
             $("#fileName").html(file_name);
             //图片预览
@@ -194,11 +201,16 @@
 
         });
 
+        //uploader.bind('BeforeUpload', function (uploader, file) {
+        //    console.log(uploader);
+        //    console.log(file);
+        //});
+
         //图片上传
         uploader.bind('FileUploaded', function (uploader, file, responseObject) {
             var data = $.parseJSON(responseObject.response);
             if (file.status == 5) {
-                alert("上传成功" + responseObject.response);
+                
                 if (data.isUpload == false) {
                     switch (data.errorCode) {
                         case 1:
@@ -214,7 +226,8 @@
                         default:
                     }
                 } else {
-
+                    alert("上传成功" + responseObject.response);
+                    lastFile = null;
                 }
             } else if (file.status == 4) {
                 //alert("上传失败");

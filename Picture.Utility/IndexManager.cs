@@ -19,25 +19,25 @@ namespace Picture.Utility
     /// </summary>
     public class IndexManager
     {
-        public static readonly IndexManager pictureIndex = new IndexManager();
+        public static readonly IndexManager tagIndex = new IndexManager();
         public static readonly string indexPath = HttpContext.Current.Server.MapPath("IndexData");
         private IndexManager()
         {
 
         }
         //请求队列 解决索引目录同时操作的并发问题
-        private Queue<PictureViewMode> bookQueue = new Queue<PictureViewMode>();
+        private Queue<TagViewMode> tagQueue = new Queue<TagViewMode>();
         /// <summary>
         /// 新增Books表信息时 添加邢增索引请求至队列
         /// </summary>
         /// <param name="books"></param>
-        public void Add(Picture.Model.PictureInfoModel picture)
+        public void Add(Picture.Model.TagModel tag)
         {
-            PictureViewMode bvm = new PictureViewMode();
-            bvm.Id = picture.PId;
-            bvm.Summary = picture.ImgSummary;
+            TagViewMode bvm = new TagViewMode();
+            bvm.Id = tag.TId;
+            bvm.Tag = tag.TagName;
             bvm.IT = IndexType.Insert;
-            bookQueue.Enqueue(bvm);
+            tagQueue.Enqueue(bvm);
         }
         /// <summary>
         /// 删除Books表信息时 添加删除索引请求至队列
@@ -45,24 +45,28 @@ namespace Picture.Utility
         /// <param name="bid"></param>
         public void Del(int bid)
         {
-            PictureViewMode bvm = new PictureViewMode();
+            TagViewMode bvm = new TagViewMode();
             bvm.Id = bid;
             bvm.IT = IndexType.Delete;
-            bookQueue.Enqueue(bvm);
+            tagQueue.Enqueue(bvm);
         }
         /// <summary>
         /// 修改Books表信息时 添加修改索引(实质上是先删除原有索引 再新增修改后索引)请求至队列
         /// </summary>
         /// <param name="picture"></param>
-        public void Mod(Picture.Model.PictureInfoModel picture)
+        public void Mod(Picture.Model.TagModel tag)
         {
-            PictureViewMode bvm = new PictureViewMode();
-            bvm.Id = picture.PId;
-            bvm.Summary = picture.ImgSummary;
+            TagViewMode bvm = new TagViewMode();
+            bvm.Id = tag.TId;
+            bvm.Tag = tag.TagName;
             bvm.IT = IndexType.Modify;
-            bookQueue.Enqueue(bvm);
+            tagQueue.Enqueue(bvm);
         }
 
+
+        /// <summary>
+        /// 在应用程序启动的时候,调用这个函数
+        /// </summary>
         public void StartNewThread()
         {
             ThreadPool.QueueUserWorkItem(new WaitCallback(QueueToIndex));
@@ -73,7 +77,7 @@ namespace Picture.Utility
         {
             while (true)
             {
-                if (bookQueue.Count > 0)
+                if (tagQueue.Count > 0)
                 {
                     CRUDIndex();
                 }
@@ -100,14 +104,14 @@ namespace Picture.Utility
                 }
             }
             IndexWriter writer = new IndexWriter(directory, new PanGuAnalyzer(), !isExist, IndexWriter.MaxFieldLength.UNLIMITED);
-            while (bookQueue.Count > 0)
+            while (tagQueue.Count > 0)
             {
                 Document document = new Document();
-                PictureViewMode picture = bookQueue.Dequeue();
+                TagViewMode picture = tagQueue.Dequeue();
                 if (picture.IT == IndexType.Insert)
                 {
                     document.Add(new Field("id", picture.Id.ToString(), Field.Store.YES, Field.Index.NOT_ANALYZED));
-                    document.Add(new Field("summary", picture.Summary, Field.Store.YES, Field.Index.ANALYZED,
+                    document.Add(new Field("tag", picture.Tag, Field.Store.YES, Field.Index.ANALYZED,
                                            Field.TermVector.WITH_POSITIONS_OFFSETS));
                     
                     writer.AddDocument(document);
@@ -121,7 +125,7 @@ namespace Picture.Utility
                     //先删除 再新增
                     writer.DeleteDocuments(new Term("id", picture.Id.ToString()));
                     document.Add(new Field("id", picture.Id.ToString(), Field.Store.YES, Field.Index.NOT_ANALYZED));
-                    document.Add(new Field("summary", picture.Summary, Field.Store.YES, Field.Index.ANALYZED,
+                    document.Add(new Field("tag", picture.Tag, Field.Store.YES, Field.Index.ANALYZED,
                                            Field.TermVector.WITH_POSITIONS_OFFSETS));
                     writer.AddDocument(document);
                 }
@@ -133,14 +137,14 @@ namespace Picture.Utility
 
     }
 
-    public class PictureViewMode
+    public class TagViewMode
     {
         public int Id
         {
             get;
             set;
         }
-        public string Summary 
+        public string Tag 
         {
             get;
             set;

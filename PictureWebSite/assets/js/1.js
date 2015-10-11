@@ -195,9 +195,8 @@ window.onload = function() {
             //}
 
             //实际用
-            
             if ( oSearchInput.value != '' ) {
-                ajax('post', 'http://localhost:9855/handler/SearchPreview.ashx', 'wd=' + oSearchInput.value, function (data) {
+                ajax('post', 'handler/SearchPreview.ashx', 'wd=' + oSearchInput.value, function (data) {
                     var data = JSON.parse(data);//将获得的数据转换成json格式
                     console.log(data);
 
@@ -220,7 +219,6 @@ window.onload = function() {
             } else {
                 oSearchHintUl.style.display = 'none';
             }
-            
         }
     }
     oSearchInput.onblur = function(ev) {
@@ -232,4 +230,8 @@ window.onload = function() {
         alert('搜索功能实现中...');
     }
     classify();
+
+    //弹出层相关js事件
+    modalEventBing();
+
 }
