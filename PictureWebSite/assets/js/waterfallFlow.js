@@ -29,9 +29,8 @@ function waterfallFlow(parent, oLoader, aWarpper) {
 	//获取数据
 	function getList() {
 		oLoader.style.display = 'block';
-		ajax('post', 'http://online.cumt.edu.cn/PictureWebSite/handler/GetPictureListAsy.ashx', 'ciShu=' + ciShu, function(dataForString) {
+		ajax('post', 'handler/GetPictureListAsy.ashx', 'ciShu=' + ciShu, function(dataForString) {
 			var data = JSON.parse(dataForString);
-			console.log(data);
 			//循环添加20个数据块
 			for (var i = 0; i < 20; i++) {
 
@@ -41,39 +40,13 @@ function waterfallFlow(parent, oLoader, aWarpper) {
 
 				var oDiv = document.createElement('div');
 				oDiv.className = 'picDiv';
-				// 10.8 xgy
-				oDiv.picId = data[i].id;//记录图片id的自定义变量
-				// 10.8 xgy
 
 				var oA = document.createElement('a');
-               
-				oA.href = 'javascript:;';
+				oA.href = '#';
 				var iHeight = data[i].height * (iWidth / data[i].width);
 				oA.style.height = iHeight + 'px';
-				oA.innerHTML = '<img src="/assets/img/white.png" class="pic lazy" width="' + iWidth + '" height="' + iHeight + '" data-original="' + "http://online.cumt.edu.cn/PictureWebSite/"+data[i].imgUrl + '"></a>';
-			    //10.9 yjm
-				oA.onclick = function () {
-				    pictureClick(this.parentNode.picId);
-				};
-			    //10.9 yjm
+				oA.innerHTML = '<img src="/assets/img/white.png" class="pic lazy" width="' + iWidth + '" height="' + iHeight + '" data-original="' + data[i].imgUrl + '"></a>';
 				oDiv.appendChild(oA);
-
-				//10.8 肖高阳
-				var oLike = document.createElement('div');
-				oLike.className = 'action_like';
-				var oALike = document.createElement('a');
-				oALike.href = 'javascript:;';
-				oALike.title = '喜欢';
-				//区别对待是否已经收藏的情况
-				if ( data[i].isCollect ) {
-					oALike.className = 'isLike';
-					oLike.haveClicked = true;
-				} else {
-					oLike.haveClicked = false;//记录喜欢是否被点击的自定义变量
-				}
-				oLike.appendChild(oALike);
-				oDiv.appendChild(oLike);
-				//10.8 肖高阳
 
 				var oP = document.createElement('p');
 				oP.className = 'description';
@@ -112,34 +85,6 @@ function waterfallFlow(parent, oLoader, aWarpper) {
 
 				oDiv.style.height = iHeight + oP.offsetHeight + oUl.offsetHeight + userDiv.offsetHeight + 2 * descriptionMargin + 1 * labelMargin + 'px';
 				arrT[_index] += parseInt(oDiv.style.height) + 10;
-
-				// 10.8 xgy
-				oDiv.onmouseover = function(){
-					var oLike = this.getElementsByClassName('action_like')[0];
-					oLike.style.display = 'block';
-				}
-				oDiv.onmouseout = function(){
-					var oLike = this.getElementsByClassName('action_like')[0];
-					oLike.style.display = 'none';
-				}
-				oLike.onclick = function(){//已经收藏的图片重复点击改为不收藏
-					if ( !this.haveClicked ) {
-						this.childNodes[0].className = 'isLike';
-						//告诉后端该图片已经被收藏
-						var message = 'pId=' + this.parentNode.picId + '&isCollect=false';
-						console.log(message);
-						this.haveClicked = true;
-						ajax('post','http://online.cumt.edu.cn/PictureWebSite/handler/CollectPicture.ashx',message,function(subData){
-							//var data = JSON.parse(subData);//后端返回的数据处理
-							//console.log(data);
-							console.log(subData);
-						});
-					} else {
-						this.childNodes[0].className = '';
-						this.haveClicked = false;
-					}
-				}
-				// 10.8 xgy
 			}
 
 			setTimeout(function() {

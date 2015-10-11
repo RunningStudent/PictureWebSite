@@ -57,7 +57,7 @@ namespace PictureWebSite.handler
 
 
             //获得图片信息
-            var pictureInfo = pictureInfoBll.GetSinglePictureInfoWithTagAndUserInfo(pId, user==null?-1:user.UId);
+            var pictureInfo = pictureInfoBll.GetSinglePictureInfoWithTagAndUserInfo(pId, user.UId);
 
 
             //把数据整合并返回

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Lucene.Net.Analysis;
 using Lucene.Net.Analysis.PanGu;
 using System.IO;
 using PanGu;
@@ -14,7 +15,7 @@ namespace Picture.Utility
         public static string[] SplitWords(string content)
         {
             List<string> strList = new List<string>();
-            PanGuAnalyzer analyzer = new PanGuAnalyzer();//指定使用盘古 PanGuAnalyzer 分词算法
+            Analyzer analyzer = new PanGuAnalyzer();//指定使用盘古 PanGuAnalyzer 分词算法
             TokenStream tokenStream = analyzer.TokenStream(content, new StringReader(content));
             Lucene.Net.Analysis.Token token = null;
             while ((token = tokenStream.Next()) != null)

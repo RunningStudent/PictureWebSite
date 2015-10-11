@@ -17,11 +17,12 @@ namespace Picture.Utility
         /// <returns></returns>
         public static string GetSmallImgPath(string largeImgPath)
         {
-            //UpLoadPicture/20151007/9f50ecd8f40cad69273a1894b54760c3.jpg
+            //UpLoadPicture/20151006/7.jpg
+            //UpLoadPicture/SmallImg_20151006/smal_7.jpg
             string imgName = Path.GetFileNameWithoutExtension(largeImgPath);
             string smallImgName = "small_" + imgName + ".jpg";
             string parentDic = largeImgPath.Split(new char[] { '/' }, StringSplitOptions.RemoveEmptyEntries)[1];
-            string finalImgPath = "UpLoadPicture/SmallImg_" + parentDic + "/" + smallImgName;
+            string finalImgPath = "/UpLoadPicture/SmallImg_" + parentDic + "/" + smallImgName;
             return finalImgPath;
         }
     }

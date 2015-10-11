@@ -13,8 +13,7 @@ namespace PictureWebSite
 
         protected void Application_Start(object sender, EventArgs e)
         {
-            Picture.Utility.IndexManager.tagIndex.StartNewThread();
-            //PanGu.Segment.Init("PanGu.xml");
+            IndexManager.pictureIndex.StartNewThread();
         }
 
         protected void Session_Start(object sender, EventArgs e)

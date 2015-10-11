@@ -53,8 +53,10 @@ function newMask(isLogin, obj) {
 
 		oLoginForm.removeChild(oPassword2);
 		oLoginForm.removeChild(oPPassword2);
-		oLoginForm.removeChild(oUserName);
-		oLoginForm.removeChild(oPUserName);
+	    //oLoginForm.removeChild(oUserName);
+		oLoginForm.removeChild(oEmail);
+	    //oLoginForm.removeChild(oPUserName);
+		oLoginForm.removeChild(oPEmail);
 		oLoginForm.removeChild(oVerfiyDiv);
 		oLoginForm.removeChild(oPVerfiy);
 		oLoginForm.removeChild(oButton);
@@ -75,8 +77,11 @@ function newMask(isLogin, obj) {
 		this.className = 'active';
 		oSpanLogin.className = '';
 
-		oEmail.value = '';
-		oPEmail.innerHTML = '';
+		//oEmail.value = '';
+	    //oPEmail.innerHTML = '';
+
+		oUserName.value = '';
+		oPUserName.innerHTML = '';
 		oPassword.value = '';
 		oPPassword.innerHTML = '';
 
@@ -131,22 +136,34 @@ function newMask(isLogin, obj) {
 		oLoginForm.appendChild(oPassword2);
 		oPPassword2 = productP(oPPassword2);
 
-		//用户用户名
-		oUserName = document.createElement('input');
-		oUserName.type = 'text';
-		oUserName.name = 'username';
-		oUserName.className = 'username';
-		oUserName.placeholder = '请输入用户用户名';
-		oUserName.autocomplete = 'off';
-		oLoginForm.appendChild(oUserName);
-		oPUserName = productP(oPUserName);
+	    //邮箱
+		oEmail = document.createElement('input');
+		oEmail.type = 'text';
+		oEmail.name = 'email';
+		oEmail.className = 'email';
+		oEmail.placeholder = '请输入邮箱';
+		oEmail.autocomplete = 'off';
+		oLoginForm.appendChild(oEmail);
+		oPEmail = productP(oPEmail);
 
+       
+		////用户用户名
+		//oUserName = document.createElement('input');
+		//oUserName.type = 'text';
+		//oUserName.name = 'username';
+		//oUserName.className = 'username';
+		//oUserName.placeholder = '请输入用户用户名';
+		//oUserName.autocomplete = 'off';
+		//oLoginForm.appendChild(oUserName);
+		//oPUserName = productP(oPUserName);
+        
 		//验证码
 		newVerfiy();
 
 		//输入框聚焦失焦事件
 		focusBlurEvent(oPassword2, oPPassword2);
-		focusBlurEvent(oUserName, oPUserName);
+	    //focusBlurEvent(oUserName, oPUserName);
+	    focusBlurEvent(oEmail, oPEmail);
 
 	}
 
@@ -192,22 +209,35 @@ function newMask(isLogin, obj) {
 		obj.onblur = function() {
 			var str = '';
 			switch (obj.className) {
-				case 'password': //注册区的密码输入框的特殊处理
+				case 'password': //密码输入框的特殊处理
 					{
 						var arr = obj.value.split('<script>');
 						if (arr.length != 1) { //长度不等于1，说明里面含有<script>标签
-							obj1.innerHTML = '本输入框不支持嵌入脚本！'
+						    obj1.innerHTML = '本输入框不支持嵌入脚本！';
 							obj1.style.color = 'red';
 							canSubmit = false;
 							return;
 						} else {
 							canSubmit = true;
 						}
-                        //先看长度，长度合适了在检验两次密码是否一致
-						if (obj.value && (obj.value.length > 20 || obj.value.length < 6)) {//长度不合适的情况
+
+						if ((obj.value.length > 20 || obj.value.length < 6) && obj.value) {
 							obj1.innerHTML = '密码长度不合适';
 							obj1.style.color = 'red';
-						} else {//为空或长度合适的情况
+						} else {
+                            //console.log(oPassword,oPassword2)
+							//if (oPassword.value && oPassword2.value && (oPassword.value != oPassword2.value)) {
+                            //    alert('zou')
+							//    oPPassword.innerHTML = '两次输入密码不一致';
+							//	oPPassword2.innerHTML = '两次输入密码不一致';
+							//	oPPassword.style.color = 'red';
+							//	oPPassword2.style.color = 'red';
+							//} else {
+							//	oPPassword.innerHTML = '';
+							//	oPPassword2.innerHTML = '';
+							//	oPPassword.style.color = 'black';
+							//	oPPassword2.style.color = 'black';
+						    //}
 						    if (!isLogin) {//注册的情况
 						        if (oPassword.value && oPassword2.value && (oPassword.value != oPassword2.value)) {//长度合适
 						            oPPassword.innerHTML = '两次输入密码不一致';
@@ -221,7 +251,7 @@ function newMask(isLogin, obj) {
 						            oPPassword2.style.color = 'black';
 						        }
 						    }
-                            console.log(isLogin)
+						    console.log(isLogin)
 
 						}
 						break;
@@ -309,7 +339,7 @@ function newMask(isLogin, obj) {
 
 	//提交登录信息，接收返回数据并进行登录后相关操作
 	function submitLoginDate() {
-		data = 'email=' + oEmail.value + '&password=' + oPassword.value + '&verify=' + oVerfiy.value;
+		data = 'username=' + oUserName.value + '&password=' + oPassword.value + '&verify=' + oVerfiy.value;
 		ajax('post', '/account/Login.ashx', data, function(dataForString) {
 			console.log(dataForString);
 			var data = JSON.parse(dataForString);
@@ -327,8 +357,8 @@ function newMask(isLogin, obj) {
 						}
 					case 1:
 						{
-							oPEmail.innerHTML = data.errorMessage;
-							oPEmail.style.color = 'red';
+							oPUserName.innerHTML = data.errorMessage;
+							oPUserName.style.color = 'red';
 							break;
 						}
 					case 2:
@@ -370,10 +400,11 @@ function newMask(isLogin, obj) {
 							break;
 						}
 					case 1:
-						{
-							oPEmail.innerHTML = data.errorMessage;
-							oPEmail.style.color = 'red';
-							break;
+					    {
+					        oPUserName.innerHTML = data.errorMessage;
+					        oPUserName.style.color = 'red';
+					        break;
+
 						}
 					case 2:
 						{
@@ -383,9 +414,10 @@ function newMask(isLogin, obj) {
 						}
 					case 3:
 						{
-							oPUserName.innerHTML = data.errorMessage;
-							oPUserName.style.color = 'red';
-							break;
+
+						    oPEmail.innerHTML = data.errorMessage;
+						    oPEmail.style.color = 'red';
+						    break;
 						}
 					case 4:
 						{
@@ -466,6 +498,7 @@ function newMask(isLogin, obj) {
 		oLoginForm.method = 'post'; //method
 		oLoginForm.action = isLogin ? '/account/Login.ashx' : '/account/Register.ashx'; //根据登陆还是注册改变
 
+	    /*
 		//邮箱
 		oEmail = document.createElement('input');
 		oEmail.type = 'text';
@@ -475,6 +508,19 @@ function newMask(isLogin, obj) {
 		oEmail.autocomplete = 'off';
 		oLoginForm.appendChild(oEmail);
 		oPEmail = productP(oPEmail);
+        */
+	    
+	    //用户用户名
+		oUserName = document.createElement('input');
+		oUserName.type = 'text';
+		oUserName.name = 'username';
+		oUserName.className = 'username';
+		oUserName.placeholder = '请输入用户名';
+		oUserName.autocomplete = 'off';
+		oLoginForm.appendChild(oUserName);
+		oPUserName = productP(oPUserName);
+        
+
 
 		//密码
 		oPassword = document.createElement('input');
@@ -486,8 +532,10 @@ function newMask(isLogin, obj) {
 		oPPassword = productP(oPPassword);
 
 
-		focusBlurEvent(oEmail, oPEmail);
-		focusBlurEvent(oPassword, oPPassword);
+	    //focusBlurEvent(oEmail, oPEmail);
+	    focusBlurEvent(oPassword, oPPassword);
+
+	    focusBlurEvent(oUserName, oPUserName);
 	}
 
 

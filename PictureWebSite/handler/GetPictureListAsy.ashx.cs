@@ -36,7 +36,6 @@ namespace PictureWebSite.handler
             {
                 list.Add(new Model.Picture()
                 {
-                    id=item.PId,
                     imgUrl = CommonHelper.GetSmallImgPath(item.LargeImgPath),
                     //userName = item.UInfo.UserName,
                     userName=item.UserName,

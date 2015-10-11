@@ -32,16 +32,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Lucene.Net">
-      <HintPath>..\PictureWebSite\lib\Lucene.Net.dll</HintPath>
+      <HintPath>..\Test\lib\Lucene.Net.dll</HintPath>
     </Reference>
     <Reference Include="PanGu">
-      <HintPath>..\PictureWebSite\lib\PanGu.dll</HintPath>
+      <HintPath>..\Test\lib\PanGu.dll</HintPath>
     </Reference>
     <Reference Include="PanGu.HighLight">
       <HintPath>..\PictureWebSite\lib\PanGu.HighLight.dll</HintPath>
     </Reference>
     <Reference Include="PanGu.Lucene.Analyzer">
-      <HintPath>..\PictureWebSite\lib\PanGu.Lucene.Analyzer.dll</HintPath>
+      <HintPath>..\Test\lib\PanGu.Lucene.Analyzer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />

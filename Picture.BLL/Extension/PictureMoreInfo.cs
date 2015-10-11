@@ -42,7 +42,7 @@ namespace Picture.BLL
         public Picture.DAL.PictureCollectDAL pictureCollect = new Picture.DAL.PictureCollectDAL();
 
         /// <summary>
-        /// 获得图片数据，这个数据是有带标签名,和用户信息
+        /// 获得图片数据，这个数据是有带标签名,和用户信息,查了数据库2*n+1次
         /// </summary>
         /// <param name="index"></param>
         /// <param name="size"></param>

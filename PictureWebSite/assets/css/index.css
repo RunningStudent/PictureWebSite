@@ -115,10 +115,3 @@ body { background:rgb(236,236,233); }
 #mask { background:rgba(0,0,0,0.9);width:100%;position:fixed;top:0;left:0;z-index:2; }
 
 /* mask结束 */
-
-/* 10.8 xgy */
-.action_like { width:34px;height:32px;position:absolute;right:10px;top:10px;background:#f3f3f3;box-shadow:0 0 1px #c7c7c7;display:none; }
-.action_like:hover { background:#f9f9f9; }
-.action_like a { width:34px;height:32px;background:url(http://online.cumt.edu.cn/PictureWebSite/assets/img/action_like1.png) no-repeat 50% 50%; }
-.action_like a.isLike { background-image:url(http://online.cumt.edu.cn/PictureWebSite/assets/img/action_like2.png); }
-/* 10.8 xgy */

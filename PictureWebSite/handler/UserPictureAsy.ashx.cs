@@ -26,7 +26,7 @@ namespace PictureWebSite.handler
             //防止非法访问
             if (context.Session["current_user"] == null)
             {
-                context.Response.Redirect("../Index.aspx");
+                context.Response.Redirect("/Index.aspx");
             }
             User user = context.Session["current_user"] as User;
             switch (modelType)

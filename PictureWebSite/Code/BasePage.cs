@@ -22,7 +22,7 @@ namespace PictureWebSite.Code
             {
                 Response.ContentType = "text/html";
                 Response.Write(@"<script type=""text/javascript"">alert(""请登入"")</script>");
-                Response.Redirect("Index.aspx");
+                Response.Redirect("/Index.aspx");
             }
             #endregion
         }
