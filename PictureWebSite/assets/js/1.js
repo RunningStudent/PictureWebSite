@@ -19,59 +19,6 @@ function setSearchWidth() {
     oSearchHintUl.style.left = oSearch.offsetLeft + 'px';
 }
 
-//========================起初登入后是无刷新变化导航栏右侧，下面是无刷新相关代码，但由于后端原因，登入后必须刷新===================
-
-
-////更新顶部右边区域
-//function updateRightPart(isLogined, obj) {
-//    isLogined == true ? hadLogin(obj) : notLogined(obj);
-//}
-
-////未登录
-//function notLogined(obj) {
-
-//    obj.innerHTML = ''; //先清空原有内容
-//    newNotLoginDOM(obj);
-
-//    var oLoginNav = getByClass(obj, 'ul', 'loginNav')[0];
-//    var aLiLogin = oLoginNav.getElementsByTagName('li');
-
-//    //加判断是登录还是注册的自定义属性
-//    aLiLogin[0].isLogin = false;
-//    aLiLogin[1].isLogin = true;
-
-//    //登录、注册点击事件
-//    for (var i = 0; i < aLiLogin.length; i++) {
-//        aLiLogin[i].onclick = function() {
-//            newMask(this.isLogin, obj);
-//        }
-//    }
-//}
-
-
-////已登录
-//function hadLogin(obj, data) {
-
-//    obj.innerHTML = ''; //先清空原有内容
-//    newHadLoginDOM(obj, data);
-
-//    var oRightPartMenu = getByClass(obj, 'div', 'rightPartMenu')[0];
-//    obj.onmouseover = function () {
-//        clearTimeout(obj.timer);
-//        oRightPartMenu.style.display = 'block';
-//    }
-//    obj.onmouseout = function () {
-//        clearTimeout(obj.timer);
-//        obj.timer = setTimeout(function () {
-//            oRightPartMenu.style.display = 'none';
-//        }, 500);
-//    }
-//}
-
-//=======================================================================
-
-
-
 //登入按钮，用户头像相关事件
 function accountEventBind() {
     var obj = document.getElementsByClassName("rightPart")[0];
@@ -145,7 +92,9 @@ function xgy(data) {
 }
 */
 
-window.onload = function() {
+window.host = "http://localhost:9855/";
+
+window.onload = function () {
     var oWaterfallFlow = document.getElementById('waterfallFlow');
     var oLoader = document.getElementById('loader');
     var aWarpper = getByClass(document, 'div', 'warpper');

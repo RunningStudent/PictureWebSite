@@ -46,8 +46,9 @@ namespace PictureWebSite.handler
 
         public void ProcessRequest(HttpContext context)
         {
-            //并不知道如何用参数获得文件只能用索引的方式，反正就一张图
-            context.Response.ContentType = "text/plain";
+           
+            context.Response.ContentType = "text/plain"; 
+            //并不知道如何用参数获得文件只能用[0]的方式，反正就一张图
             var file = context.Request.Files[0];
             string tags = context.Request["tags"];
             string pictreSummary = context.Server.HtmlEncode(context.Request["summary"]);
@@ -63,7 +64,6 @@ namespace PictureWebSite.handler
 
             //去除重复的标签
             HashSet<string> hsTag = new HashSet<string>(Tags);
-
 
 
             #region 用户登入校验

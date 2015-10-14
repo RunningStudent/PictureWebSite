@@ -9,7 +9,6 @@ namespace Picture.Utility
     public static class CommonHelper
     {
 
-
         /// <summary>
         /// 根据大图路径获得小图路径
         /// </summary>

@@ -47,7 +47,8 @@ namespace PictureWebSite.handler
                     height = item.Height,
                     uploadDate = item.UploadDate,
                     title = item.ImgSummary,
-                    isCollect=item.isCollect>0?1:0
+                    isCollect=item.isCollect>0?1:0,
+                    isGif=item.LargeImgPath.Contains(".gif")
                 });
             }
 

@@ -29,7 +29,7 @@ function waterfallFlow(parent, oLoader, aWarpper) {
 	//获取数据
 	function getList() {
 		oLoader.style.display = 'block';
-		ajax('post', 'http://online.cumt.edu.cn/PictureWebSite/handler/GetPictureListAsy.ashx', 'ciShu=' + ciShu, function(dataForString) {
+		ajax('post', window.host+'handler/GetPictureListAsy.ashx', 'ciShu=' + ciShu, function (dataForString) {
 			var data = JSON.parse(dataForString);
 			console.log(data);
 			//循环添加20个数据块
@@ -50,7 +50,7 @@ function waterfallFlow(parent, oLoader, aWarpper) {
 				oA.href = 'javascript:;';
 				var iHeight = data[i].height * (iWidth / data[i].width);
 				oA.style.height = iHeight + 'px';
-				oA.innerHTML = '<img src="/assets/img/white.png" class="pic lazy" width="' + iWidth + '" height="' + iHeight + '" data-original="' + "http://online.cumt.edu.cn/PictureWebSite/"+data[i].imgUrl + '"></a>';
+				oA.innerHTML = '<img src="assets/img/white.png" class="pic lazy" width="' + iWidth + '" height="' + iHeight + '" data-original="' +window.host+data[i].imgUrl + '"></a>';
 			    //10.9 yjm
 				oA.onclick = function () {
 				    pictureClick(this.parentNode.picId);
@@ -129,7 +129,7 @@ function waterfallFlow(parent, oLoader, aWarpper) {
 						var message = 'pId=' + this.parentNode.picId + '&isCollect=false';
 						console.log(message);
 						this.haveClicked = true;
-						ajax('post','http://online.cumt.edu.cn/PictureWebSite/handler/CollectPicture.ashx',message,function(subData){
+						ajax('post',window.host+'handler/CollectPicture.ashx',message,function(subData){
 							//var data = JSON.parse(subData);//后端返回的数据处理
 							//console.log(data);
 							console.log(subData);

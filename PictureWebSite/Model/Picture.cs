@@ -33,7 +33,7 @@ namespace PictureWebSite.Model
         public int width { get; set; }
         public int height { get; set; }
         public int isCollect { get; set; }
-
+        public bool isGif { get; set; }
 
 
     }

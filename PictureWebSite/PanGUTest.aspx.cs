@@ -27,8 +27,10 @@ namespace PictureWebSite
             }
             if (!string.IsNullOrEmpty(btnSearch))
             {
-                //搜索
-                SearchFromIndexData();
+                throw new Exception("测试异常");
+
+                ////搜索
+                //SearchFromIndexData();
             }
         }
         /// <summary>

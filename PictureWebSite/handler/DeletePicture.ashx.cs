@@ -53,9 +53,9 @@ namespace PictureWebSite.handler
             else
             {
                 //大图路径
-                string picPath = context.Request.MapPath(picture.LargeImgPath);
+                string picPath = context.Request.MapPath("../"+picture.LargeImgPath);
                 //小图路径
-                string smallPath = context.Request.MapPath(CommonHelper.GetSmallImgPath(picture.LargeImgPath));
+                string smallPath =context.Request.MapPath("../"+CommonHelper.GetSmallImgPath(picture.LargeImgPath));
                 if (File.Exists(picPath))
                 {
                     File.Delete(picPath);

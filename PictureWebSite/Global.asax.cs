@@ -13,8 +13,16 @@ namespace PictureWebSite
 
         protected void Application_Start(object sender, EventArgs e)
         {
+            //分词组件初始化
+            string panGuSettingPath = Server.MapPath(@"Dict/PanGu.xml");
+            PanGu.Segment.Init(panGuSettingPath);
+            //对新增标签的处理
             Picture.Utility.IndexManager.tagIndex.StartNewThread();
-            //PanGu.Segment.Init("PanGu.xml");
+
+            //开启线程日志处理
+            LogHelper.logHelper.StartNewThread();
+
+
         }
 
         protected void Session_Start(object sender, EventArgs e)
@@ -34,7 +42,7 @@ namespace PictureWebSite
 
         protected void Application_Error(object sender, EventArgs e)
         {
-
+            LogHelper.logHelper.AddException(Context.Server.GetLastError());
         }
 
         protected void Session_End(object sender, EventArgs e)

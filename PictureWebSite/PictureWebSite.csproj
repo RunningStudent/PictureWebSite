@@ -42,6 +42,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\DS.Web.UCenter.dll</HintPath>
     </Reference>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Lucene.Net, Version=2.9.2.2, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\Lucene.Net.dll</HintPath>
@@ -91,31 +95,17 @@
     <Content Include="assets\img\userMenu.png" />
     <Content Include="assets\img\white.png" />
     <Content Include="assets\js\1.js" />
-    <Content Include="assets\js\111111.js" />
-    <Content Include="assets\js\head.js" />
     <Content Include="assets\js\lib\imagesLoaded.js" />
     <Content Include="assets\js\lib\Masonry.js" />
     <Content Include="assets\js\lib\dateFormat.js" />
     <Content Include="assets\js\lib\plupload.full.min.js" />
     <Content Include="assets\js\newMask.js" />
-    <Content Include="Dict\ChsDoubleName1.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Dict\ChsDoubleName2.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Dict\ChsSingleName.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Dict\Stopword.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Dict\Synonym.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Dict\Wildcard.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Dict\ChsDoubleName1.txt" />
+    <Content Include="Dict\ChsDoubleName2.txt" />
+    <Content Include="Dict\ChsSingleName.txt" />
+    <Content Include="Dict\Stopword.txt" />
+    <Content Include="Dict\Synonym.txt" />
+    <Content Include="Dict\Wildcard.txt" />
     <Content Include="error.html" />
     <Content Include="Global.asax" />
     <Content Include="Index.aspx" />
@@ -135,6 +125,8 @@
     <Content Include="assets\js\lib\BootStrap\userIndex.html" />
     <Content Include="lib\DS.Web.UCenter.dll" />
     <Content Include="lib\DS.Web.UCenter.XML" />
+    <Content Include="lib\log4net.dll" />
+    <Content Include="lib\log4net.xml" />
     <Content Include="lib\Lucene.Net.dll" />
     <Content Include="lib\PanGu.dll" />
     <Content Include="lib\PanGu.HighLight.dll" />
@@ -144,7 +136,9 @@
     <Content Include="failure_UserIndex.aspx" />
     <Content Include="UserIndex.aspx" />
     <Content Include="UserSetting.aspx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="项目相关.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -266,9 +260,7 @@
     <Content Include="account\UserSetting.ashx" />
     <Content Include="handler\UserPictureAsy.ashx" />
     <Content Include="handler\PictureUpload.ashx" />
-    <Content Include="Dict\Dict.dct">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Dict\Dict.dct" />
     <Content Include="handler\LoadPictureDetail.ashx" />
     <Content Include="handler\SubmitComment.ashx" />
     <Content Include="handler\DeleteComment.ashx" />
