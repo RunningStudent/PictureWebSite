@@ -22,7 +22,7 @@ namespace Picture.DAL
         /// <param name="isDesc">是否降序排序</param>
         /// <param name="currentUId">当前用户的id,如果这个用户未登入填-1</param>
         /// <returns>实体集合</returns>
-        public IEnumerable<PictureMoreInfoModel> QueryList(int index, int size, string orderField, bool isDesc = true, int currentUId = -1)
+        public IEnumerable<PictureMoreInfoModel> QueryList(int index, int size, string orderField,string where="", bool isDesc = true, int currentUId = -1)
         {
             var parameters = new List<SqlParameter>()
             {
@@ -30,7 +30,8 @@ namespace Picture.DAL
                 new SqlParameter("@size",size),
                 new SqlParameter("@orderby",orderField),
                 new SqlParameter("@isDesc",isDesc?"1":"0"),
-                new SqlParameter("@currentUId",currentUId)
+                new SqlParameter("@currentUId",currentUId),
+                new SqlParameter("@where",where)
             };
 
             var sql = "usp_GetDetailPicture";

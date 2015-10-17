@@ -201,11 +201,6 @@
 
         });
 
-        //uploader.bind('BeforeUpload', function (uploader, file) {
-        //    console.log(uploader);
-        //    console.log(file);
-        //});
-
         //图片上传
         uploader.bind('FileUploaded', function (uploader, file, responseObject) {
             var data = $.parseJSON(responseObject.response);

@@ -50,9 +50,9 @@ namespace Picture.BLL
         /// <param name="orderField"></param>
         /// <param name="isDesc"></param>
         /// <returns></returns>
-        public List<PictureMoreInfoModel> GetPictureInfoWithTagAndUserInfo(int index, int size, string orderField, bool isDesc = true, int currentUid = -1)
+        public List<PictureMoreInfoModel> GetPictureInfoWithTagAndUserInfo(int index, int size, string orderField,string where="", bool isDesc = true, int currentUid = -1)
         {
-            var pictureInfoList = pictureMoreInfo.QueryList(index, size, orderField, isDesc, currentUid).ToList();
+            var pictureInfoList = pictureMoreInfo.QueryList(index, size, orderField,where, isDesc, currentUid).ToList();
             // List<PictureMoreInfoModel> resultList = new List<PictureMoreInfoModel>();
             for (int i = 0; i < pictureInfoList.Count(); i++)
             {

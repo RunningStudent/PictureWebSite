@@ -962,6 +962,7 @@
                 var body = modal.find(".modal-body");
                 var footer = modal.find(".modal-footer");
                 var picLinksLis = $("#picLinks li");
+                var img = body.find("img");
                 //把图片的PId藏在弹出层
                 modal.attr("data-pId", pId);
 
@@ -971,7 +972,15 @@
                 //图片信息
                 header.find(".modalUploadDate").html(eval(data.uploadDate.replace(/\/Date\((\d+)\)\//gi, "new Date($1)")).pattern("yyyy-MM-dd  hh:mm:ss"));
                 body.find(".summary").html(data.summary);
-                body.find("img").attr("src", data.url);
+
+                //清空图片路径,使就图片不会遗留下来
+                img.attr("src", data.url);
+                img.css('height', data.imgHeight);
+                img.load(function () {  
+                    $(this).removeAttr("style");
+                })
+
+
                 //构建标签
                 var ol = $("<ol class=\"breadcrumb\"></ol>");
                 for (var i in data.tags) {
@@ -1280,6 +1289,7 @@
         function modalClose() {
             $("#pictureDetailModal").on('hidden.bs.modal', function (e) {
                 commentTxtReset();
+                $("#pictureDetailModal .modal-body img").attr("src", "assets/img/detailPictureLoading.jpg");
             })
         }
 

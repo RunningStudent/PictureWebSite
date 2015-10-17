@@ -83,8 +83,10 @@
     <Content Include="assets\img\action_like2.png" />
     <Content Include="assets\img\classify.png" />
     <Content Include="assets\img\close.png" />
+    <Content Include="assets\img\detailPictureLoading.jpg" />
     <Content Include="assets\img\face\avatar.php.jpg" />
     <Content Include="assets\img\face\face1.jpg" />
+    <Content Include="assets\img\iconsprite_btbar.png" />
     <Content Include="assets\img\loader.gif" />
     <Content Include="assets\img\loginNavBg.png" />
     <Content Include="assets\img\logo.png" />
@@ -103,6 +105,7 @@
     <Content Include="Dict\ChsDoubleName1.txt" />
     <Content Include="Dict\ChsDoubleName2.txt" />
     <Content Include="Dict\ChsSingleName.txt" />
+    <Content Include="Dict\PanGu.xml" />
     <Content Include="Dict\Stopword.txt" />
     <Content Include="Dict\Synonym.txt" />
     <Content Include="Dict\Wildcard.txt" />
@@ -274,10 +277,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="assets\img_small\" />
-    <Folder Include="UpLoadPicture\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Picture.BLL\Picture.BLL.csproj">
       <Project>{fbd82d0f-8549-4d91-b8fd-608dd00d1490}</Project>

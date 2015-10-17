@@ -10,6 +10,7 @@ function waterfallFlow(parent, oLoader, aWarpper) {
 	var descriptionMargin = 10; //瀑布流数据块里对图片的文字描述的上下margin
 	var labelMargin = 10; //瀑布流数据块里标签块的上下margin
 	var waterTop = 80; //瀑布流距离页面顶部的距离
+	var inEnd = false;//判断是否到达最后一张图片的变量
 
 	var num = 20; //每次获取20个json
 	var ciShu = 0; //用来记录第几次获取
@@ -28,129 +29,167 @@ function waterfallFlow(parent, oLoader, aWarpper) {
 
 	//获取数据
 	function getList() {
-		oLoader.style.display = 'block';
-		ajax('post', window.host+'handler/GetPictureListAsy.ashx', 'ciShu=' + ciShu, function (dataForString) {
-			var data = JSON.parse(dataForString);
-			console.log(data);
-			//循环添加20个数据块
-			for (var i = 0; i < 20; i++) {
+		if ( !inEnd ) {
+			ajax('post', window.host+'handler/GetPictureListAsy.ashx', 'ciShu=' + ciShu, function (dataForString) {
+				var data = JSON.parse(dataForString);
+				if ( data.length != 0 ) {//如果传输过来的数据条数不为0则添加数据
+					oLoader.style.display = 'block';
+					//循环添加20个数据块
+					for (var i = 0; i < 20; i++) {
 
-				if (!data[i]) break;
+						if (!data[i]) break;
 
-				var _index = getMin();
+						var _index = getMin();
 
-				var oDiv = document.createElement('div');
-				oDiv.className = 'picDiv';
-				// 10.8 xgy
-				oDiv.picId = data[i].id;//记录图片id的自定义变量
-				// 10.8 xgy
+						var oDiv = document.createElement('div');
+						oDiv.className = 'picDiv';
+						oDiv.picId = data[i].id;//记录图片id的自定义变量
 
-				var oA = document.createElement('a');
-               
-				oA.href = 'javascript:;';
-				var iHeight = data[i].height * (iWidth / data[i].width);
-				oA.style.height = iHeight + 'px';
-				oA.innerHTML = '<img src="assets/img/white.png" class="pic lazy" width="' + iWidth + '" height="' + iHeight + '" data-original="' +window.host+data[i].imgUrl + '"></a>';
-			    //10.9 yjm
-				oA.onclick = function () {
-				    pictureClick(this.parentNode.picId);
-				};
-			    //10.9 yjm
-				oDiv.appendChild(oA);
+						// 10.16 xgy
+						var oTopDiv = document.createElement('div');
+						oTopDiv.className = 'top';
+						// 10.16 xgy
 
-				//10.8 肖高阳
-				var oLike = document.createElement('div');
-				oLike.className = 'action_like';
-				var oALike = document.createElement('a');
-				oALike.href = 'javascript:;';
-				oALike.title = '喜欢';
-				//区别对待是否已经收藏的情况
-				if ( data[i].isCollect ) {
-					oALike.className = 'isLike';
-					oLike.haveClicked = true;
-				} else {
-					oLike.haveClicked = false;//记录喜欢是否被点击的自定义变量
-				}
-				oLike.appendChild(oALike);
-				oDiv.appendChild(oLike);
-				//10.8 肖高阳
+						var oA = document.createElement('a');
+						oA.href = 'javascript:;';
+						var iHeight = data[i].height * (iWidth / data[i].width);
+						oA.style.height = iHeight + 'px';
+						oA.innerHTML = '<img src="assets/img/white.png" class="pic lazy" width="' + iWidth + '" height="' + iHeight + '" data-original="' +window.host+data[i].imgUrl + '"></a>';
+						
+						
 
-				var oP = document.createElement('p');
-				oP.className = 'description';
-				oP.innerHTML = data[i].title;
-				oDiv.appendChild(oP);
 
-				var oUl = document.createElement('ul');
-				oUl.className = 'label clear';
-				var oUlStr = '';
-				for (var j = 0; j < data[i].label.length; j++) {
-					oUlStr += '<li><a href="#">#' + data[i].label[j] + '</a></li>';
-				}
-				oUl.innerHTML = oUlStr;
-				oDiv.appendChild(oUl);
+						
+						//10.16 xgy
+						//oDiv.appendChild(oA);
+						oTopDiv.appendChild(oA);
 
-				var userDiv = document.createElement('div');
-				userDiv.className = 'users clear';
+						var oGifPlay = document.createElement('div');
+						oGifPlay.className = 'gifPlay';
+						oTopDiv.appendChild(oGifPlay);
 
-				var userA = document.createElement('a');
-				userA.href = '#';
-				userA.className = 'face';
-				userA.innerHTML = '<img src="' + data[i].userFace + '" alt="">';
-				userDiv.appendChild(userA);
+						oDiv.appendChild(oTopDiv);
+						//10.16 xgy
+						oA.onclick = function () {
+						    pictureClick(this.parentNode.parentNode.picId);
+						};
 
-				var userSubDiv = document.createElement('div');
-				userSubDiv.className = 'text';
-				userSubDiv.innerHTML = '<div class="line"><a href="#">' + data[i].userName + '</a></div><div class="line">' + (eval(data[0].uploadDate.replace(/\/Date\((\d+)\)\//gi, "new Date($1)"))).pattern("yyyy-MM-dd") + '</div>';
-				userDiv.appendChild(userSubDiv);
+						var oLike = document.createElement('div');
+						oLike.className = 'action_like';
+						var oALike = document.createElement('a');
+						oALike.href = 'javascript:;';
+						oALike.title = '喜欢';
+						//跟据从后端获取的数据区别对待是否已经收藏的情况
+						if ( data[i].isCollect ) {
+							oALike.className = 'isLike';
+							oLike.haveClicked = true;
+						} else {
+							oLike.haveClicked = false;//记录喜欢是否被点击的自定义变量
+						}
+						oLike.appendChild(oALike);
+						oDiv.appendChild(oLike);
 
-				oDiv.appendChild(userDiv);
+						var oP = document.createElement('p');
+						oP.className = 'description';
+						oP.innerHTML = data[i].title;
+						oDiv.appendChild(oP);
 
-				oDiv.style.left = arrL[_index] + 'px';
-				oDiv.style.top = arrT[_index] + 'px';
+						var oUl = document.createElement('ul');
+						oUl.className = 'label clear';
+						var oUlStr = '';
+						for (var j = 0; j < data[i].label.length; j++) {
+							oUlStr += '<li><a href="#">#' + data[i].label[j] + '</a></li>';
+						}
+						oUl.innerHTML = oUlStr;
+						oDiv.appendChild(oUl);
 
-				parent.appendChild(oDiv);
+						var userDiv = document.createElement('div');
+						userDiv.className = 'users clear';
 
-				oDiv.style.height = iHeight + oP.offsetHeight + oUl.offsetHeight + userDiv.offsetHeight + 2 * descriptionMargin + 1 * labelMargin + 'px';
-				arrT[_index] += parseInt(oDiv.style.height) + 10;
+						var userA = document.createElement('a');
+						userA.href = '#';
+						userA.className = 'face';
+						userA.innerHTML = '<img src="' + data[i].userFace + '" alt="">';
+						userDiv.appendChild(userA);
 
-				// 10.8 xgy
-				oDiv.onmouseover = function(){
-					var oLike = this.getElementsByClassName('action_like')[0];
-					oLike.style.display = 'block';
-				}
-				oDiv.onmouseout = function(){
-					var oLike = this.getElementsByClassName('action_like')[0];
-					oLike.style.display = 'none';
-				}
-				oLike.onclick = function(){//已经收藏的图片重复点击改为不收藏
-					if ( !this.haveClicked ) {
-						this.childNodes[0].className = 'isLike';
-						//告诉后端该图片已经被收藏
-						var message = 'pId=' + this.parentNode.picId + '&isCollect=false';
-						console.log(message);
-						this.haveClicked = true;
-						ajax('post',window.host+'handler/CollectPicture.ashx',message,function(subData){
-							//var data = JSON.parse(subData);//后端返回的数据处理
-							//console.log(data);
-							console.log(subData);
-						});
-					} else {
-						this.childNodes[0].className = '';
-						this.haveClicked = false;
+						var userSubDiv = document.createElement('div');
+						userSubDiv.className = 'text';
+						userSubDiv.innerHTML = '<div class="line"><a href="#">' + data[i].userName + '</a></div><div class="line">' + (eval(data[0].uploadDate.replace(/\/Date\((\d+)\)\//gi, "new Date($1)"))).pattern("yyyy-MM-dd") + '</div>';
+						userDiv.appendChild(userSubDiv);
+
+						oDiv.appendChild(userDiv);
+
+						oDiv.style.left = arrL[_index] + 'px';
+						oDiv.style.top = arrT[_index] + 'px';
+
+						parent.appendChild(oDiv);
+
+						oDiv.style.height = iHeight + oP.offsetHeight + oUl.offsetHeight + userDiv.offsetHeight + 2 * descriptionMargin + 1 * labelMargin + 'px';
+						arrT[_index] += parseInt(oDiv.style.height) + 10;
+
+						// 10.8 xgy
+						oDiv.onmouseover = function(){
+							var oLike = this.getElementsByClassName('action_like')[0];
+							oLike.style.display = 'block';
+						}
+						oDiv.onmouseout = function(){
+							var oLike = this.getElementsByClassName('action_like')[0];
+							oLike.style.display = 'none';
+						}
+						// 10.13 xgy
+						oLike.onclick = function(){
+							var _this = this;
+							if ( !this.haveClicked ) {//点击添加收藏
+								var message = 'pId=' + this.parentNode.picId + '&isCollect=false';
+								//告诉后端该图片已经被收藏
+								ajax('post',window.host+'handler/CollectPicture.ashx',message,function(subData){
+									subData = JSON.parse(subData);
+									if ( subData.isCollect ) {//后端返回数据告诉前端收藏成功
+										_this.childNodes[0].className = 'isLike';
+										_this.haveClicked = true;
+									} else {//后端返回数据告诉前端收藏失败
+										if ( subData.errorCode == 1 ) {
+											alert('用户未登录,收藏失败');
+										} else {
+											alert('图片收藏出错，错误代码：' + subData.errorCode);
+										}
+									}
+								});
+							} else {//已经收藏的图片重复点击改为不收藏
+								var message = 'pId=' + this.parentNode.picId + '&isCollect=true';
+								ajax('post',window.host+'handler/CollectPicture.ashx',message,function(subData){
+									subData = JSON.parse(subData);
+									if ( subData.isCollect ) {//后端返回数据告诉前端取消收藏成功
+										_this.childNodes[0].className = '';
+										_this.haveClicked = false;
+									} else {//后端返回数据告诉前端取消收藏失败
+										if ( subData.errorCode == 1 ) {
+											alert('用户未登录,取消收藏失败');
+										} else {
+											alert('取消收藏出错，错误代码：' + subData.errorCode);
+										}
+									}
+								});
+							}
+						}
+						// 10.13 xgy
+						// 10.8 xgy
 					}
+				} else {
+					inEnd = true;//后端没有传递数据过来，图片已经到最后一张
 				}
-				// 10.8 xgy
-			}
+				//10.15 xgy
 
-			setTimeout(function() {
-				oLoader.style.display = 'none';
-			}, 1000);
+				setTimeout(function() {
+					oLoader.style.display = 'none';
+				}, 1000);
 
-			//懒加载
-			$('img.lazy').lazyload();
+				//懒加载
+				$('img.lazy').lazyload();
 
-			onOff = true;
-		});
+				onOff = true;
+			});
+		}
 	}
 
 	function scrollEventForWater() {

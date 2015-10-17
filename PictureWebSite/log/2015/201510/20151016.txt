@@ -1,0 +1,89 @@
+
+ 
+记录时间：2015-10-16 17:59:04,876 
+线程ID:[18] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.Data.SqlClient.SqlException (0x80131904): 违反了 PRIMARY KEY 约束“PK_UserInfo”。不能在对象“dbo.UserInfo”中插入重复键。重复键值为 (0)。
+   在 Picture.Utility.SqlHelper.ExecuteScalar(String cmdText, CommandType type, SqlParameter[] parameters) 位置 d:\GitHub\PictureWebSite\Picture.Utility\SqlHelper.cs:行号 371
+   在 Picture.Utility.SqlHelper.ExecuteScalar(String cmdText, SqlParameter[] parameters) 位置 d:\GitHub\PictureWebSite\Picture.Utility\SqlHelper.cs:行号 336
+   在 Picture.DAL.UserInfoDAL.Insert(UserInfoModel model) 位置 d:\GitHub\PictureWebSite\Picture.DAL\UserInfo.cs:行号 33
+   在 Picture.BLL.UserInfoBLL.Insert(UserInfoModel model) 位置 d:\GitHub\PictureWebSite\Picture.BLL\UserInfo.cs:行号 24
+   在 PictureWebSite.account.Register.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\account\Register.ashx.cs:行号 136
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ClientConnectionId:d2700eff-65e8-49c2-af0b-6d073ee973bc
+ 
+
+ 
+记录时间：2015-10-16 19:36:30,048 
+线程ID:[50] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 PictureWebSite.handler.PictureUpload.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\handler\PictureUpload.ashx.cs:行号 60
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ 
+
+ 
+记录时间：2015-10-16 21:48:03,926 
+线程ID:[9] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 PictureWebSite.account.Login.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\account\Login.ashx.cs:行号 158
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ 
+
+ 
+记录时间：2015-10-16 23:50:24,542 
+线程ID:[10] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.ArgumentNullException: 值不能为 null。
+参数名: String
+   在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Int32.Parse(String s)
+   在 PictureWebSite.handler.LoadPictureDetail.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\handler\LoadPictureDetail.ashx.cs:行号 23
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ 
+
+ 
+记录时间：2015-10-16 23:50:27,600 
+线程ID:[10] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.ArgumentNullException: 值不能为 null。
+参数名: String
+   在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Int32.Parse(String s)
+   在 PictureWebSite.handler.LoadPictureDetail.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\handler\LoadPictureDetail.ashx.cs:行号 23
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ 
+
+ 
+记录时间：2015-10-16 23:50:39,602 
+线程ID:[10] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.ArgumentNullException: 值不能为 null。
+参数名: String
+   在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Int32.Parse(String s)
+   在 PictureWebSite.handler.LoadPictureDetail.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\handler\LoadPictureDetail.ashx.cs:行号 23
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ 

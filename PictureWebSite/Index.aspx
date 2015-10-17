@@ -1,12 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/shared/Layout.Master" AutoEventWireup="true" CodeBehind="Index.aspx.cs" Inherits="PictureWebSite.Index" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="assets/js/lib/BootStrap/css/bootstrap.min.css" rel="stylesheet" />
     <link href="assets/css/index.css" rel="stylesheet" />
     <link href="assets/css/reset.css" rel="stylesheet" />
-    
+
     <style type="text/css">
         /*BootStrap全局样式修改*/
-		 .breadcrumb {
+        .breadcrumb {
             background-color: white;
         }
 
@@ -20,18 +21,22 @@
         }
 
         /*样式覆盖*/
-		#signin *{
-			box-sizing:content-box;
-			-webkit-box-sizing:content-box;
-			-moz-box-sizing:content-box;
-		}
-		#signin input[type=checkbox], input[type=radio]{
-			margin:0;
-			line-height:normal;
-		}
+        #signin * {
+            box-sizing: content-box;
+            -webkit-box-sizing: content-box;
+            -moz-box-sizing: content-box;
+        }
 
-		/*BootStrap全局样式修改结束*/
+        #signin input[type=checkbox], input[type=radio] {
+            margin: 0;
+            line-height: normal;
+        }
+
+        /*BootStrap全局样式修改结束*/
         /*弹出层样式*/
+        .summary{
+            margin-bottom:30px;
+        }
         .modalFace {
             margin-right: 5px;
         }
@@ -76,6 +81,9 @@
             margin-bottom: 150px;
         }
 
+        #modalTags{
+            margin-top:25px;
+        }
 
         #modalTags .breadcrumb {
             margin-top: 0px;
@@ -94,9 +102,11 @@
                 color: #6D8BA7;
             }
 
-        .modalUploadDate span{
-            cursor:pointer;
+        .modalUploadDate span {
+            cursor: pointer;
         }
+
+       
     </style>
 
 </asp:Content>
@@ -105,10 +115,10 @@
 
 
     <%--  --%>
-	<div id="waterfallFlow" class="warpper"></div>
-	<div id="loader"></div>
+    <div id="waterfallFlow" class="warpper"></div>
+    <div id="loader"></div>
 
-     <%--弹出层--%>
+    <%--弹出层--%>
     <!-- Modal -->
     <div class="modal fade" id="pictureDetailModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -134,7 +144,7 @@
                 <div class="modal-body row">
                     <div class="col-xs-12 summary"></div>
                     <div class="col-xs-12">
-                        <img src="" class="img-thumbnail center-block" style="margin-top: 20px">
+                        <img src="assets/img/detailPictureLoading.jpg" class="img-thumbnail center-block" style="margin-top: 20px">
                     </div>
 
                     <div class="col-xs-12" id="modalTags">
@@ -212,6 +222,13 @@
     <!-- /.modal -->
 
 
+    
+
+
+   
+
+
+
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="foot" runat="server">
@@ -233,13 +250,29 @@
             modalClose();
             //弹出层图片链接点击事件绑定
             picLinksClickEvent();
+            //点击出现图片上传弹出层事件
+            plusBtnEven();
+
+
 
         }
 
+        //点击图片执行图片详细信息弹出层相关函数
         function pictureClick(pId) {
             $('#pictureDetailModal').modal('toggle');
             loadPictureDetail(pId);
         }
+
+        function plusBtnEven() {
+            $("#plus").click(function () {
+                var upLoadModal = $("#picUploadModal");
+                upLoadModal.modal();
+                    
+            });
+        }
+
+        //===========图片上传
+       
 
 
         //===========弹出层
@@ -252,6 +285,7 @@
                 var body = modal.find(".modal-body");
                 var footer = modal.find(".modal-footer");
                 var picLinksLis = $("#picLinks li");
+                var img = body.find("img");
                 //把图片的PId藏在弹出层
                 modal.attr("data-pId", pId);
 
@@ -261,7 +295,15 @@
                 //图片信息
                 header.find(".modalUploadDate").html(eval(data.uploadDate.replace(/\/Date\((\d+)\)\//gi, "new Date($1)")).pattern("yyyy-MM-dd  hh:mm:ss"));
                 body.find(".summary").html(data.summary);
-                body.find("img").attr("src", data.url);
+
+                //清空图片路径,使就图片不会遗留下来
+                img.attr("src", data.url);
+                img.css('height', data.imgHeight);
+                img.load(function () {
+                    $(this).removeAttr("style");
+                })
+
+
                 //构建标签
                 var ol = $("<ol class=\"breadcrumb\"></ol>");
                 for (var i in data.tags) {
@@ -525,6 +567,8 @@
         function modalClose() {
             $("#pictureDetailModal").on('hidden.bs.modal', function (e) {
                 commentTxtReset();
+                //把图片变成白板
+                $("#pictureDetailModal .modal-body img").attr("src", "assets/img/detailPictureLoading.jpg")
             })
         }
 

@@ -1,4 +1,5 @@
-﻿using Picture.Utility;
+﻿using Picture.BLL;
+using Picture.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,9 +17,13 @@ namespace PictureWebSite
             //分词组件初始化
             string panGuSettingPath = Server.MapPath(@"Dict/PanGu.xml");
             PanGu.Segment.Init(panGuSettingPath);
-            //对新增标签的处理
-            Picture.Utility.IndexManager.tagIndex.StartNewThread();
+            //网站启动初始化标签索引
+            TagBLL tagBll = new TagBLL();
+            var tagModels = tagBll.QueryList(0, -1, null, "TId");
+            Picture.Utility.IndexManager.CreateIndexByData(tagModels);
 
+            //开启线程对新增标签的处理
+            Picture.Utility.IndexManager.tagIndex.StartNewThread();
             //开启线程日志处理
             LogHelper.logHelper.StartNewThread();
 

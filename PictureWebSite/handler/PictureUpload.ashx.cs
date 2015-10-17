@@ -57,7 +57,7 @@ namespace PictureWebSite.handler
 
             List<String> Tags = new List<String>();
 
-            foreach (var item in tags.Split(new char[] { ',' }))
+            foreach (var item in tags.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
             {
                 Tags.Add(item.Trim());
             }

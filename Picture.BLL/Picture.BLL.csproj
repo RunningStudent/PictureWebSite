@@ -44,6 +44,7 @@
     <Compile Include="Extension\CommentMore.cs" />
     <Compile Include="Extension\PictureCollect.cs" />
     <Compile Include="Extension\PictureMoreInfo.cs" />
+    <Compile Include="Extension\TagImgRelation.cs" />
     <Compile Include="Gag.cs" />
     <Compile Include="PictureCollect.cs" />
     <Compile Include="PictureInfo.cs" />

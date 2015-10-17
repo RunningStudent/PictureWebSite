@@ -27,10 +27,10 @@ namespace PictureWebSite
             }
             if (!string.IsNullOrEmpty(btnSearch))
             {
-                throw new Exception("测试异常");
 
-                ////搜索
-                //SearchFromIndexData();
+
+                //搜索
+                SearchFromIndexData();
             }
         }
         /// <summary>
@@ -45,7 +45,7 @@ namespace PictureWebSite
             //搜索条件
             PhraseQuery query = new PhraseQuery();
             //把用户输入的关键字进行分词
-            foreach (string word in Picture.Utility.SplitContent.SplitWords(Request["SearchKey"]))
+            foreach (string word in Picture.Utility.SearcherHelper.SplitWords(Request["SearchKey"]))
             {
                 query.Add(new Term("summary", word));
             }
@@ -74,6 +74,9 @@ namespace PictureWebSite
                 picture.PId= Convert.ToInt32(doc.Get("id"));
                 pictureInfoModel.Add(picture);
             }
+
+
+
             Repeater1.DataSource = pictureInfoModel;
             Repeater1.DataBind();
         }
