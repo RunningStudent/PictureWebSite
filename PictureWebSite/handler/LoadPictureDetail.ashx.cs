@@ -64,6 +64,7 @@ namespace PictureWebSite.handler
             var result = new
             {
                 url = pictureInfo.LargeImgPath,
+                imgHeight=pictureInfo.Height,
                 uploadDate = pictureInfo.UploadDate,
                 tags = pictureInfo.Tags,
                 summary = pictureInfo.ImgSummary,

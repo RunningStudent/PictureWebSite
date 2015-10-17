@@ -1,0 +1,93 @@
+
+ 
+记录时间：2015-10-14 17:07:41,315 
+线程ID:[11] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.ArgumentNullException: 值不能为 null。
+参数名: s
+   在 System.IO.StringReader..ctor(String s)
+   在 Picture.Utility.SearcherHelper.SplitWords(String content) 位置 d:\GitHub\PictureWebSite\Picture.Utility\SplitContent.cs:行号 18
+   在 PictureWebSite.handler.GetPictureListAsy.GetPictureIds(HttpContext context, String searchKey, Int32 ciShu, Int32 size) 位置 d:\GitHub\PictureWebSite\PictureWebSite\handler\GetPictureListAsy.ashx.cs:行号 88
+   在 PictureWebSite.handler.GetPictureListAsy.SearchPicture(HttpContext context, Int32 ciShu, String searchKey, Int32 size) 位置 d:\GitHub\PictureWebSite\PictureWebSite\handler\GetPictureListAsy.ashx.cs:行号 53
+   在 PictureWebSite.handler.GetPictureListAsy.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\handler\GetPictureListAsy.ashx.cs:行号 43
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ 
+
+ 
+记录时间：2015-10-14 17:09:02,433 
+线程ID:[11] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.ArgumentNullException: 值不能为 null。
+参数名: s
+   在 System.IO.StringReader..ctor(String s)
+   在 Picture.Utility.SearcherHelper.SplitWords(String content) 位置 d:\GitHub\PictureWebSite\Picture.Utility\SplitContent.cs:行号 18
+   在 PictureWebSite.handler.GetPictureListAsy.GetPictureIds(HttpContext context, String searchKey, Int32 ciShu, Int32 size) 位置 d:\GitHub\PictureWebSite\PictureWebSite\handler\GetPictureListAsy.ashx.cs:行号 88
+   在 PictureWebSite.handler.GetPictureListAsy.SearchPicture(HttpContext context, Int32 ciShu, String searchKey, Int32 size) 位置 d:\GitHub\PictureWebSite\PictureWebSite\handler\GetPictureListAsy.ashx.cs:行号 53
+   在 PictureWebSite.handler.GetPictureListAsy.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\handler\GetPictureListAsy.ashx.cs:行号 43
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ 
+
+ 
+记录时间：2015-10-14 17:09:11,435 
+线程ID:[11] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.ArgumentNullException: 值不能为 null。
+参数名: s
+   在 System.IO.StringReader..ctor(String s)
+   在 Picture.Utility.SearcherHelper.SplitWords(String content) 位置 d:\GitHub\PictureWebSite\Picture.Utility\SplitContent.cs:行号 18
+   在 PictureWebSite.handler.GetPictureListAsy.GetPictureIds(HttpContext context, String searchKey, Int32 ciShu, Int32 size) 位置 d:\GitHub\PictureWebSite\PictureWebSite\handler\GetPictureListAsy.ashx.cs:行号 88
+   在 PictureWebSite.handler.GetPictureListAsy.SearchPicture(HttpContext context, Int32 ciShu, String searchKey, Int32 size) 位置 d:\GitHub\PictureWebSite\PictureWebSite\handler\GetPictureListAsy.ashx.cs:行号 53
+   在 PictureWebSite.handler.GetPictureListAsy.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\handler\GetPictureListAsy.ashx.cs:行号 43
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ 
+
+ 
+记录时间：2015-10-14 17:12:42,927 
+线程ID:[7] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 Picture.BLL.PictureMoreInfoBLL.GetSinglePictureInfoWithTagAndUserInfo(Int32 pid, Int32 currentUid) 位置 d:\GitHub\PictureWebSite\Picture.BLL\Extension\PictureMoreInfo.cs:行号 73
+   在 PictureWebSite.handler.LoadPictureDetail.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\handler\LoadPictureDetail.ashx.cs:行号 60
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ 
+
+ 
+记录时间：2015-10-14 17:17:09,962 
+线程ID:[7] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.ArgumentOutOfRangeException: 长度不能小于 0。
+参数名: length
+   在 System.String.Substring(Int32 startIndex, Int32 length)
+   在 PictureWebSite.handler.GetPictureListAsy.SearchPicture(HttpContext context, Int32 ciShu, String searchKey, Int32 size) 位置 d:\GitHub\PictureWebSite\PictureWebSite\handler\GetPictureListAsy.ashx.cs:行号 64
+   在 PictureWebSite.handler.GetPictureListAsy.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\handler\GetPictureListAsy.ashx.cs:行号 43
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ 
+
+ 
+记录时间：2015-10-14 23:50:18,351 
+线程ID:[9] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 PictureWebSite.handler.GetPictureListAsy.GetPictureIds(Int32 ciShu, Int32 size, List`1 tids, String searchKey) 位置 d:\GitHub\PictureWebSite\PictureWebSite\handler\GetPictureListAsy.ashx.cs:行号 85
+   在 PictureWebSite.handler.GetPictureListAsy.SearchPicture(HttpContext context, Int32 ciShu, String searchKey, Int32 size) 位置 d:\GitHub\PictureWebSite\PictureWebSite\handler\GetPictureListAsy.ashx.cs:行号 104
+   在 PictureWebSite.handler.GetPictureListAsy.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\handler\GetPictureListAsy.ashx.cs:行号 44
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ 

@@ -48,7 +48,8 @@ namespace PictureWebSite.API
 
         public override ApiReturn SynLogin(int uid)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+            return ApiReturn.Failed;
         }
 
         public override ApiReturn SynLogout()

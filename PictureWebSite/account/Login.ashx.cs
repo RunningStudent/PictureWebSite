@@ -153,15 +153,17 @@ namespace PictureWebSite.account
                     break;
             }
 
+            UserInfoModel userInfo=null;
             #region 查看用户状态
-            UserInfoModel userInfo = bllUserInfo.QuerySingle(result.Uid);
-            if (userInfo.UserStatus == 1)
+
+            if (loginResult==Picture.Model.Enums.LoginResult.登录成功)
             {
-                loginResult = Picture.Model.Enums.LoginResult.用户已被冻结;
+                userInfo = bllUserInfo.QuerySingle(result.Uid);
+                if (userInfo.UserStatus == 1)
+                {
+                    loginResult = Picture.Model.Enums.LoginResult.用户已被冻结;
+                }
             }
-
-
-
             #endregion
 
 

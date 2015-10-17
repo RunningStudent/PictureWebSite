@@ -30,7 +30,7 @@ namespace PictureWebSite.handler
             //搜索条件
             PhraseQuery query = new PhraseQuery();
             //把用户输入的关键字进行分词
-            foreach (string word in Picture.Utility.SplitContent.SplitWords(searchKey))
+            foreach (string word in Picture.Utility.SearcherHelper.SplitWords(searchKey))
             {
                 query.Add(new Term("tag", word));
             }
@@ -53,7 +53,7 @@ namespace PictureWebSite.handler
 
                 Picture.Model.TagModel tag = new Picture.Model.TagModel();
                 //picture.ImgSummary = doc.Get("summary");
-                tag.TagName= Picture.Utility.SplitContent.HightLight(searchKey, doc.Get("tag"));
+                tag.TagName= Picture.Utility.SearcherHelper.HightLight(searchKey, doc.Get("tag"));
                 //book.ContentDescription = doc.Get("content");//未使用高亮
                 //搜索关键字高亮显示 使用盘古提供高亮插件
                 //book.ContentDescription = Picture.Utility.SplitContent.HightLight(Request.QueryString["SearchKey"], doc.Get("content"));

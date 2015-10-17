@@ -41,10 +41,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Comment.cs" />
-    <Compile Include="Extension\CommentMoreDAL.cs" />
+    <Compile Include="Extension\CommentMore.cs" />
     <Compile Include="Extension\PictureCollect.cs" />
-    <Compile Include="Extension\PictureMoreInfoDAL.cs" />
+    <Compile Include="Extension\PictureMoreInfo.cs" />
     <Compile Include="Extension\Tag.cs" />
+    <Compile Include="Extension\TagImgRelation.cs" />
     <Compile Include="Gag.cs" />
     <Compile Include="PictureCollect.cs" />
     <Compile Include="PictureInfo.cs" />

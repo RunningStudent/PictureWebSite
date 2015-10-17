@@ -80,7 +80,7 @@ namespace TestConsole
         {
             Console.WriteLine("输入");
             string str = Console.ReadLine();
-            var strs = Picture.Utility.SplitContent.SplitWords(str);
+            var strs = Picture.Utility.SearcherHelper.SplitWords(str);
             foreach (var item in strs)
             {
                 Console.WriteLine(item);
@@ -154,7 +154,7 @@ namespace TestConsole
             //搜索条件
             PhraseQuery query = new PhraseQuery();
             //把用户输入的关键字进行分词
-            foreach (string word in Picture.Utility.SplitContent.SplitWords(searchKey))
+            foreach (string word in Picture.Utility.SearcherHelper.SplitWords(searchKey))
             {
                 query.Add(new Term("content", word));
             }

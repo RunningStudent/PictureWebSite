@@ -9,7 +9,7 @@ using PanGu;
 
 namespace Picture.Utility
 {
-    public class SplitContent
+    public class SearcherHelper
     {
         public static string[] SplitWords(string content)
         {
