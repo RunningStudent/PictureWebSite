@@ -35,7 +35,7 @@ namespace PictureWebSite.account
              * 存在问题
              * 
              * 完全可以去掉，登入错误时候返回的提示信息
-             * 改为返回错误码，与前端定个规则，1代表表单未填满，2代表密码错误
+             * 
              * 
              * 登入部分是否可以不用自己写的Enum，简化那个部分的代码
              * 
@@ -52,62 +52,20 @@ namespace PictureWebSite.account
             string password = context.Request["password"];
 
             #region 表单为空校验
-            if (string.IsNullOrEmpty(username)
-                  | string.IsNullOrEmpty(password)
-                  | string.IsNullOrEmpty(verify))
+            if (EmptyCheck(username, password, verify))
             {
                 LoginErrorReturnData("请填写完整", 0, context);
                 return;
             }
             #endregion
 
-            #region 用户名合法性校验,已经注释
-
-            ////长度校验
-            //int userNameByteLength = 0;
-            //for (int i = 0; i < username.Length; i++)
-            //{
-            //    if (Regex.IsMatch(username[i].ToString(), @"[^\x00-\xff]"))
-            //    {
-            //        userNameByteLength += 2;
-            //    }
-            //    else
-            //    {
-            //        userNameByteLength++;
-            //    }
-            //}
-            //if (userNameByteLength > 20 || userNameByteLength < 2)
-            //{
-            //    LoginErrorReturnData("用户名过长或过短", 3, context);
-            //    return;
-            //}
-            ////合法性校验
-            //if (!Regex.IsMatch(username, @"^[\u4e00-\u9fa5a-zA-Z0-9_]{1,20}$"))
-            //{
-            //    LoginErrorReturnData("用户名非法", 3, context);
-            //    return;
-            //}
-
-
-            #endregion
-
             #region 验证码校验
-            //使用非法手段,当验证码未生成变请求这个网站时,验证码未空,所以要判断
             var serverVCode = context.Session["user_vcode"];
-
-
-            if (serverVCode == null)
+            if (VCodeCheck(serverVCode, verify))
             {
                 LoginErrorReturnData("验证码错误", 3, context);
                 return;
             }
-            //真正的验证码正误判断
-            if (serverVCode.ToString().ToUpper() != verify.ToUpper())
-            {
-                LoginErrorReturnData("验证码错误", 3, context);
-                return;
-            }
-
             //验证码用完要扔掉
             context.Session["user_vcode"] = null;
             #endregion
@@ -153,10 +111,10 @@ namespace PictureWebSite.account
                     break;
             }
 
-            UserInfoModel userInfo=null;
+            UserInfoModel userInfo = null;
             #region 查看用户状态
 
-            if (loginResult==Picture.Model.Enums.LoginResult.登录成功)
+            if (loginResult == Picture.Model.Enums.LoginResult.登录成功)
             {
                 userInfo = bllUserInfo.QuerySingle(result.Uid);
                 if (userInfo.UserStatus == 1)
@@ -187,7 +145,7 @@ namespace PictureWebSite.account
                         EMail = result.Mail,
                         UserName = username,
                         UserFaceMiddle = client.AvatarUrl(result.Uid, AvatarSize.Middle),
-                        UserFacePathLarge = client.AvatarUrl(result.Uid, AvatarSize.Big) ,
+                        UserFacePathLarge = client.AvatarUrl(result.Uid, AvatarSize.Big),
                         UserFacePathSmall = client.AvatarUrl(result.Uid, AvatarSize.Small),
                         UId = result.Uid,
                         UserStatus = userInfo.UserStatus
@@ -204,7 +162,6 @@ namespace PictureWebSite.account
             #endregion
 
             #region 返回信息构建
-
 
             //登入成功
             var data = new
@@ -235,6 +192,38 @@ namespace PictureWebSite.account
             context.Response.Write(JSONHelper.ToJSONString(data));
         }
 
+        /// <summary>
+        /// 有一个为空返回true
+        /// </summary>
+        /// <param name="requestParams"></param>
+        /// <returns></returns>
+        private bool EmptyCheck(params string[] requestParams)
+        {
+            bool checkResult = true;
+            foreach (var item in requestParams)
+            {
+                if (string.IsNullOrEmpty(item))
+                {
+                    checkResult = false;
+                }
+            }
+            return checkResult;
+        }
+
+        private bool VCodeCheck(object sessionVcode,string vcode)
+        {
+            //使用非法手段,当验证码未生成变请求这个网站时,验证码未空,所以要判断
+            if (sessionVcode==null)
+            {
+                return false;
+            }
+            //真正的验证码正误判断
+            if (sessionVcode.ToString().ToUpper()!=vcode.ToUpper())
+            {
+                return false;
+            }
+            return true;
+        }
 
         public bool IsReusable
         {
@@ -244,4 +233,5 @@ namespace PictureWebSite.account
             }
         }
     }
+
 }

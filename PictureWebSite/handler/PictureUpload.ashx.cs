@@ -39,10 +39,6 @@ namespace PictureWebSite.handler
         //而保存图片需要绝对路径,这里会以该ashx文件找路径
 
 
-        /// <summary>
-        /// 图片大小限制
-        /// </summary>
-        private const int IMAGE_SIZE_LIMIT = 1024 * 1024 * 2;
 
         public void ProcessRequest(HttpContext context)
         {
@@ -53,10 +49,7 @@ namespace PictureWebSite.handler
             string tags = context.Request["tags"];
             string pictreSummary = context.Server.HtmlEncode(context.Request["summary"]);
 
-
-
             List<String> Tags = new List<String>();
-
             foreach (var item in tags.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
             {
                 Tags.Add(item.Trim());
@@ -74,7 +67,6 @@ namespace PictureWebSite.handler
             }
 
             User user = context.Session["current_user"] as User;
-
             #endregion
 
             #region 用户是否被禁止上传图片
@@ -96,7 +88,7 @@ namespace PictureWebSite.handler
             #endregion
 
             #region 文件大小校验
-            if (file.ContentLength > IMAGE_SIZE_LIMIT)
+            if (file.ContentLength > GlobalSetting.PictureSize)
             {
                 PictureUploadError(context, 3);
                 return;
@@ -122,7 +114,7 @@ namespace PictureWebSite.handler
             }
 
             //算出文件的MD5
-            string fileMD5Name = GetMD5FromFile(file.InputStream);
+            string fileMD5Name = CommonHelper.GetMD5FromFile(file.InputStream);
             string fileExt = Path.GetExtension(file.FileName);
 
             //大,小图所在的相对路径
@@ -242,29 +234,6 @@ namespace PictureWebSite.handler
             };
             context.Response.Write(JSONHelper.ToJSONString(returnData));
 
-        }
-
-
-        /// <summary>
-        /// 生成文件MD5
-        /// </summary>
-        /// <param name="path"></param>
-        /// <returns></returns>
-        public static string GetMD5FromFile(Stream sr)
-        {
-            using (MD5 md = MD5.Create())
-            {
-                //传入文件的流给MD5处理(循环读取什么的)
-                byte[] md5byte = md.ComputeHash(sr);
-                StringBuilder sb = new StringBuilder();
-                for (int i = 0; i < md5byte.Length; i++)
-                {
-                    //x代表转化成16进制,x2代表生成的16进制保留两位
-                    //如果为大写X,生成16进制也是大写
-                    sb.Append(md5byte[i].ToString("x2"));
-                }
-                return sb.ToString();
-            }
         }
 
 
