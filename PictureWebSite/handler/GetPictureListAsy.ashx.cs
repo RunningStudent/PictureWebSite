@@ -47,52 +47,23 @@ namespace PictureWebSite.handler
             context.Response.Write(JSONHelper.ToJSONString(list));
         }
 
-
-
         /// <summary>
-        /// 根据标签id获得图片id
+        /// 根据请求次数分页查询图片数据
         /// </summary>
+        /// <param name="context"></param>
         /// <param name="ciShu"></param>
-        /// <param name="size"></param>
-        /// <param name="tids"></param>
-        /// <param name="searchKey"></param>
         /// <returns></returns>
-        private List<int> GetPictureIds(int ciShu, int size, List<int> tids, string searchKey)
+        private List<Model.Picture> GetAllPicture(HttpContext context, int ciShu, int size)
         {
-            Picture.BLL.TagImgRelationBLL tIrbll = new Picture.BLL.TagImgRelationBLL();
-            List<int> resultList = new List<int>() ;
+            //取数据
+            //var models = bllPictureInfo.QueryList(ciShu + 1, 20,new {}, "UploadDate");
+            User user = context.Session["current_user"] as User;
+            var models = pictureInfoBll.GetPictureInfoWithTagAndUserInfo(ciShu + 1, size, "UploadDate", "", true, user != null ? user.UId : -1); //pictureInfoBll.GetPictureInfoWithTagAndUserInfo(ciShu + 1, 20, null, "UploadDate");
 
-            if (tids.Count > 0)
-            {
-                //用标签id查图片数据
-
-                //构建where条件
-                StringBuilder sb = new StringBuilder(" where ");
-                foreach (var item in tids)
-                {
-                    sb.Append(" TagId=" + item + " or ");
-                }
-                string result = sb.ToString();
-                result=result.Substring(0, result.LastIndexOf("or"));
-
-
-                //获得tagImgRelation对象
-                var tagImgRList = tIrbll.QueryList(ciShu + 1, size, result, "UploadDate", true);
-                
-                //获得图片id同时去重复
-                foreach (var item in tagImgRList)
-                {
-                    if (!resultList.Contains(item.ImgId))
-                    {
-                        resultList.Add(item.ImgId);
-                    }
-                }
-            }
-
-            return resultList;
-
-
+            List<Model.Picture> list = BuildResult(models);
+            return list;
         }
+
 
         private List<Model.Picture> SearchPicture(HttpContext context, int ciShu, string searchKey, int size)
         {
@@ -176,23 +147,52 @@ namespace PictureWebSite.handler
         }
 
 
-
         /// <summary>
-        /// 根据请求次数分页查询图片数据
+        /// 根据标签id获得图片id
         /// </summary>
-        /// <param name="context"></param>
         /// <param name="ciShu"></param>
+        /// <param name="size"></param>
+        /// <param name="tids"></param>
+        /// <param name="searchKey"></param>
         /// <returns></returns>
-        private List<Model.Picture> GetAllPicture(HttpContext context, int ciShu, int size)
+        private List<int> GetPictureIds(int ciShu, int size, List<int> tids, string searchKey)
         {
-            //取数据
-            //var models = bllPictureInfo.QueryList(ciShu + 1, 20,new {}, "UploadDate");
-            User user = context.Session["current_user"] as User;
-            var models = pictureInfoBll.GetPictureInfoWithTagAndUserInfo(ciShu + 1, size, "UploadDate", "", true, user != null ? user.UId : -1); //pictureInfoBll.GetPictureInfoWithTagAndUserInfo(ciShu + 1, 20, null, "UploadDate");
+            Picture.BLL.TagImgRelationBLL tIrbll = new Picture.BLL.TagImgRelationBLL();
+            List<int> resultList = new List<int>();
 
-            List<Model.Picture> list = BuildResult(models);
-            return list;
+            if (tids.Count > 0)
+            {
+                //用标签id查图片数据
+
+                //构建where条件
+                StringBuilder sb = new StringBuilder(" where ");
+                foreach (var item in tids)
+                {
+                    sb.Append(" TagId=" + item + " or ");
+                }
+                string result = sb.ToString();
+                result = result.Substring(0, result.LastIndexOf("or"));
+
+
+                //获得tagImgRelation对象
+                var tagImgRList = tIrbll.QueryList(ciShu + 1, size, result, "UploadDate", true);
+
+                //获得图片id同时去重复
+                foreach (var item in tagImgRList)
+                {
+                    if (!resultList.Contains(item.ImgId))
+                    {
+                        resultList.Add(item.ImgId);
+                    }
+                }
+            }
+
+            return resultList;
+
+
         }
+
+       
 
 
 

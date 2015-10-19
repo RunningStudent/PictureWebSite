@@ -77,6 +77,44 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="admin\css\bootstrap.min.css" />
+    <Content Include="admin\css\plugins\blueimp\css\blueimp-gallery.min.css" />
+    <Content Include="admin\ExcellentPicture.aspx" />
+    <Content Include="admin\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="admin\img\15.jpg" />
+    <Content Include="admin\img\p1.jpg" />
+    <Content Include="admin\img\p2.jpg" />
+    <Content Include="admin\img\p3.jpg" />
+    <Content Include="admin\img\profile_small.jpg" />
+    <Content Include="admin\img\p_big1.jpg" />
+    <Content Include="admin\img\p_big2.jpg" />
+    <Content Include="admin\img\p_big3.jpg" />
+    <Content Include="admin\Index.aspx" />
+    <Content Include="admin\js\plugins\blueimp\jquery.blueimp-gallery.min.js" />
+    <Content Include="admin\js\bootstrap.min.js" />
+    <Content Include="admin\js\contabs.min.js" />
+    <Content Include="admin\js\content.min.js" />
+    <Content Include="admin\js\hplus.min.js" />
+    <Content Include="admin\js\jquery-2.1.1.min.js" />
+    <Content Include="admin\js\plugins\fancybox\blank.gif" />
+    <Content Include="admin\js\plugins\fancybox\fancybox_loading%402x.gif" />
+    <Content Include="admin\js\plugins\fancybox\fancybox_loading.gif" />
+    <Content Include="admin\js\plugins\fancybox\fancybox_overlay.png" />
+    <Content Include="admin\js\plugins\fancybox\fancybox_sprite%402x.png" />
+    <Content Include="admin\js\plugins\fancybox\fancybox_sprite.png" />
+    <Content Include="admin\js\plugins\fancybox\jquery.fancybox.css" />
+    <Content Include="admin\js\plugins\fancybox\jquery.fancybox.js" />
+    <Content Include="admin\js\plugins\fancybox\jquery.fancybox.pack.js" />
+    <Content Include="admin\js\plugins\metisMenu\jquery.metisMenu.js" />
+    <Content Include="admin\js\plugins\peity\jquery.peity.min.js" />
+    <Content Include="admin\js\plugins\slimscroll\jquery.slimscroll.min.js" />
+    <Content Include="admin\js\plugins\layer\layer.min.js" />
+    <Content Include="admin\js\plugins\pace\pace.min.js" />
+    <Content Include="admin\Login.aspx" />
+    <Content Include="admin\css\animate.min.css" />
+    <Content Include="admin\css\font-awesome.min.css" />
+    <Content Include="admin\css\style.min.css" />
+    <Content Include="admin\PictureShow.aspx" />
     <Content Include="assets\css\index.css" />
     <Content Include="assets\css\reset.css" />
     <Content Include="assets\img\action_like1.png" />
@@ -98,10 +136,13 @@
     <Content Include="assets\img\white.png" />
     <Content Include="assets\js\1.js" />
     <Content Include="assets\js\lib\imagesLoaded.js" />
+    <Content Include="assets\js\lib\jquery.validate.min.js" />
     <Content Include="assets\js\lib\Masonry.js" />
     <Content Include="assets\js\lib\dateFormat.js" />
+    <Content Include="assets\js\lib\messages_cn.js" />
     <Content Include="assets\js\lib\plupload.full.min.js" />
     <Content Include="assets\js\newMask.js" />
+    <Content Include="assets\js\pictureDetail.js" />
     <Content Include="Dict\ChsDoubleName1.txt" />
     <Content Include="Dict\ChsDoubleName2.txt" />
     <Content Include="Dict\ChsSingleName.txt" />
@@ -125,7 +166,6 @@
     <Content Include="assets\js\lib\BootStrap\js\bootstrap.min.js" />
     <Content Include="assets\js\lib\BootStrap\js\npm.js" />
     <Content Include="assets\js\lib\BootStrap\OtherSource\userFace.jpg" />
-    <Content Include="assets\js\lib\BootStrap\userIndex.html" />
     <Content Include="lib\DS.Web.UCenter.dll" />
     <Content Include="lib\DS.Web.UCenter.XML" />
     <Content Include="lib\log4net.dll" />
@@ -156,6 +196,56 @@
     </Compile>
     <Compile Include="account\UserSetting.ashx.cs">
       <DependentUpon>UserSetting.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\code\BasePage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\ExcellentPicture.aspx.cs">
+      <DependentUpon>ExcellentPicture.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\ExcellentPicture.aspx.designer.cs">
+      <DependentUpon>ExcellentPicture.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\handler\GetAllExcellent.ashx.cs">
+      <DependentUpon>GetAllExcellent.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\handler\GetAllPicture.ashx.cs">
+      <DependentUpon>GetAllPicture.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\handler\LogOut.ashx.cs">
+      <DependentUpon>LogOut.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\handler\ToggleExcellent.ashx.cs">
+      <DependentUpon>ToggleExcellent.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\PictureShow.aspx.cs">
+      <DependentUpon>PictureShow.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\PictureShow.aspx.designer.cs">
+      <DependentUpon>PictureShow.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\shared\admin.Master.cs">
+      <DependentUpon>admin.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\shared\admin.Master.designer.cs">
+      <DependentUpon>admin.Master</DependentUpon>
     </Compile>
     <Compile Include="API\uc.ashx.cs">
       <DependentUpon>uc.ashx</DependentUpon>
@@ -269,6 +359,17 @@
     <Content Include="handler\DeleteComment.ashx" />
     <Content Include="handler\CollectPicture.ashx" />
     <Content Include="handler\DeletePicture.ashx" />
+    <Content Include="admin\shared\admin.Master" />
+    <Content Include="admin\fonts\fontawesome-webfont.eot" />
+    <Content Include="admin\fonts\fontawesome-webfont.woff2" />
+    <Content Include="admin\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="admin\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="admin\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="admin\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="admin\handler\GetAllPicture.ashx" />
+    <Content Include="admin\handler\GetAllExcellent.ashx" />
+    <Content Include="admin\handler\ToggleExcellent.ashx" />
+    <Content Include="admin\handler\LogOut.ashx" />
     <None Include="Properties\PublishProfiles\PictureConfig.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

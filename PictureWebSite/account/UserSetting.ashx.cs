@@ -126,7 +126,6 @@ namespace PictureWebSite.account
                 stateCode = stateCode,
                 returnMessage = returnMessage
             };
-
             context.Response.Write(JSONHelper.ToJSONString(data));
 
         }

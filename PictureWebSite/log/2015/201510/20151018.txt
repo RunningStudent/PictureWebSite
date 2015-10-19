@@ -1,0 +1,839 @@
+
+ 
+记录时间：2015-10-18 11:56:18,121 
+线程ID:[66] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.Data.SqlClient.SqlException (0x80131904): 关键字 'where' 附近有语法错误。
+关键字 'as' 附近有语法错误。
+   在 Picture.Utility.SqlHelper.ExecuteReader(String cmdText, CommandType type, SqlParameter[] parameters) 位置 d:\GitHub\PictureWebSite\Picture.Utility\SqlHelper.cs:行号 479
+   在 Picture.DAL.PictureMoreInfoDAL.<QueryList>d__1.MoveNext() 位置 d:\GitHub\PictureWebSite\Picture.DAL\Extension\PictureMoreInfo.cs:行号 39
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 Picture.BLL.PictureMoreInfoBLL.GetPictureInfoWithTagAndUserInfo(Int32 index, Int32 size, String orderField, String where, Boolean isDesc, Int32 currentUid) 位置 d:\GitHub\PictureWebSite\Picture.BLL\Extension\PictureMoreInfo.cs:行号 55
+   在 PictureWebSite.admin.handler.GetAllExcellent.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 31
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ClientConnectionId:a7de678b-dc51-4764-b3f6-7f22571c8915
+ 
+
+ 
+记录时间：2015-10-18 11:56:21,333 
+线程ID:[66] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.Data.SqlClient.SqlException (0x80131904): 关键字 'where' 附近有语法错误。
+关键字 'as' 附近有语法错误。
+   在 Picture.Utility.SqlHelper.ExecuteReader(String cmdText, CommandType type, SqlParameter[] parameters) 位置 d:\GitHub\PictureWebSite\Picture.Utility\SqlHelper.cs:行号 479
+   在 Picture.DAL.PictureMoreInfoDAL.<QueryList>d__1.MoveNext() 位置 d:\GitHub\PictureWebSite\Picture.DAL\Extension\PictureMoreInfo.cs:行号 39
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 Picture.BLL.PictureMoreInfoBLL.GetPictureInfoWithTagAndUserInfo(Int32 index, Int32 size, String orderField, String where, Boolean isDesc, Int32 currentUid) 位置 d:\GitHub\PictureWebSite\Picture.BLL\Extension\PictureMoreInfo.cs:行号 55
+   在 PictureWebSite.admin.handler.GetAllExcellent.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 31
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ClientConnectionId:a7de678b-dc51-4764-b3f6-7f22571c8915
+ 
+
+ 
+记录时间：2015-10-18 11:56:30,335 
+线程ID:[66] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.Data.SqlClient.SqlException (0x80131904): 关键字 'where' 附近有语法错误。
+关键字 'as' 附近有语法错误。
+   在 Picture.Utility.SqlHelper.ExecuteReader(String cmdText, CommandType type, SqlParameter[] parameters) 位置 d:\GitHub\PictureWebSite\Picture.Utility\SqlHelper.cs:行号 479
+   在 Picture.DAL.PictureMoreInfoDAL.<QueryList>d__1.MoveNext() 位置 d:\GitHub\PictureWebSite\Picture.DAL\Extension\PictureMoreInfo.cs:行号 39
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 Picture.BLL.PictureMoreInfoBLL.GetPictureInfoWithTagAndUserInfo(Int32 index, Int32 size, String orderField, String where, Boolean isDesc, Int32 currentUid) 位置 d:\GitHub\PictureWebSite\Picture.BLL\Extension\PictureMoreInfo.cs:行号 55
+   在 PictureWebSite.admin.handler.GetAllExcellent.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 31
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ClientConnectionId:a7de678b-dc51-4764-b3f6-7f22571c8915
+ 
+
+ 
+记录时间：2015-10-18 11:57:30,338 
+线程ID:[66] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.Data.SqlClient.SqlException (0x80131904): 关键字 'where' 附近有语法错误。
+关键字 'as' 附近有语法错误。
+   在 Picture.Utility.SqlHelper.ExecuteReader(String cmdText, CommandType type, SqlParameter[] parameters) 位置 d:\GitHub\PictureWebSite\Picture.Utility\SqlHelper.cs:行号 479
+   在 Picture.DAL.PictureMoreInfoDAL.<QueryList>d__1.MoveNext() 位置 d:\GitHub\PictureWebSite\Picture.DAL\Extension\PictureMoreInfo.cs:行号 39
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 Picture.BLL.PictureMoreInfoBLL.GetPictureInfoWithTagAndUserInfo(Int32 index, Int32 size, String orderField, String where, Boolean isDesc, Int32 currentUid) 位置 d:\GitHub\PictureWebSite\Picture.BLL\Extension\PictureMoreInfo.cs:行号 55
+   在 PictureWebSite.admin.handler.GetAllExcellent.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 31
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ClientConnectionId:a7de678b-dc51-4764-b3f6-7f22571c8915
+ 
+
+ 
+记录时间：2015-10-18 11:57:30,338 
+线程ID:[66] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.Data.SqlClient.SqlException (0x80131904): 关键字 'where' 附近有语法错误。
+关键字 'as' 附近有语法错误。
+   在 Picture.Utility.SqlHelper.ExecuteReader(String cmdText, CommandType type, SqlParameter[] parameters) 位置 d:\GitHub\PictureWebSite\Picture.Utility\SqlHelper.cs:行号 479
+   在 Picture.DAL.PictureMoreInfoDAL.<QueryList>d__1.MoveNext() 位置 d:\GitHub\PictureWebSite\Picture.DAL\Extension\PictureMoreInfo.cs:行号 39
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 Picture.BLL.PictureMoreInfoBLL.GetPictureInfoWithTagAndUserInfo(Int32 index, Int32 size, String orderField, String where, Boolean isDesc, Int32 currentUid) 位置 d:\GitHub\PictureWebSite\Picture.BLL\Extension\PictureMoreInfo.cs:行号 55
+   在 PictureWebSite.admin.handler.GetAllExcellent.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 31
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ClientConnectionId:a7de678b-dc51-4764-b3f6-7f22571c8915
+ 
+
+ 
+记录时间：2015-10-18 11:57:30,338 
+线程ID:[66] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.Data.SqlClient.SqlException (0x80131904): 关键字 'where' 附近有语法错误。
+关键字 'as' 附近有语法错误。
+   在 Picture.Utility.SqlHelper.ExecuteReader(String cmdText, CommandType type, SqlParameter[] parameters) 位置 d:\GitHub\PictureWebSite\Picture.Utility\SqlHelper.cs:行号 479
+   在 Picture.DAL.PictureMoreInfoDAL.<QueryList>d__1.MoveNext() 位置 d:\GitHub\PictureWebSite\Picture.DAL\Extension\PictureMoreInfo.cs:行号 39
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 Picture.BLL.PictureMoreInfoBLL.GetPictureInfoWithTagAndUserInfo(Int32 index, Int32 size, String orderField, String where, Boolean isDesc, Int32 currentUid) 位置 d:\GitHub\PictureWebSite\Picture.BLL\Extension\PictureMoreInfo.cs:行号 55
+   在 PictureWebSite.admin.handler.GetAllExcellent.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 31
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ClientConnectionId:a7de678b-dc51-4764-b3f6-7f22571c8915
+ 
+
+ 
+记录时间：2015-10-18 11:57:30,339 
+线程ID:[66] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.Data.SqlClient.SqlException (0x80131904): 关键字 'where' 附近有语法错误。
+关键字 'as' 附近有语法错误。
+   在 Picture.Utility.SqlHelper.ExecuteReader(String cmdText, CommandType type, SqlParameter[] parameters) 位置 d:\GitHub\PictureWebSite\Picture.Utility\SqlHelper.cs:行号 479
+   在 Picture.DAL.PictureMoreInfoDAL.<QueryList>d__1.MoveNext() 位置 d:\GitHub\PictureWebSite\Picture.DAL\Extension\PictureMoreInfo.cs:行号 39
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 Picture.BLL.PictureMoreInfoBLL.GetPictureInfoWithTagAndUserInfo(Int32 index, Int32 size, String orderField, String where, Boolean isDesc, Int32 currentUid) 位置 d:\GitHub\PictureWebSite\Picture.BLL\Extension\PictureMoreInfo.cs:行号 55
+   在 PictureWebSite.admin.handler.GetAllExcellent.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 31
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ClientConnectionId:a7de678b-dc51-4764-b3f6-7f22571c8915
+ 
+
+ 
+记录时间：2015-10-18 12:20:47,273 
+线程ID:[67] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.ArgumentNullException: 值不能为 null。
+参数名: String
+   在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Int32.Parse(String s)
+   在 PictureWebSite.admin.handler.ToggleExcellent.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\ToggleExcellent.ashx.cs:行号 25
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ 
+
+ 
+记录时间：2015-10-18 12:23:02,297 
+线程ID:[67] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.ArgumentNullException: 值不能为 null。
+参数名: String
+   在 System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   在 System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   在 System.Int32.Parse(String s)
+   在 PictureWebSite.admin.handler.ToggleExcellent.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\ToggleExcellent.ashx.cs:行号 25
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ 
+
+ 
+记录时间：2015-10-18 12:28:42,571 
+线程ID:[7] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.Data.SqlTypes.SqlTypeException: SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。
+   在 System.Data.SqlClient.TdsParser.TdsExecuteRPC(_SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   在 Picture.Utility.SqlHelper.ExecuteScalar(String cmdText, CommandType type, SqlParameter[] parameters) 位置 d:\GitHub\PictureWebSite\Picture.Utility\SqlHelper.cs:行号 364
+   在 Picture.Utility.SqlHelper.ExecuteScalar(String cmdText, SqlParameter[] parameters) 位置 d:\GitHub\PictureWebSite\Picture.Utility\SqlHelper.cs:行号 336
+   在 Picture.DAL.ExcellentPictureDAL.Insert(ExcellentPictureModel model) 位置 d:\GitHub\PictureWebSite\Picture.DAL\ExcellentPicture.cs:行号 31
+   在 Picture.BLL.ExcellentPictureBLL.Insert(ExcellentPictureModel model) 位置 d:\GitHub\PictureWebSite\Picture.BLL\ExcellentPicture.cs:行号 24
+   在 PictureWebSite.admin.handler.ToggleExcellent.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\ToggleExcellent.ashx.cs:行号 39
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ 
+
+ 
+记录时间：2015-10-18 12:29:28,774 
+线程ID:[12] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.Data.SqlTypes.SqlTypeException: SqlDateTime 溢出。必须介于 1/1/1753 12:00:00 AM 和 12/31/9999 11:59:59 PM 之间。
+   在 System.Data.SqlClient.TdsParser.TdsExecuteRPC(_SqlRPC[] rpcArray, Int32 timeout, Boolean inSchema, SqlNotificationRequest notificationRequest, TdsParserStateObject stateObj, Boolean isCommandProc, Boolean sync, TaskCompletionSource`1 completion, Int32 startRpc, Int32 startParam)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   在 Picture.Utility.SqlHelper.ExecuteScalar(String cmdText, CommandType type, SqlParameter[] parameters) 位置 d:\GitHub\PictureWebSite\Picture.Utility\SqlHelper.cs:行号 364
+   在 Picture.Utility.SqlHelper.ExecuteScalar(String cmdText, SqlParameter[] parameters) 位置 d:\GitHub\PictureWebSite\Picture.Utility\SqlHelper.cs:行号 336
+   在 Picture.DAL.ExcellentPictureDAL.Insert(ExcellentPictureModel model) 位置 d:\GitHub\PictureWebSite\Picture.DAL\ExcellentPicture.cs:行号 31
+   在 Picture.BLL.ExcellentPictureBLL.Insert(ExcellentPictureModel model) 位置 d:\GitHub\PictureWebSite\Picture.BLL\ExcellentPicture.cs:行号 24
+   在 PictureWebSite.admin.handler.ToggleExcellent.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\ToggleExcellent.ashx.cs:行号 39
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ 
+
+ 
+记录时间：2015-10-18 13:11:32,230 
+线程ID:[11] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.Data.SqlClient.SqlException (0x80131904): 关键字 'where' 附近有语法错误。
+关键字 'as' 附近有语法错误。
+   在 Picture.Utility.SqlHelper.ExecuteReader(String cmdText, CommandType type, SqlParameter[] parameters) 位置 d:\GitHub\PictureWebSite\Picture.Utility\SqlHelper.cs:行号 479
+   在 Picture.DAL.PictureMoreInfoDAL.<QueryList>d__1.MoveNext() 位置 d:\GitHub\PictureWebSite\Picture.DAL\Extension\PictureMoreInfo.cs:行号 39
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 Picture.BLL.PictureMoreInfoBLL.GetPictureInfoWithTagAndUserInfo(Int32 index, Int32 size, String orderField, String where, Boolean isDesc, Int32 currentUid) 位置 d:\GitHub\PictureWebSite\Picture.BLL\Extension\PictureMoreInfo.cs:行号 55
+   在 PictureWebSite.admin.handler.GetAllExcellent.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 31
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ClientConnectionId:d30c0eb1-0445-41ca-824c-2e1ab7a7a776
+ 
+
+ 
+记录时间：2015-10-18 13:13:49,870 
+线程ID:[11] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.Data.SqlClient.SqlException (0x80131904): 关键字 'where' 附近有语法错误。
+关键字 'as' 附近有语法错误。
+   在 Picture.Utility.SqlHelper.ExecuteReader(String cmdText, CommandType type, SqlParameter[] parameters) 位置 d:\GitHub\PictureWebSite\Picture.Utility\SqlHelper.cs:行号 479
+   在 Picture.DAL.PictureMoreInfoDAL.<QueryList>d__1.MoveNext() 位置 d:\GitHub\PictureWebSite\Picture.DAL\Extension\PictureMoreInfo.cs:行号 39
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 Picture.BLL.PictureMoreInfoBLL.GetPictureInfoWithTagAndUserInfo(Int32 index, Int32 size, String orderField, String where, Boolean isDesc, Int32 currentUid) 位置 d:\GitHub\PictureWebSite\Picture.BLL\Extension\PictureMoreInfo.cs:行号 55
+   在 PictureWebSite.admin.handler.GetAllExcellent.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 31
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ClientConnectionId:d30c0eb1-0445-41ca-824c-2e1ab7a7a776
+ 
+
+ 
+记录时间：2015-10-18 13:14:20,431 
+线程ID:[11] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.Data.SqlClient.SqlException (0x80131904): “)”附近有语法错误。
+   在 Picture.Utility.SqlHelper.ExecuteReader(String cmdText, CommandType type, SqlParameter[] parameters) 位置 d:\GitHub\PictureWebSite\Picture.Utility\SqlHelper.cs:行号 479
+   在 Picture.DAL.PictureMoreInfoDAL.<QueryList>d__1.MoveNext() 位置 d:\GitHub\PictureWebSite\Picture.DAL\Extension\PictureMoreInfo.cs:行号 39
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 Picture.BLL.PictureMoreInfoBLL.GetPictureInfoWithTagAndUserInfo(Int32 index, Int32 size, String orderField, String where, Boolean isDesc, Int32 currentUid) 位置 d:\GitHub\PictureWebSite\Picture.BLL\Extension\PictureMoreInfo.cs:行号 55
+   在 PictureWebSite.admin.handler.GetAllExcellent.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 31
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ClientConnectionId:16ba86b6-c684-40b8-a25c-921bce8272df
+ 
+
+ 
+记录时间：2015-10-18 13:15:05,238 
+线程ID:[11] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.Data.SqlClient.SqlException (0x80131904): “)”附近有语法错误。
+   在 Picture.Utility.SqlHelper.ExecuteReader(String cmdText, CommandType type, SqlParameter[] parameters) 位置 d:\GitHub\PictureWebSite\Picture.Utility\SqlHelper.cs:行号 479
+   在 Picture.DAL.PictureMoreInfoDAL.<QueryList>d__1.MoveNext() 位置 d:\GitHub\PictureWebSite\Picture.DAL\Extension\PictureMoreInfo.cs:行号 39
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 Picture.BLL.PictureMoreInfoBLL.GetPictureInfoWithTagAndUserInfo(Int32 index, Int32 size, String orderField, String where, Boolean isDesc, Int32 currentUid) 位置 d:\GitHub\PictureWebSite\Picture.BLL\Extension\PictureMoreInfo.cs:行号 55
+   在 PictureWebSite.admin.handler.GetAllExcellent.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 31
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ClientConnectionId:e81593ca-e778-439f-9f5e-a0fa0f2aa006
+ 
+
+ 
+记录时间：2015-10-18 13:20:31,253 
+线程ID:[11] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.Data.SqlClient.SqlException (0x80131904): “)”附近有语法错误。
+   在 Picture.Utility.SqlHelper.ExecuteReader(String cmdText, CommandType type, SqlParameter[] parameters) 位置 d:\GitHub\PictureWebSite\Picture.Utility\SqlHelper.cs:行号 479
+   在 Picture.DAL.PictureMoreInfoDAL.<QueryList>d__1.MoveNext() 位置 d:\GitHub\PictureWebSite\Picture.DAL\Extension\PictureMoreInfo.cs:行号 39
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 Picture.BLL.PictureMoreInfoBLL.GetPictureInfoWithTagAndUserInfo(Int32 index, Int32 size, String orderField, String where, Boolean isDesc, Int32 currentUid) 位置 d:\GitHub\PictureWebSite\Picture.BLL\Extension\PictureMoreInfo.cs:行号 55
+   在 PictureWebSite.admin.handler.GetAllExcellent.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 31
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ClientConnectionId:e81593ca-e778-439f-9f5e-a0fa0f2aa006
+ 
+
+ 
+记录时间：2015-10-18 13:20:43,256 
+线程ID:[11] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.ArgumentOutOfRangeException: 长度不能小于 0。
+参数名: length
+   在 System.String.Substring(Int32 startIndex, Int32 length)
+   在 PictureWebSite.admin.handler.GetAllExcellent.BuildWhere(IEnumerable`1 excellentPicList) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 57
+   在 PictureWebSite.admin.handler.GetAllExcellent.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 30
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ 
+
+ 
+记录时间：2015-10-18 13:20:43,256 
+线程ID:[11] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.ArgumentOutOfRangeException: 长度不能小于 0。
+参数名: length
+   在 System.String.Substring(Int32 startIndex, Int32 length)
+   在 PictureWebSite.admin.handler.GetAllExcellent.BuildWhere(IEnumerable`1 excellentPicList) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 57
+   在 PictureWebSite.admin.handler.GetAllExcellent.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 30
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ 
+
+ 
+记录时间：2015-10-18 13:20:43,256 
+线程ID:[11] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.ArgumentOutOfRangeException: 长度不能小于 0。
+参数名: length
+   在 System.String.Substring(Int32 startIndex, Int32 length)
+   在 PictureWebSite.admin.handler.GetAllExcellent.BuildWhere(IEnumerable`1 excellentPicList) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 57
+   在 PictureWebSite.admin.handler.GetAllExcellent.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 30
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ 
+
+ 
+记录时间：2015-10-18 13:20:43,256 
+线程ID:[11] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.ArgumentOutOfRangeException: 长度不能小于 0。
+参数名: length
+   在 System.String.Substring(Int32 startIndex, Int32 length)
+   在 PictureWebSite.admin.handler.GetAllExcellent.BuildWhere(IEnumerable`1 excellentPicList) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 57
+   在 PictureWebSite.admin.handler.GetAllExcellent.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 30
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ 
+
+ 
+记录时间：2015-10-18 13:20:43,256 
+线程ID:[11] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.ArgumentOutOfRangeException: 长度不能小于 0。
+参数名: length
+   在 System.String.Substring(Int32 startIndex, Int32 length)
+   在 PictureWebSite.admin.handler.GetAllExcellent.BuildWhere(IEnumerable`1 excellentPicList) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 57
+   在 PictureWebSite.admin.handler.GetAllExcellent.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 30
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ 
+
+ 
+记录时间：2015-10-18 13:20:43,256 
+线程ID:[11] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.ArgumentOutOfRangeException: 长度不能小于 0。
+参数名: length
+   在 System.String.Substring(Int32 startIndex, Int32 length)
+   在 PictureWebSite.admin.handler.GetAllExcellent.BuildWhere(IEnumerable`1 excellentPicList) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 57
+   在 PictureWebSite.admin.handler.GetAllExcellent.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 30
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ 
+
+ 
+记录时间：2015-10-18 13:20:49,257 
+线程ID:[11] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.ArgumentOutOfRangeException: 长度不能小于 0。
+参数名: length
+   在 System.String.Substring(Int32 startIndex, Int32 length)
+   在 PictureWebSite.admin.handler.GetAllExcellent.BuildWhere(IEnumerable`1 excellentPicList) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 57
+   在 PictureWebSite.admin.handler.GetAllExcellent.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 30
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ 
+
+ 
+记录时间：2015-10-18 13:20:49,257 
+线程ID:[11] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.ArgumentOutOfRangeException: 长度不能小于 0。
+参数名: length
+   在 System.String.Substring(Int32 startIndex, Int32 length)
+   在 PictureWebSite.admin.handler.GetAllExcellent.BuildWhere(IEnumerable`1 excellentPicList) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 57
+   在 PictureWebSite.admin.handler.GetAllExcellent.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 30
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ 
+
+ 
+记录时间：2015-10-18 13:20:49,257 
+线程ID:[11] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.ArgumentOutOfRangeException: 长度不能小于 0。
+参数名: length
+   在 System.String.Substring(Int32 startIndex, Int32 length)
+   在 PictureWebSite.admin.handler.GetAllExcellent.BuildWhere(IEnumerable`1 excellentPicList) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 57
+   在 PictureWebSite.admin.handler.GetAllExcellent.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 30
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ 
+
+ 
+记录时间：2015-10-18 13:20:49,257 
+线程ID:[11] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.ArgumentOutOfRangeException: 长度不能小于 0。
+参数名: length
+   在 System.String.Substring(Int32 startIndex, Int32 length)
+   在 PictureWebSite.admin.handler.GetAllExcellent.BuildWhere(IEnumerable`1 excellentPicList) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 57
+   在 PictureWebSite.admin.handler.GetAllExcellent.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 30
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ 
+
+ 
+记录时间：2015-10-18 13:20:49,257 
+线程ID:[11] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.ArgumentOutOfRangeException: 长度不能小于 0。
+参数名: length
+   在 System.String.Substring(Int32 startIndex, Int32 length)
+   在 PictureWebSite.admin.handler.GetAllExcellent.BuildWhere(IEnumerable`1 excellentPicList) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 57
+   在 PictureWebSite.admin.handler.GetAllExcellent.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 30
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ 
+
+ 
+记录时间：2015-10-18 13:22:01,264 
+线程ID:[11] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.ArgumentOutOfRangeException: 长度不能小于 0。
+参数名: length
+   在 System.String.Substring(Int32 startIndex, Int32 length)
+   在 PictureWebSite.admin.handler.GetAllExcellent.BuildWhere(IEnumerable`1 excellentPicList) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 57
+   在 PictureWebSite.admin.handler.GetAllExcellent.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 30
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ 
+
+ 
+记录时间：2015-10-18 13:22:01,264 
+线程ID:[11] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.ArgumentOutOfRangeException: 长度不能小于 0。
+参数名: length
+   在 System.String.Substring(Int32 startIndex, Int32 length)
+   在 PictureWebSite.admin.handler.GetAllExcellent.BuildWhere(IEnumerable`1 excellentPicList) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 57
+   在 PictureWebSite.admin.handler.GetAllExcellent.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 30
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ 
+
+ 
+记录时间：2015-10-18 13:22:01,266 
+线程ID:[11] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.ArgumentOutOfRangeException: 长度不能小于 0。
+参数名: length
+   在 System.String.Substring(Int32 startIndex, Int32 length)
+   在 PictureWebSite.admin.handler.GetAllExcellent.BuildWhere(IEnumerable`1 excellentPicList) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 57
+   在 PictureWebSite.admin.handler.GetAllExcellent.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 30
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ 
+
+ 
+记录时间：2015-10-18 13:22:01,266 
+线程ID:[11] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.ArgumentOutOfRangeException: 长度不能小于 0。
+参数名: length
+   在 System.String.Substring(Int32 startIndex, Int32 length)
+   在 PictureWebSite.admin.handler.GetAllExcellent.BuildWhere(IEnumerable`1 excellentPicList) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 57
+   在 PictureWebSite.admin.handler.GetAllExcellent.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 30
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ 
+
+ 
+记录时间：2015-10-18 13:22:04,268 
+线程ID:[11] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.ArgumentOutOfRangeException: 长度不能小于 0。
+参数名: length
+   在 System.String.Substring(Int32 startIndex, Int32 length)
+   在 PictureWebSite.admin.handler.GetAllExcellent.BuildWhere(IEnumerable`1 excellentPicList) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 57
+   在 PictureWebSite.admin.handler.GetAllExcellent.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 30
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ 
+
+ 
+记录时间：2015-10-18 13:22:04,268 
+线程ID:[11] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.ArgumentOutOfRangeException: 长度不能小于 0。
+参数名: length
+   在 System.String.Substring(Int32 startIndex, Int32 length)
+   在 PictureWebSite.admin.handler.GetAllExcellent.BuildWhere(IEnumerable`1 excellentPicList) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 57
+   在 PictureWebSite.admin.handler.GetAllExcellent.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 30
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ 
+
+ 
+记录时间：2015-10-18 13:22:04,268 
+线程ID:[11] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.ArgumentOutOfRangeException: 长度不能小于 0。
+参数名: length
+   在 System.String.Substring(Int32 startIndex, Int32 length)
+   在 PictureWebSite.admin.handler.GetAllExcellent.BuildWhere(IEnumerable`1 excellentPicList) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 57
+   在 PictureWebSite.admin.handler.GetAllExcellent.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 30
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ 
+
+ 
+记录时间：2015-10-18 13:22:04,268 
+线程ID:[11] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.ArgumentOutOfRangeException: 长度不能小于 0。
+参数名: length
+   在 System.String.Substring(Int32 startIndex, Int32 length)
+   在 PictureWebSite.admin.handler.GetAllExcellent.BuildWhere(IEnumerable`1 excellentPicList) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 57
+   在 PictureWebSite.admin.handler.GetAllExcellent.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 30
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ 
+
+ 
+记录时间：2015-10-18 13:22:04,268 
+线程ID:[11] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.ArgumentOutOfRangeException: 长度不能小于 0。
+参数名: length
+   在 System.String.Substring(Int32 startIndex, Int32 length)
+   在 PictureWebSite.admin.handler.GetAllExcellent.BuildWhere(IEnumerable`1 excellentPicList) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 57
+   在 PictureWebSite.admin.handler.GetAllExcellent.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 30
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ 
+
+ 
+记录时间：2015-10-18 13:22:04,268 
+线程ID:[11] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.ArgumentOutOfRangeException: 长度不能小于 0。
+参数名: length
+   在 System.String.Substring(Int32 startIndex, Int32 length)
+   在 PictureWebSite.admin.handler.GetAllExcellent.BuildWhere(IEnumerable`1 excellentPicList) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 57
+   在 PictureWebSite.admin.handler.GetAllExcellent.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 30
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ 
+
+ 
+记录时间：2015-10-18 13:22:04,268 
+线程ID:[11] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.ArgumentOutOfRangeException: 长度不能小于 0。
+参数名: length
+   在 System.String.Substring(Int32 startIndex, Int32 length)
+   在 PictureWebSite.admin.handler.GetAllExcellent.BuildWhere(IEnumerable`1 excellentPicList) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 57
+   在 PictureWebSite.admin.handler.GetAllExcellent.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 30
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ 
+
+ 
+记录时间：2015-10-18 13:22:28,270 
+线程ID:[11] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.ArgumentOutOfRangeException: 长度不能小于 0。
+参数名: length
+   在 System.String.Substring(Int32 startIndex, Int32 length)
+   在 PictureWebSite.admin.handler.GetAllExcellent.BuildWhere(IEnumerable`1 excellentPicList) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 57
+   在 PictureWebSite.admin.handler.GetAllExcellent.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 30
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ 
+
+ 
+记录时间：2015-10-18 13:22:28,270 
+线程ID:[11] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.ArgumentOutOfRangeException: 长度不能小于 0。
+参数名: length
+   在 System.String.Substring(Int32 startIndex, Int32 length)
+   在 PictureWebSite.admin.handler.GetAllExcellent.BuildWhere(IEnumerable`1 excellentPicList) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 57
+   在 PictureWebSite.admin.handler.GetAllExcellent.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 30
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ 
+
+ 
+记录时间：2015-10-18 13:22:28,270 
+线程ID:[11] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.ArgumentOutOfRangeException: 长度不能小于 0。
+参数名: length
+   在 System.String.Substring(Int32 startIndex, Int32 length)
+   在 PictureWebSite.admin.handler.GetAllExcellent.BuildWhere(IEnumerable`1 excellentPicList) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 57
+   在 PictureWebSite.admin.handler.GetAllExcellent.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 30
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ 
+
+ 
+记录时间：2015-10-18 13:22:55,276 
+线程ID:[11] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.ArgumentOutOfRangeException: 长度不能小于 0。
+参数名: length
+   在 System.String.Substring(Int32 startIndex, Int32 length)
+   在 PictureWebSite.admin.handler.GetAllExcellent.BuildWhere(IEnumerable`1 excellentPicList) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 57
+   在 PictureWebSite.admin.handler.GetAllExcellent.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 30
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ 
+
+ 
+记录时间：2015-10-18 13:22:55,276 
+线程ID:[11] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.ArgumentOutOfRangeException: 长度不能小于 0。
+参数名: length
+   在 System.String.Substring(Int32 startIndex, Int32 length)
+   在 PictureWebSite.admin.handler.GetAllExcellent.BuildWhere(IEnumerable`1 excellentPicList) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 57
+   在 PictureWebSite.admin.handler.GetAllExcellent.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 30
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ 
+
+ 
+记录时间：2015-10-18 13:22:55,276 
+线程ID:[11] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.ArgumentOutOfRangeException: 长度不能小于 0。
+参数名: length
+   在 System.String.Substring(Int32 startIndex, Int32 length)
+   在 PictureWebSite.admin.handler.GetAllExcellent.BuildWhere(IEnumerable`1 excellentPicList) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 57
+   在 PictureWebSite.admin.handler.GetAllExcellent.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 30
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ 
+
+ 
+记录时间：2015-10-18 13:22:55,276 
+线程ID:[11] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.ArgumentOutOfRangeException: 长度不能小于 0。
+参数名: length
+   在 System.String.Substring(Int32 startIndex, Int32 length)
+   在 PictureWebSite.admin.handler.GetAllExcellent.BuildWhere(IEnumerable`1 excellentPicList) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 57
+   在 PictureWebSite.admin.handler.GetAllExcellent.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 30
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ 
+
+ 
+记录时间：2015-10-18 13:22:55,276 
+线程ID:[11] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.ArgumentOutOfRangeException: 长度不能小于 0。
+参数名: length
+   在 System.String.Substring(Int32 startIndex, Int32 length)
+   在 PictureWebSite.admin.handler.GetAllExcellent.BuildWhere(IEnumerable`1 excellentPicList) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 57
+   在 PictureWebSite.admin.handler.GetAllExcellent.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 30
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ 
+
+ 
+记录时间：2015-10-18 13:23:04,278 
+线程ID:[11] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.ArgumentOutOfRangeException: 长度不能小于 0。
+参数名: length
+   在 System.String.Substring(Int32 startIndex, Int32 length)
+   在 PictureWebSite.admin.handler.GetAllExcellent.BuildWhere(IEnumerable`1 excellentPicList) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 57
+   在 PictureWebSite.admin.handler.GetAllExcellent.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 30
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ 
+
+ 
+记录时间：2015-10-18 13:23:04,278 
+线程ID:[11] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.ArgumentOutOfRangeException: 长度不能小于 0。
+参数名: length
+   在 System.String.Substring(Int32 startIndex, Int32 length)
+   在 PictureWebSite.admin.handler.GetAllExcellent.BuildWhere(IEnumerable`1 excellentPicList) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 57
+   在 PictureWebSite.admin.handler.GetAllExcellent.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 30
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ 
+
+ 
+记录时间：2015-10-18 13:23:04,278 
+线程ID:[11] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.ArgumentOutOfRangeException: 长度不能小于 0。
+参数名: length
+   在 System.String.Substring(Int32 startIndex, Int32 length)
+   在 PictureWebSite.admin.handler.GetAllExcellent.BuildWhere(IEnumerable`1 excellentPicList) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 57
+   在 PictureWebSite.admin.handler.GetAllExcellent.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 30
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ 
+
+ 
+记录时间：2015-10-18 13:23:04,278 
+线程ID:[11] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.ArgumentOutOfRangeException: 长度不能小于 0。
+参数名: length
+   在 System.String.Substring(Int32 startIndex, Int32 length)
+   在 PictureWebSite.admin.handler.GetAllExcellent.BuildWhere(IEnumerable`1 excellentPicList) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 57
+   在 PictureWebSite.admin.handler.GetAllExcellent.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 30
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ 
+
+ 
+记录时间：2015-10-18 13:23:04,278 
+线程ID:[11] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.ArgumentOutOfRangeException: 长度不能小于 0。
+参数名: length
+   在 System.String.Substring(Int32 startIndex, Int32 length)
+   在 PictureWebSite.admin.handler.GetAllExcellent.BuildWhere(IEnumerable`1 excellentPicList) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 57
+   在 PictureWebSite.admin.handler.GetAllExcellent.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 30
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ 
+
+ 
+记录时间：2015-10-18 13:23:04,278 
+线程ID:[11] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.ArgumentOutOfRangeException: 长度不能小于 0。
+参数名: length
+   在 System.String.Substring(Int32 startIndex, Int32 length)
+   在 PictureWebSite.admin.handler.GetAllExcellent.BuildWhere(IEnumerable`1 excellentPicList) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 57
+   在 PictureWebSite.admin.handler.GetAllExcellent.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 30
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ 

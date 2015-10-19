@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Comment.cs" />
     <Compile Include="Enums\Enums.cs" />
+    <Compile Include="ExcellentPicture.cs" />
     <Compile Include="Extension\CommentMore.cs" />
     <Compile Include="Extension\PictureCollectionMore.cs" />
     <Compile Include="Extension\PictureMoreInfo.cs" />

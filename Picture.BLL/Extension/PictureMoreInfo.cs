@@ -19,27 +19,27 @@ namespace Picture.BLL
         /// <summary>
         /// 用于查图片数据
         /// </summary>
-        public Picture.DAL.PictureInfoDAL pictureBll = new Picture.DAL.PictureInfoDAL();
+        private Picture.DAL.PictureInfoDAL pictureBll = new Picture.DAL.PictureInfoDAL();
 
         /// <summary>
         /// 用于查标签数据
         /// </summary>
-        public Picture.DAL.Tag tagBll = new Picture.DAL.Tag();
+        private Picture.DAL.Tag tagBll = new Picture.DAL.Tag();
 
         /// <summary>
         /// 用于查用户数据
         /// </summary>
-        public Picture.DAL.UserInfoDAL userInfoBll = new Picture.DAL.UserInfoDAL();
+        private Picture.DAL.UserInfoDAL userInfoBll = new Picture.DAL.UserInfoDAL();
 
 
         /// <summary>
         /// 使用存储过程查图片,标签,收藏,用户数据
         /// </summary>
-        public Picture.DAL.PictureMoreInfoDAL pictureMoreInfo = new Picture.DAL.PictureMoreInfoDAL();
+        private Picture.DAL.PictureMoreInfoDAL pictureMoreInfo = new Picture.DAL.PictureMoreInfoDAL();
 
 
 
-        public Picture.DAL.PictureCollectDAL pictureCollect = new Picture.DAL.PictureCollectDAL();
+        private Picture.DAL.PictureCollectDAL pictureCollect = new Picture.DAL.PictureCollectDAL();
 
         /// <summary>
         /// 获得图片数据，这个数据是有带标签名,和用户信息

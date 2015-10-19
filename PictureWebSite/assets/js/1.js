@@ -93,7 +93,7 @@ function xgy(data) {
 */
 
 //window.host = "http://online.cumt.edu.cn/PictureWebSite/";
-window.host = "http://localhost:9855//"
+window.host = "http://localhost:9855/"
 window.onload = function () {
     var oWaterfallFlow = document.getElementById('waterfallFlow');
     var oLoader = document.getElementById('loader');

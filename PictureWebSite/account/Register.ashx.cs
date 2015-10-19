@@ -146,7 +146,6 @@ namespace PictureWebSite.account
                 case RegisterResult.UserNameIllegal:
                     RegisterErrorReturnData("用户名非法", 1, context);
                     return;
-
                 default:
                     break;
             }
