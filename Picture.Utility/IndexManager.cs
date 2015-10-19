@@ -51,7 +51,7 @@ namespace Picture.Utility
             tagQueue.Enqueue(bvm);
         }
         /// <summary>
-        /// 修改Books表信息时 添加修改索引(实质上是先删除原有索引 再新增修改后索引)请求至队列
+        /// 修改表信息时 添加修改索引(实质上是先删除原有索引 再新增修改后索引)请求至队列
         /// </summary>
         /// <param name="picture"></param>
         public void Mod(Picture.Model.TagModel tag)
@@ -113,11 +113,17 @@ namespace Picture.Utility
                 TagViewMode picture = tagQueue.Dequeue();
                 if (picture.IT == IndexType.Insert)
                 {
-                    document.Add(new Field("id", picture.Id.ToString(), Field.Store.YES, Field.Index.NOT_ANALYZED));
-                    document.Add(new Field("tag", picture.Tag, Field.Store.YES, Field.Index.ANALYZED,
-                                           Field.TermVector.WITH_POSITIONS_OFFSETS));
-                    
-                    writer.AddDocument(document);
+                    IndexReader reader = IndexReader.Open(directory, true);
+                    Term indexTerm = new Term("id", picture.Tag);
+                    TermDocs docs = reader.TermDocs(indexTerm);
+                    //查看是否有这条索引
+                    if (docs.Next())
+                    {
+                        document.Add(new Field("id", picture.Id.ToString(), Field.Store.YES, Field.Index.NOT_ANALYZED));
+                        document.Add(new Field("tag", picture.Tag, Field.Store.YES, Field.Index.ANALYZED,
+                                               Field.TermVector.WITH_POSITIONS_OFFSETS));
+                        writer.AddDocument(document);
+                    }
                 }
                 else if (picture.IT == IndexType.Delete)
                 {
@@ -202,12 +208,12 @@ namespace Picture.Utility
             get;
             set;
         }
-        public string Tag 
+        public string Tag
         {
             get;
             set;
         }
-      
+
         public IndexType IT
         {
             get;

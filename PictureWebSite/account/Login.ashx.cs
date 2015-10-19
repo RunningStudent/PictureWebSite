@@ -52,7 +52,7 @@ namespace PictureWebSite.account
             string password = context.Request["password"];
 
             #region 表单为空校验
-            if (EmptyCheck(username, password, verify))
+            if (!EmptyCheck(username, password, verify))
             {
                 LoginErrorReturnData("请填写完整", 0, context);
                 return;
@@ -61,7 +61,7 @@ namespace PictureWebSite.account
 
             #region 验证码校验
             var serverVCode = context.Session["user_vcode"];
-            if (VCodeCheck(serverVCode, verify))
+            if (!VCodeCheck(serverVCode, verify))
             {
                 LoginErrorReturnData("验证码错误", 3, context);
                 return;
@@ -193,7 +193,7 @@ namespace PictureWebSite.account
         }
 
         /// <summary>
-        /// 有一个为空返回true
+        /// 有一个为空返回false
         /// </summary>
         /// <param name="requestParams"></param>
         /// <returns></returns>

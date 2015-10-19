@@ -340,7 +340,7 @@ function newMask(isLogin, obj) {
     //提交登录信息，接收返回数据并进行登录后相关操作
     function submitLoginDate() {
         data = 'username=' + oUserName.value + '&password=' + oPassword.value + '&verify=' + oVerfiy.value;
-        ajax('post', window.host+'account/Login.ashx', data, function (dataForString) {
+        ajax('post', window.host + 'account/Login.ashx', data, function (dataForString) {
             //ajax('post', 'account/Login.ashx', data, function (dataForString) {
             console.log(dataForString);
             var data = JSON.parse(dataForString);
@@ -376,7 +376,7 @@ function newMask(isLogin, obj) {
                         }
                 }
 
-                oAVerfiy.innerHTML = '<img src="'+window.host+'handler/ValidateCodeHandler.ashx?' + new Date().getTime() + '" />'; //更新验证码图片
+                oAVerfiy.innerHTML = '<img src="' + window.host + 'handler/ValidateCodeHandler.ashx?' + new Date().getTime() + '" />'; //更新验证码图片
                 //oAVerfiy.innerHTML = '<img src="handler/ValidateCodeHandler.ashx?' + new Date().getTime() + '" />'; //更新验证码图片
             }
 
@@ -386,7 +386,7 @@ function newMask(isLogin, obj) {
     //提交注册信息，接收返回数据并进行注册后登录操作（注册成功即登录成功）
     function submitRegisterDate() {
         data = 'email=' + oEmail.value + '&password=' + oPassword.value + '&username=' + oUserName.value + '&verify=' + oVerfiy.value;
-        ajax('post', window.host+'account/Register.ashx', data, function (dataForString) {
+        ajax('post', window.host + 'account/Register.ashx', data, function (dataForString) {
             //ajax('post', 'account/Register.ashx', data, function (dataForString) {
             console.log(dataForString);
             var data = JSON.parse(dataForString);
@@ -430,8 +430,8 @@ function newMask(isLogin, obj) {
                         }
                 }
 
-                oAVerfiy.innerHTML = window.host+'handler/ValidateCodeHandler.ashx?' + new Date().getTime() + '" />'; //更新验证码图片
-               //oAVerfiy.innerHTML = '<img src="handler/ValidateCodeHandler.ashx?' + new Date().getTime() + '" />'; //更新验证码图片
+                oAVerfiy.innerHTML = '<img src="' + window.host + 'handler/ValidateCodeHandler.ashx?' + new Date().getTime() + '" />'; //更新验证码图片
+                //oAVerfiy.innerHTML = '<img src="handler/ValidateCodeHandler.ashx?' + new Date().getTime() + '" />'; //更新验证码图片
             }
         });
     }
@@ -449,7 +449,7 @@ function newMask(isLogin, obj) {
         oAVerfiy = document.createElement('a'); //验证码图片
         oAVerfiy.href = 'javascript:;';
         oAVerfiy.className = 'verifyImg';
-        oAVerfiy.innerHTML = '<img src="'+window.host+'handler/ValidateCodeHandler.ashx" />'; //验证码图片路径
+        oAVerfiy.innerHTML = '<img src="' + window.host + 'handler/ValidateCodeHandler.ashx" />'; //验证码图片路径
         //oAVerfiy.innerHTML = '<img src="handler/ValidateCodeHandler.ashx" />'; //验证码图片路径
         oVerfiyDiv.appendChild(oAVerfiy);
         oSpanVerfiy = document.createElement('span'); //看不清，换一张
@@ -464,7 +464,7 @@ function newMask(isLogin, obj) {
 
         //更换验证码图片
         oAVerfiy.onclick = oASpanVerfiy.onclick = function () {
-            oAVerfiy.innerHTML = '<img src="'+window.host+'handler/ValidateCodeHandler.ashx?' + new Date().getTime() + '" />';
+            oAVerfiy.innerHTML = '<img src="' + window.host + 'handler/ValidateCodeHandler.ashx?' + new Date().getTime() + '" />';
             //oAVerfiy.innerHTML = '<img src="handler/ValidateCodeHandler.ashx?' + new Date().getTime() + '" />';
         }
 
