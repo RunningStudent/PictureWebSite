@@ -10,6 +10,7 @@ using PictureWebSite.Model;
 using System.Collections;
 using System.Text;
 using System.Security.Cryptography;
+using System.Drawing;
 
 namespace PictureWebSite.handler
 {
@@ -48,15 +49,7 @@ namespace PictureWebSite.handler
             var file = context.Request.Files[0];
             string tags = context.Request["tags"];
             string pictreSummary = context.Server.HtmlEncode(context.Request["summary"]);
-
-            List<String> Tags = new List<String>();
-            foreach (var item in tags.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
-            {
-                Tags.Add(item.Trim());
-            }
-
-            //去除重复的标签
-            HashSet<string> hsTag = new HashSet<string>(Tags);
+            HashSet<string> hsTag = FilterTags(tags);
 
 
             #region 用户登入校验
@@ -65,33 +58,21 @@ namespace PictureWebSite.handler
                 PictureUploadError(context, 1);
                 return;
             }
-
             User user = context.Session["current_user"] as User;
             #endregion
 
-            #region 用户是否被禁止上传图片
+            //用户是否被禁止上传图片
             if (user.UserStatus == 1)
             {
                 PictureUploadError(context, 4);
                 return;
             }
-            #endregion
 
-            //文件类型校验
-            if (!FileExtCheck(file))
+            //文件检查
+            if (!FileCheck(context, file))
             {
-                PictureUploadError(context, 2);
-            }
-
-            //文件大小校验
-            if (file.ContentLength > GlobalSetting.PictureSize)
-            {
-                PictureUploadError(context, 3);
                 return;
             }
-
-            #region 保存文件
-
             //保存到磁盘
             string bigImgRelativePath;
             string bigImgPath;
@@ -99,11 +80,13 @@ namespace PictureWebSite.handler
             GetSavePath(context, file, out bigImgRelativePath, out bigImgPath, out smallImgPath);
             //保存
             file.SaveAs(bigImgPath);
-            //缩略图保存
-            MakeSmallPicture(bigImgPath, smallImgPath);
-           
 
-            #region 保存到数据库
+
+            //缩略图保存,裁剪模式
+            double x = double.Parse(context.Request["X"]);
+            double y = double.Parse(context.Request["Y"]);
+            double sideLength = double.Parse(context.Request["sideLength"]);
+            MakeSmallPicture(bigImgPath, smallImgPath,x,y,sideLength);
 
             //保存标签到数据库
             List<Picture.Model.TagModel> tagModelList = TagProcess(hsTag);
@@ -115,19 +98,64 @@ namespace PictureWebSite.handler
             }
             int pId = PictureInfoProcess(pictreSummary, user, bigImgRelativePath, bigImgPath);
             TagImgRelationProcess(tagModelList, pId);
-
-            #endregion
-
-            #endregion
-
-
             context.Response.Write(JSONHelper.ToJSONString(new { isUpload = true }));
 
         }
 
+        /// <summary>
+        /// 检查文件
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="file"></param>
+        /// <returns></returns>
+        private bool FileCheck(HttpContext context, HttpPostedFile file)
+        {
+            //文件类型校验
+            if (!FileExtCheck(file))
+            {
+                PictureUploadError(context, 2);
+                return false;
+            }
+
+            //文件大小校验
+            if (file.ContentLength > GlobalSetting.PictureSize)
+            {
+                PictureUploadError(context, 3);
+                return false;
+            }
+            return true;
+        }
+
+        private static HashSet<string> FilterTags(string tags)
+        {
+            List<String> Tags = new List<String>();
+            foreach (var item in tags.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                Tags.Add(item.Trim());
+            }
+
+            //去除重复的标签
+            HashSet<string> hsTag = new HashSet<string>(Tags);
+            return hsTag;
+        }
 
         /// <summary>
-        /// 制作缩略图
+        /// 制作缩略图,截取原图一部分在压缩
+        /// </summary>
+        /// <param name="bigImgPath"></param>
+        /// <param name="smallImgPath"></param>
+        /// <param name="X"></param>
+        /// <param name="Y"></param>
+        /// <param name="sideLength"></param>
+        private void MakeSmallPicture(string bigImgPath, string smallImgPath, double X, double Y, double sideLength)
+        {
+            Image cutImg = PictureProcessHelper.CutPhoto(bigImgPath, (int)X, (int)Y, (int)sideLength, (int)sideLength);
+            PictureProcessHelper.MakeThumbnail(cutImg, smallImgPath, 400, 0, "W");
+        }
+      
+
+        /// <summary>
+        /// 制作缩略图,等比例缩放
         /// </summary>
         /// <param name="bigImgPath"></param>
         /// <param name="smallImgPath"></param>

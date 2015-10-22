@@ -24,18 +24,8 @@ namespace Picture.Utility
             img.Dispose();
         }
 
-
-        ///<summary> 
-        /// 生成缩略图 
-        /// </summary> 
-        /// <param name="originalImagePath">源图路径（物理路径）</param> 
-        /// <param name="thumbnailPath">缩略图路径（物理路径）</param> 
-        /// <param name="width">缩略图宽度</param> 
-        /// <param name="height">缩略图高度</param> 
-        /// <param name="mode">生成缩略图的方式,HW:指定高宽缩放(可能变形),W:指定宽，高按比例,即宽度为指定高度自动适配,H:指定高，宽按比例,Cut:指定高宽裁减（不变形）</param>     
-        public static void MakeThumbnail(string originalImagePath, string thumbnailPath, int width, int height, string mode)
+        public static void MakeThumbnail(Image originalImage, string thumbnailPath, int width, int height, string mode)
         {
-            System.Drawing.Image originalImage = System.Drawing.Image.FromFile(originalImagePath);
             int towidth = width;
             int toheight = height;
             int x = 0;
@@ -100,6 +90,45 @@ namespace Picture.Utility
                 bitmap.Dispose();
                 g.Dispose();
             }
+        }
+
+
+
+        ///<summary> 
+        /// 生成缩略图 
+        /// </summary> 
+        /// <param name="originalImagePath">源图路径（物理路径）</param> 
+        /// <param name="thumbnailPath">缩略图路径（物理路径）</param> 
+        /// <param name="width">缩略图宽度</param> 
+        /// <param name="height">缩略图高度</param> 
+        /// <param name="mode">生成缩略图的方式,HW:指定高宽缩放(可能变形),W:指定宽，高按比例,即宽度为指定高度自动适配,H:指定高，宽按比例,Cut:指定高宽裁减（不变形）</param>     
+        public static void MakeThumbnail(string originalImagePath, string thumbnailPath, int width, int height, string mode)
+        {
+            System.Drawing.Image originalImage = System.Drawing.Image.FromFile(originalImagePath);
+            MakeThumbnail(originalImage, thumbnailPath, width, height, mode);
+        }
+
+
+        /// <summary>
+        /// 裁剪图片,返回图片对象
+        /// </summary>
+        /// <param name="srcImgPath"></param>
+        /// <param name="tarImgPath"></param>
+        /// <param name="originalX"></param>
+        /// <param name="originalY"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        /// <returns></returns>
+        public static Image CutPhoto(String srcImgPath, int originalX, int originalY, int width, int height)
+        {
+            Bitmap tarImg = new Bitmap(width, height);
+            Graphics g = Graphics.FromImage(tarImg);
+            Bitmap srcImg = new Bitmap(srcImgPath);
+            g.DrawImage(srcImg, new Rectangle(0, 0, width, height), new Rectangle(originalX, originalY, width, height), GraphicsUnit.Pixel);
+            g.Dispose();
+            srcImg.Dispose();
+            return tarImg;
+
         }
     }
 }

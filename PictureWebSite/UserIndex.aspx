@@ -508,7 +508,7 @@
     <script src="assets/js/lib/BootStrap/js/bootstrap.min.js"></script>
     <script src="assets/js/lib/Masonry.js"></script>
     <script src="assets/js/lib/dateFormat.js"></script>
-    <script src="assets/js/pictureDetail.js"></script>
+    <script src="assets/js/bootstrapPart.js"></script>
     <script type="text/javascript">
 
         <%--图片id藏在了弹出层的一个叫data-pid的属性中--%>
@@ -826,13 +826,6 @@
                 data: { "loadCount": loadCount, "loadSize": loadSize, modelType: modelType },//传输数据,可以是字符串,也可以是json
                 success: function (data) {//请求成功时的回调函数,success(data, textStatus, jqXHR)
                     var isFirst = false;
-                    //$.each(isFirstLoad, function (i, e) {
-                    //    if (e == true) {
-                    //        isFirst = true;
-                    //    }
-                    //});
-
-
                     ////不同模式的图片追加
                     //if (isSingleModel) {
                     //    //单图模式

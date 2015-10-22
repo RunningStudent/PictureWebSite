@@ -12,6 +12,7 @@
 	    </script>
 	<![endif]-->
     <script src="assets/js/lib/jquery-1.10.2.min.js"></script>
+    <link href="../assets/css/imgareaselect-default.css" rel="stylesheet" />
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
     <style type="text/css">
@@ -70,9 +71,9 @@
             color: gray;
         }
 
-	#uploadProgress{
-	    margin-top:30px;
-	}
+        #uploadProgress {
+            margin-top: 30px;
+        }
     </style>
 </head>
 <body>
@@ -164,19 +165,23 @@
                 </div>
                 <div class="modal-body row">
                     <div class="col-xs-12" id="picPreview">
-                        <img class="center-block img-thumbnail" id="imghead" src="assets/img/preview.jpg" />
+                        <img class="center-block img-thumbnail"  style="padding:0px" id="imghead" src="assets/img/preview.jpg" />
+                    </div>
+                    <div id="imgareaselectContain" style="position: relative">
                     </div>
                     <%--div class="form-group">
                         <label for="picIntroduce">图片介绍</label>--%>
                     <div class="col-xs-12" id="picInfo">
                         <div contenteditable="true" id="introduce" onfocus="introduceFocus(this)" onblur="introduceBlur(this)">
-                            <span style="color:gray">写下图片的介绍</span>
+                            <span style="color: gray">写下图片的介绍</span>
                         </div>
 
-                        <div contenteditable="true" onfocus="tagsFocus(this)" onblur="tagsBlur(this)"id="tags">
+                        <div contenteditable="true" onfocus="tagsFocus(this)" onblur="tagsBlur(this)" id="tags">
                             <span>输入标签用逗号隔开</span>
                         </div>
-                        <div class="progress" id="uploadProgress" style="display:none"><div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" style="width: 60%;">0%</div></div>
+                        <div class="progress" id="uploadProgress" style="display: none">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" style="width: 60%;">0%</div>
+                        </div>
                     </div>
 
                     <%-- </div>--%>
@@ -199,239 +204,9 @@
     </asp:ContentPlaceHolder>
 </body>
 <script src="assets/js/lib/plupload.full.min.js"></script>
+<script src="assets/js/bootstrapPart.js"></script>
+<script src="assets/js/lib/jquery.imgareaselect.min.js"></script>
 <script type="text/javascript">
-    var lastFile;
-    var uploader = new plupload.Uploader({ //实例化一个plupload上传对象
-        browse_button: 'picPreview',//点击弹出浏览文件对话框的标签
-        url: 'handler/PictureUpload.ashx',//图片上传的目标位置
-        drop_element: 'picPreview',//图片可拖拽到这标签
-        multi_selection: false,//是否允许多选图片
-        filters: {
-            mime_types: [ //只允许上传图片
-              { title: "Image files", extensions: "jpg,gif,png,bmp" },
-            ],
-            max_file_size: '4000kb', //最大只能上传2000kb的文件
-            prevent_duplicates: true //不允许选取重复文件
-        },
-    });
-    uploader.init(); //初始化
-    //绑定文件添加进队列事件
-    uploader.bind('FilesAdded', function (uploader, files) {
-        if (lastFile != null) {
-            uploader.removeFile(lastFile);
-
-        }
-
-        if (files.length > 1) {
-            alert("错误");
-            return false;
-        }
-        lastFile = files[0];
-        //var file_name = files[0].name; //文件名
-        //$("#fileName").html(file_name);
-        //图片预览
-        previewImage(files[0].getNative());
-
-    });
-
-    //图片上传
-    uploader.bind('FileUploaded', function (uploader, file, responseObject) {
-        var data = $.parseJSON(responseObject.response);
-        if (file.status == 5) {
-            if (data.isUpload == false) {
-                switch (data.errorCode) {
-                    case 1:
-                        alert("请先登入")
-                        //location.href = "/Index.aspx";
-                        break;
-                    case 2:
-                        alert("图片格式错误");
-                        break;
-                    case 3:
-                        alert("图片大小错误");
-                        break;
-                    default:
-                }
-            } else {
-                alert("上传成功");
-                lastFile = null;
-                $("#picInfo [contenteditable]").css('display', 'block');
-                $("#uploadProgress").css('display', 'none');
-                picInfoContentReset();
-                //刷新页面
-                window.location.reload();
-            }
-        } else if (file.status == 4) {
-            //前端的上传失败
-            //alert("上传失败");
-
-        }
-    })
-
-    //绑定文件上传进度事件
-    uploader.bind('UploadProgress', function (uploader, file) {
-        //隐藏图片介绍和标签,显示进度条
-        var introduceAndTags = $("#picInfo [contenteditable]").css('display', 'none');
-        var progress = $("#uploadProgress");
-        progress.css('display', 'block');
-        var div = progress.find("div");
-        div.css('width', file.percent + '%');
-        div.text(file.percent + '%');
-    });
-
-    //错误事件
-    uploader.bind('Error', function (uploader, errObject) {
-        console.log(errObject.message + "_______" + errObject.code);
-        switch (errObject.code) {
-            case -200:
-                alert("网络连接错误");
-                console.log(errObject.message);
-                break;
-            case -300:
-                alert("选取文件读取失败");
-                console.log(errObject.message);
-                break;
-            case -702:
-            case -600:
-                alert("选取文件过大");
-                console.log(errObject.message);
-                break;
-            case -601:
-                alert("选取文件类型错误");
-                console.log(errObject.message);
-                break;
-            case -602:
-                alert("无法选取重复文件");
-                console.log(errObject.message);
-                break;
-            case -700:
-                alert("选取文件格式错误");
-                console.log(errObject.message);
-                break;
-            default:
-                alert("未知错误");
-                console.log(errObject.message);
-                break;
-        }
-
-    });
-
-
-    //上传即将开始
-    uploader.bind('BeforeUpload', function (uploader, file) {
-    })
-
-    //图片上传预览    IE是用了滤镜。
-    function previewImage(file) {
-        var MAXWIDTH = 260;
-        var MAXHEIGHT = 180;
-        var div = document.getElementById('picPreview');
-        if (file) {
-            //清空图片
-            div.innerHTML = '<img id=\"imghead\" class="center-block img-thumbnail">';
-            var img = document.getElementById('imghead');
-            var reader = new FileReader();
-            reader.onload = function (evt) {
-                img.src = evt.target.result;
-            }
-            reader.readAsDataURL(file);
-        }
-        else //兼容IE
-        {
-            var sFilter = 'filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src="';
-            file.select();
-            var src = document.selection.createRange().text;
-            div.innerHTML = '<img id=\"imghead\">';
-            var img = document.getElementById('imghead');
-            img.filters.item('DXImageTransform.Microsoft.AlphaImageLoader').src = src;
-            var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
-            status = ('rect:' + rect.top + ',' + rect.left + ',' + rect.width + ',' + rect.height);
-            div.innerHTML = "<div id=divhead style='width:" + rect.width + "px;height:" + rect.height + "px;margin-top:" + rect.top + "px;" + sFilter + src + "\"'></div>";
-        }
-    }
-
-
-    //==========图片上传弹出层相关
-    function introduceFocus(e) {
-        var regex = /<span.+?>写下图片的介绍<\/span>/;
-        if (regex.test(e.innerHTML)) {
-            e.innerHTML = "";
-        }
-
-    }
-    function introduceBlur(e) {
-        var regex = /^\s{1,}$/;
-        if (regex.test(e.innerText) || e.innerText == "") {
-            e.innerHTML = "<span style=\"color:gray\">写下图片的介绍</span>";
-        }
-    }
-
-    function tagsFocus(e) {
-        var regex = /<span.*>\s*输入标签用逗号隔开\s*<\/span>/;
-        if (regex.test(e.innerHTML)) {
-            e.innerHTML = "";
-        }
-    }
-    function tagsBlur(e) {
-        var regex = /^\s{1,}$/;
-        if (regex.test(e.innerText) || e.innerText == "") {
-            e.innerHTML = "<span>输入标签用逗号隔开</span>";
-        }
-    }
-    function uploadClick() {
-        if (uploader.files.length == 0) {
-            alert("请选择图片");
-            return;
-        }
-        uploader.setOption("multipart_params", {
-            summary: $("#introduce").text(),
-            tags: $("#tags").text()
-        });
-        console.log("s");
-        uploader.start();
-    }
-
-    (function uploadModelClose() {
-        $("#picUploadModal").on('hidden.bs.modal', function (e) {
-            //图片还原
-            $("#picPreview").find("img").attr("src", "assets/img/preview.jpg");
-            //标签与介绍还原
-            picInfoContentReset();
-        })
-    })();
-
-    function picInfoContentReset() {
-        var infos = $("#picInfo [contenteditable]");
-        infos[0].innerHTML = "<span style=\"color:gray\">写下图片的介绍</span>";
-        infos[1].innerHTML = "<span>输入标签用逗号隔开</span>";
-    }
-
-    /*
-    //根据图片大小和设置的最大图片大小,获得最终图片该展示的宽度与位置
-    function clacImgZoomParam(maxWidth, maxHeight, width, height) {
-        //构建参数数组
-        var param = { top: 0, left: 0, width: width, height: height };
-        //如果长或宽超出了设置的最大值
-        if (width > maxWidth || height > maxHeight) {
-            rateWidth = width / maxWidth;
-            rateHeight = height / maxHeight;
-
-            //看是长超出了最大值还是宽超出了最大值
-            //并设置合适的值
-            if (rateWidth > rateHeight) {
-                param.width = maxWidth;
-                param.height = Math.round(height / rateWidth);
-            } else {
-                param.width = Math.round(width / rateHeight);
-                param.height = maxHeight;
-            }
-        }
-        //获得居中的位置参数
-        param.left = Math.round((maxWidth - param.width) / 2);
-        param.top = Math.round((maxHeight - param.height) / 2);
-        return param;
-    }
-    */
 
 </script>
 

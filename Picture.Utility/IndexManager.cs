@@ -11,6 +11,7 @@ using System.Threading;
 using System.IO;
 using Lucene.Net.Analysis.PanGu;
 using System.Web;
+using Lucene.Net.Search;
 
 namespace Picture.Utility
 {
@@ -114,10 +115,29 @@ namespace Picture.Utility
                 if (picture.IT == IndexType.Insert)
                 {
                     IndexReader reader = IndexReader.Open(directory, true);
-                    Term indexTerm = new Term("id", picture.Tag);
-                    TermDocs docs = reader.TermDocs(indexTerm);
+                    IndexSearcher searcher = new IndexSearcher(reader);
+                    PhraseQuery query = new PhraseQuery();
+                    //把用户输入的关键字进行分词
+                    foreach (string word in Picture.Utility.SearcherHelper.SplitWords(picture.Tag))
+                    {
+                        query.Add(new Term("tag", word));
+                    }
+                    query.SetSlop(100);
+                    TopScoreDocCollector collector = TopScoreDocCollector.create(1000, true);
+                    searcher.Search(query, null, collector);
+                    ScoreDoc[] docs = collector.TopDocs(0, 10).scoreDocs;
                     //查看是否有这条索引
-                    if (docs.Next())
+                    bool tagIsExist = false;
+                    for (int i = 0; i < docs.Length; i++)
+                    {
+                        int docId = docs[i].doc;//得到查询结果文档的id（Lucene内部分配的id）
+                        Document doc = searcher.Doc(docId);//根据文档id来获得文档对象Document
+                        if (doc.Get("tag")==picture.Tag)
+                        {
+                            tagIsExist = true;
+                        }
+                    }
+                    if (!tagIsExist)
                     {
                         document.Add(new Field("id", picture.Id.ToString(), Field.Store.YES, Field.Index.NOT_ANALYZED));
                         document.Add(new Field("tag", picture.Tag, Field.Store.YES, Field.Index.ANALYZED,

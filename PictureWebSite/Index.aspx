@@ -4,7 +4,6 @@
     <link href="assets/js/lib/BootStrap/css/bootstrap.min.css" rel="stylesheet" />
     <link href="assets/css/index.css" rel="stylesheet" />
     <link href="assets/css/reset.css" rel="stylesheet" />
-
     <style type="text/css">
         /*BootStrap全局样式修改*/
         .breadcrumb {
@@ -192,10 +191,7 @@
     <script src="assets/js/lib/dateFormat.js"></script>
     <script src="assets/js/waterfallFlow.js"></script>
     <script src="assets/js/1.js"></script>
-    <script src="assets/js/pictureDetail.js"></script>
     <script src="assets/js/lib/BootStrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/lib/jquery.validate.min.js"></script>
-    <script src="assets/js/lib/messages_cn.js"></script>
     <script type="text/javascript">
         function modalEventBing() {
             //评价留言框获得焦点事件绑定
@@ -208,6 +204,8 @@
             picLinksClickEvent();
             //点击出现图片上传弹出层事件
             plusBtnEven();
+
+
         }
 
         //点击图片执行图片详细信息弹出层相关函数
@@ -219,7 +217,7 @@
         function plusBtnEven() {
             $("#plus").click(function () {
                 var upLoadModal = $("#picUploadModal");
-                upLoadModal.modal();
+                upLoadModal.modal({ backdrop: 'static' });
                     
             });
         }

@@ -115,6 +115,11 @@
     <Content Include="admin\css\font-awesome.min.css" />
     <Content Include="admin\css\style.min.css" />
     <Content Include="admin\PictureShow.aspx" />
+    <Content Include="assets\css\border-anim-h.gif" />
+    <Content Include="assets\css\border-anim-v.gif" />
+    <Content Include="assets\css\border-h.gif" />
+    <Content Include="assets\css\border-v.gif" />
+    <Content Include="assets\css\imgareaselect-default.css" />
     <Content Include="assets\css\index.css" />
     <Content Include="assets\css\reset.css" />
     <Content Include="assets\img\action_like1.png" />
@@ -135,6 +140,7 @@
     <Content Include="assets\img\userMenu.png" />
     <Content Include="assets\img\white.png" />
     <Content Include="assets\js\1.js" />
+    <Content Include="assets\js\lib\jquery.imgareaselect.min.js" />
     <Content Include="assets\js\lib\imagesLoaded.js" />
     <Content Include="assets\js\lib\jquery.validate.min.js" />
     <Content Include="assets\js\lib\Masonry.js" />
@@ -142,7 +148,7 @@
     <Content Include="assets\js\lib\messages_cn.js" />
     <Content Include="assets\js\lib\plupload.full.min.js" />
     <Content Include="assets\js\newMask.js" />
-    <Content Include="assets\js\pictureDetail.js" />
+    <Content Include="assets\js\bootstrapPart.js" />
     <Content Include="Dict\ChsDoubleName1.txt" />
     <Content Include="Dict\ChsDoubleName2.txt" />
     <Content Include="Dict\ChsSingleName.txt" />
@@ -165,7 +171,6 @@
     <Content Include="assets\js\lib\BootStrap\js\bootstrap.js" />
     <Content Include="assets\js\lib\BootStrap\js\bootstrap.min.js" />
     <Content Include="assets\js\lib\BootStrap\js\npm.js" />
-    <Content Include="assets\js\lib\BootStrap\OtherSource\userFace.jpg" />
     <Content Include="lib\DS.Web.UCenter.dll" />
     <Content Include="lib\DS.Web.UCenter.XML" />
     <Content Include="lib\log4net.dll" />
@@ -340,7 +345,6 @@
     <Content Include="account\Login.ashx" />
     <Content Include="account\Register.ashx" />
     <Content Include="account\Logout.ashx" />
-    <Content Include="assets\js\lib\BootStrap\bootstrap-3.3.5.zip" />
     <Content Include="assets\js\lib\BootStrap\css\bootstrap-theme.css.map" />
     <Content Include="assets\js\lib\BootStrap\css\bootstrap.css.map" />
     <Content Include="assets\js\lib\BootStrap\fonts\glyphicons-halflings-regular.eot" />

@@ -20,20 +20,27 @@ namespace TestConsole
 
         public static void Main()
         {
-            StreamReader sr = new StreamReader("1.txt");
-            TagBLL bll = new TagBLL();
-            while (!sr.EndOfStream)
+            IndexReader reader = IndexReader.Open(@"D:\GitHub\PictureWebSite\PictureWebSite\IndexData", true);
+            Term indexTerm = new Term("tag", "方");
+            TermDocs docs = reader.TermDocs(indexTerm);
+            while (docs.Next())
             {
-                string str = sr.ReadLine();
-                bll.Insert(new Picture.Model.TagModel()
-                {
-                     TagName=str
-                });
+                Console.WriteLine(docs);
             }
 
+            //IndexSearcher searcher = new IndexSearcher(reader);
+            //var terms = reader.Terms(new Term("tag","方图测试"));
 
-            sr.Close();
-            sr.Dispose();
+
+            //Query query = new TermQuery(indexTerm);
+            ////TermDocs docs = reader.TermDocs(indexTerm);
+            //TopDocs topDocs = searcher.Search(query, 1000);
+            //Console.WriteLine(topDocs.totalHits);
+            //foreach (var item in topDocs.scoreDocs)
+            //{
+            //    Document document = searcher.Doc(item.doc);
+            //    Console.WriteLine(document.Get("tag"));
+            //}
             Console.ReadKey();
         }
 

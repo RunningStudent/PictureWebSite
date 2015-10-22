@@ -1,0 +1,104 @@
+
+ 
+记录时间：2015-10-20 00:10:06,765 
+线程ID:[9] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.ArgumentOutOfRangeException: 长度不能小于 0。
+参数名: length
+   在 System.String.Substring(Int32 startIndex, Int32 length)
+   在 PictureWebSite.admin.handler.GetAllExcellent.BuildWhere(IEnumerable`1 excellentPicList) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 57
+   在 PictureWebSite.admin.handler.GetAllExcellent.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\admin\handler\GetAllExcellent.ashx.cs:行号 30
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ 
+
+ 
+记录时间：2015-10-20 17:55:42,848 
+线程ID:[38] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.IO.IOException: 文件“D:\GitHub\PictureWebSite\PictureWebSite\UpLoadPicture\20151020\a2795b506c15d6720d200c54945571d3.jpg”正由另一进程使用，因此该进程无法访问此文件。
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   在 System.IO.FileStream..ctor(String path, FileMode mode)
+   在 System.Web.HttpPostedFile.SaveAs(String filename)
+   在 PictureWebSite.handler.PictureUpload.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\handler\PictureUpload.ashx.cs:行号 82
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ 
+
+ 
+记录时间：2015-10-20 18:00:10,883 
+线程ID:[71] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.Data.SqlClient.SqlException (0x80131904): DELETE 语句与 REFERENCE 约束"FK_ExcellentPicture_PictureInfo"冲突。该冲突发生于数据库"Picture"，表"dbo.ExcellentPicture", column 'ePId'。
+语句已终止。
+   在 Picture.Utility.SqlHelper.ExecuteNonQuery(String cmdText, CommandType type, SqlParameter[] parameters) 位置 d:\GitHub\PictureWebSite\Picture.Utility\SqlHelper.cs:行号 319
+   在 Picture.Utility.SqlHelper.ExecuteNonQuery(String cmdText, SqlParameter[] parameters) 位置 d:\GitHub\PictureWebSite\Picture.Utility\SqlHelper.cs:行号 284
+   在 Picture.DAL.PictureInfoDAL.Delete(Int32 pid) 位置 d:\GitHub\PictureWebSite\Picture.DAL\PictureInfo.cs:行号 58
+   在 Picture.BLL.PictureInfoBLL.Delete(Int32 pid) 位置 d:\GitHub\PictureWebSite\Picture.BLL\PictureInfo.cs:行号 31
+   在 PictureWebSite.handler.DeletePicture.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\handler\DeletePicture.ashx.cs:行号 48
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ClientConnectionId:524d6c99-a00b-4880-8dda-08d18e4ef9b7
+ 
+
+ 
+记录时间：2015-10-20 18:03:25,924 
+线程ID:[71] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.Data.SqlClient.SqlException (0x80131904): DELETE 语句与 REFERENCE 约束"FK_ExcellentPicture_PictureInfo"冲突。该冲突发生于数据库"Picture"，表"dbo.ExcellentPicture", column 'ePId'。
+语句已终止。
+   在 Picture.Utility.SqlHelper.ExecuteNonQuery(String cmdText, CommandType type, SqlParameter[] parameters) 位置 d:\GitHub\PictureWebSite\Picture.Utility\SqlHelper.cs:行号 319
+   在 Picture.Utility.SqlHelper.ExecuteNonQuery(String cmdText, SqlParameter[] parameters) 位置 d:\GitHub\PictureWebSite\Picture.Utility\SqlHelper.cs:行号 284
+   在 Picture.DAL.PictureInfoDAL.Delete(Int32 pid) 位置 d:\GitHub\PictureWebSite\Picture.DAL\PictureInfo.cs:行号 58
+   在 Picture.BLL.PictureInfoBLL.Delete(Int32 pid) 位置 d:\GitHub\PictureWebSite\Picture.BLL\PictureInfo.cs:行号 31
+   在 PictureWebSite.handler.DeletePicture.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\handler\DeletePicture.ashx.cs:行号 48
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ClientConnectionId:524d6c99-a00b-4880-8dda-08d18e4ef9b7
+ 
+
+ 
+记录时间：2015-10-20 18:05:28,931 
+线程ID:[71] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.Data.SqlClient.SqlException (0x80131904): DELETE 语句与 REFERENCE 约束"FK_TagImgRelation_PictureInfo1"冲突。该冲突发生于数据库"Picture"，表"dbo.TagImgRelation", column 'ImgId'。
+语句已终止。
+   在 Picture.Utility.SqlHelper.ExecuteNonQuery(String cmdText, CommandType type, SqlParameter[] parameters) 位置 d:\GitHub\PictureWebSite\Picture.Utility\SqlHelper.cs:行号 319
+   在 Picture.Utility.SqlHelper.ExecuteNonQuery(String cmdText, SqlParameter[] parameters) 位置 d:\GitHub\PictureWebSite\Picture.Utility\SqlHelper.cs:行号 284
+   在 Picture.DAL.PictureInfoDAL.Delete(Int32 pid) 位置 d:\GitHub\PictureWebSite\Picture.DAL\PictureInfo.cs:行号 58
+   在 Picture.BLL.PictureInfoBLL.Delete(Int32 pid) 位置 d:\GitHub\PictureWebSite\Picture.BLL\PictureInfo.cs:行号 31
+   在 PictureWebSite.handler.DeletePicture.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\handler\DeletePicture.ashx.cs:行号 48
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ClientConnectionId:524d6c99-a00b-4880-8dda-08d18e4ef9b7
+ 
+
+ 
+记录时间：2015-10-20 18:05:37,933 
+线程ID:[71] 
+日志级别：  ERROR 
+出错类：logerror property: [(null)] - 
+错误描述：
+ System.Data.SqlClient.SqlException (0x80131904): DELETE 语句与 REFERENCE 约束"FK_TagImgRelation_PictureInfo1"冲突。该冲突发生于数据库"Picture"，表"dbo.TagImgRelation", column 'ImgId'。
+语句已终止。
+   在 Picture.Utility.SqlHelper.ExecuteNonQuery(String cmdText, CommandType type, SqlParameter[] parameters) 位置 d:\GitHub\PictureWebSite\Picture.Utility\SqlHelper.cs:行号 319
+   在 Picture.Utility.SqlHelper.ExecuteNonQuery(String cmdText, SqlParameter[] parameters) 位置 d:\GitHub\PictureWebSite\Picture.Utility\SqlHelper.cs:行号 284
+   在 Picture.DAL.PictureInfoDAL.Delete(Int32 pid) 位置 d:\GitHub\PictureWebSite\Picture.DAL\PictureInfo.cs:行号 58
+   在 Picture.BLL.PictureInfoBLL.Delete(Int32 pid) 位置 d:\GitHub\PictureWebSite\Picture.BLL\PictureInfo.cs:行号 31
+   在 PictureWebSite.handler.DeletePicture.ProcessRequest(HttpContext context) 位置 d:\GitHub\PictureWebSite\PictureWebSite\handler\DeletePicture.ashx.cs:行号 48
+   在 System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   在 System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ClientConnectionId:524d6c99-a00b-4880-8dda-08d18e4ef9b7
+ 

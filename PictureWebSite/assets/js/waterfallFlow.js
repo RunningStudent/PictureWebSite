@@ -52,9 +52,11 @@ function waterfallFlow(parent, oLoader, aWarpper) {
 
 						var oA = document.createElement('a');
 						oA.href = 'javascript:;';
-						var iHeight = data[i].height * (iWidth / data[i].width);
+					    //var iHeight = data[i].height * (iWidth / data[i].width);
+						var iHeight = 250;
 						oA.style.height = iHeight + 'px';
-						oA.innerHTML = '<img src="assets/img/white.png" class="pic lazy" width="' + iWidth + '" height="' + iHeight + '" data-original="' +window.host+data[i].imgUrl + '"></a>';
+						//oA.innerHTML = '<img src="assets/img/white.png" class="pic lazy" width="' + iWidth + '" height="' + iHeight + '" data-original="' + window.host + data[i].imgUrl + '"></a>';
+						oA.innerHTML = '<img src="assets/img/white.png" class="pic lazy" data-original="' + window.host + data[i].imgUrl + '"></a>';
 						
 						
 
